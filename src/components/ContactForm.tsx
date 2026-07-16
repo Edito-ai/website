@@ -45,7 +45,7 @@ export default function ContactForm() {
             className={inputClasses}
           >
             <option>General</option>
-            <option>Edito Studio</option>
+            <option>Adarpan Cut</option>
             <option>AccessWay</option>
             <option>Collaboration</option>
           </select>

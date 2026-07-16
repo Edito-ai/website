@@ -4,7 +4,7 @@ import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "Contact us",
   description:
-    "Get in touch with Adarpan Labs — questions, feedback, or collaboration ideas for Edito Studio and AccessWay.",
+    "Get in touch with Adarpan Labs — questions, feedback, or collaboration ideas for Adarpan Cut and AccessWay.",
 };
 
 export default function ContactPage() {
@@ -65,7 +65,7 @@ export default function ContactPage() {
               accessway.xyz ↗
             </a>
             <p className="mt-2 text-xs text-mist">
-              Edito Studio is a desktop app — reach out for a build.
+              Adarpan Cut is a desktop app — reach out for a build.
             </p>
           </div>
         </aside>

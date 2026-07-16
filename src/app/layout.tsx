@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s — Adarpan Labs",
   },
   description:
-    "Adarpan Labs is the studio behind Edito Studio, a cinematic desktop video editor, and AccessWay, AI-powered accessible navigation for people with disabilities.",
+    "Adarpan Labs is the studio behind Adarpan Cut, a prompt-based desktop video editor, and AccessWay, AI-powered accessible navigation for people with disabilities.",
 };
 
 export default function RootLayout({

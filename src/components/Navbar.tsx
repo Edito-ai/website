@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import LogoMark from "@/components/Logo";
 
 const items = [
-  { label: "Edito", href: "/" },
+  { label: "Adarpan Cut", href: "/" },
   { label: "AccessWay", href: "/accessway" },
   { label: "Contact", href: "/contact" },
 ];
@@ -16,12 +17,19 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-white/8 bg-ink-950/80 backdrop-blur-xl">
       <nav className="relative mx-auto flex h-16 max-w-6xl items-center px-4 sm:px-6">
         <Link href="/" className="group flex items-center gap-2.5">
-          <span className="flex size-8 items-center justify-center rounded-lg border border-white/10 bg-linear-to-br from-violet-500/40 to-teal-500/40 text-sm font-bold">
-            आ
+          <span className="flex size-8 items-center justify-center rounded-lg border border-white/10 bg-ink-900">
+            <LogoMark className="size-4.5 text-frost transition-colors group-hover:text-white" />
           </span>
           <span className="text-lg font-semibold tracking-tight group-hover:text-white max-sm:hidden">
             Adarpan <span className="text-violet-400">Labs</span>
           </span>
+        </Link>
+
+        <Link
+          href="/contact"
+          className="ml-auto hidden rounded-full border border-violet-400/40 bg-violet-500/10 px-4 py-1.5 text-sm font-semibold text-violet-200 transition-colors hover:border-violet-400/70 hover:bg-violet-500/20 md:inline-block"
+        >
+          Get early access
         </Link>
 
         <div className="absolute left-1/2 flex -translate-x-1/2 items-center rounded-full bg-linear-to-r from-violet-600 to-purple-500 p-1 shadow-lg shadow-violet-600/30">

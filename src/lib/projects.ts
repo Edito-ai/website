@@ -18,12 +18,12 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "edito",
-    name: "Edito Studio",
-    kind: "Desktop video editor",
-    tagline: "A cinematic non-linear video editor that actually works.",
+    slug: "adarpan-cut",
+    name: "Adarpan Cut",
+    kind: "AI-powered desktop video editor",
+    tagline: "Find anyone. Cut everything.",
     blurb:
-      "A working desktop NLE built with Electron and React — import real media, drag clips onto a multi-track timeline, trim, split, scrub, and watch real playback. Paired with an AI cast pipeline that finds a person across footage using face recognition.",
+      "A native desktop video editor with a real multi-track timeline and AI built in — upload one photo and find every appearance of that person across hours of footage, exported as ranked crops with metadata. All AI runs locally; footage never leaves the machine.",
     stack: [
       "Electron",
       "React 18",

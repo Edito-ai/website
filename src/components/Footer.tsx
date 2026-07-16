@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LogoMark from "@/components/Logo";
 import { projects } from "@/lib/projects";
 
 export default function Footer() {
@@ -10,8 +11,11 @@ export default function Footer() {
       />
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 sm:grid-cols-3">
         <div>
-          <p className="text-lg font-semibold">
-            Adarpan <span className="text-violet-400">Labs</span>
+          <p className="flex items-center gap-2.5 text-lg font-semibold">
+            <LogoMark className="size-5 text-frost" />
+            <span>
+              Adarpan <span className="text-violet-400">Labs</span>
+            </span>
           </p>
           <p className="mt-2 max-w-xs text-sm leading-relaxed text-mist">
             आदर्पण — a mirror to the things we build. A creative tools studio
