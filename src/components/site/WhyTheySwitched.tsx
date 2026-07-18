@@ -9,7 +9,7 @@ import {
   useTransform,
   type MotionValue,
 } from "framer-motion";
-import { ArrowDown, FileCode2 } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 
 const OLD_STEPS = [
   "Import footage",
@@ -72,11 +72,8 @@ export default function WhyTheySwitched() {
   const arrowOpacity = useTransform(p, [0.4, 0.46, 0.6, 0.66], [0, 1, 1, 0]);
   const newOpacity = useTransform(p, [0.52, 0.62], [0, 1]);
   const newY = useTransform(p, [0.52, 0.66], [70, 0]);
-  const minutesScale = useTransform(p, [0.64, 0.74], [0.85, 1]);
-  const minutesOpacity = useTransform(p, [0.64, 0.72], [0, 1]);
-  // One last beat: the finished cut isn't a dead end — XML out, any editor in.
-  const xmlOpacity = useTransform(p, [0.82, 0.9], [0, 1]);
-  const xmlY = useTransform(p, [0.82, 0.92], [44, 0]);
+  const minutesScale = useTransform(p, [0.68, 0.82], [0.85, 1]);
+  const minutesOpacity = useTransform(p, [0.68, 0.8], [0, 1]);
 
   if (reduced) {
     return (
@@ -86,14 +83,14 @@ export default function WhyTheySwitched() {
         </p>
         <p className="mt-6 text-2xl text-ink-2 md:text-3xl">
           Six manual steps and eight hours became three steps and twelve
-          minutes — with XML export to any editor.
+          minutes.
         </p>
       </section>
     );
   }
 
   return (
-    <section ref={ref} className="relative h-[380vh]">
+    <section ref={ref} className="relative h-[320vh]">
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-clip px-6">
         <p className="absolute top-[8vh] font-mono text-xs tracking-widest text-muted uppercase">
           Why they switched
@@ -102,7 +99,7 @@ export default function WhyTheySwitched() {
         <div className="relative w-full max-w-xl">
           {/* Old workflow */}
           <motion.div style={{ y: oldY, opacity: oldOpacity }}>
-            <p className="font-mono text-xs tracking-widest text-muted uppercase">
+            <p className="font-mono text-base font-medium tracking-widest text-ink-2 uppercase md:text-lg">
               Old workflow
             </p>
             <ul className="mt-4 border-l border-line pl-6">
@@ -146,7 +143,7 @@ export default function WhyTheySwitched() {
             style={{ opacity: newOpacity, y: newY }}
             className="absolute inset-x-0 top-0"
           >
-            <p className="font-mono text-xs tracking-widest text-accent uppercase">
+            <p className="font-mono text-base font-medium tracking-widest text-accent uppercase md:text-lg">
               New workflow
             </p>
             <ul className="mt-4 border-l border-accent/40 pl-6">
@@ -173,23 +170,6 @@ export default function WhyTheySwitched() {
             >
               12 minutes<span className="text-accent">.</span>
             </motion.p>
-
-            {/* And you're never locked in. */}
-            <motion.div
-              style={{ opacity: xmlOpacity, y: xmlY }}
-              className="mt-10 flex flex-wrap items-center gap-x-4 gap-y-3"
-            >
-              <span className="flex shrink-0 items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-xs text-muted">
-                <FileCode2 className="size-4 text-accent" />
-                timeline.xml
-              </span>
-              <p className="max-w-md leading-relaxed text-muted">
-                Never locked in — export XML and open the cut in{" "}
-                <span className="text-ink">Premiere Pro</span>,{" "}
-                <span className="text-ink">DaVinci Resolve</span> or{" "}
-                <span className="text-ink">Final Cut</span>.
-              </p>
-            </motion.div>
           </motion.div>
         </div>
       </div>

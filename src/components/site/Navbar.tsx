@@ -2,19 +2,22 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/button";
 import BrollLogo from "@/components/site/BrollLogo";
 import Magnetic from "@/components/fx/Magnetic";
 
+// Absolute anchors so they work from /demo as well as the homepage.
 const links = [
-  { href: "#features", label: "Product" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#features", label: "Product" },
+  { href: "/#pricing", label: "Pricing" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
+  const router = useRouter();
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
 
@@ -60,7 +63,9 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <Button size="md">Book Demo</Button>
+        <Button size="md" onClick={() => router.push("/demo")}>
+          Book Demo
+        </Button>
       </div>
     </motion.header>
   );

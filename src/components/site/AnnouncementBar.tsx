@@ -23,7 +23,7 @@ function Message() {
 /**
  * 40px announcement bar above the navbar — a single static statement.
  * Slides in from the top, hides on scroll down and returns on scroll up.
- * Clicking it rides Lenis down to the demo section.
+ * Clicking it rides Lenis down to the features section.
  */
 export default function AnnouncementBar() {
   const ref = useRef<HTMLButtonElement>(null);
@@ -63,21 +63,22 @@ export default function AnnouncementBar() {
     return () => st.kill();
   }, []);
 
-  function toDemo() {
+  function toFeatures() {
     const lenis = (
       window as unknown as {
         __lenis?: { scrollTo: (target: string, opts?: object) => void };
       }
     ).__lenis;
-    if (lenis) lenis.scrollTo("#demo", { duration: 1.6 });
-    else document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" });
+    if (lenis) lenis.scrollTo("#features", { duration: 1.6 });
+    else
+      document.getElementById("features")?.scrollIntoView({ behavior: "smooth" });
   }
 
   return (
     <button
       ref={ref}
-      onClick={toDemo}
-      aria-label="Broll is powering 200M+ monthly views for a 15M+ follower production house. Jump to the demo."
+      onClick={toFeatures}
+      aria-label="Broll is powering 200M+ monthly views for a 15M+ follower production house. Jump to features."
       className="fixed inset-x-0 top-0 z-50 flex h-10 w-full cursor-pointer items-center justify-center overflow-hidden border-b border-white/[0.08] bg-black px-4"
     >
       <Message />
