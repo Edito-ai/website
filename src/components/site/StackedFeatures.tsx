@@ -26,6 +26,7 @@ interface Feature {
   title: string;
   body: string;
   visual: VisualKind;
+  img: string;
 }
 
 const FEATURES: Feature[] = [
@@ -35,6 +36,7 @@ const FEATURES: Feature[] = [
     title: "Prompt-based editing",
     body: "Describe the edit in a sentence. Broll cuts silences, punches in on the hook, restructures the story — no timeline, no keyframes.",
     visual: "prompt",
+    img: "/features/prompt_editing.png",
   },
   {
     icon: FileCode2,
@@ -42,6 +44,7 @@ const FEATURES: Feature[] = [
     title: "Export XML to any platform",
     body: "The finished cut is never locked in. One click exports an XML timeline that opens in Premiere Pro, DaVinci Resolve or Final Cut.",
     visual: "xml",
+    img: "/features/xml_export.png",
   },
   {
     icon: Palette,
@@ -49,6 +52,7 @@ const FEATURES: Feature[] = [
     title: "AI color grading",
     body: "One consistent cinematic grade across every camera, take and lighting condition — matched to your brand look.",
     visual: "grade",
+    img: "/features/color_grading.png",
   },
   {
     icon: AudioLines,
@@ -56,6 +60,7 @@ const FEATURES: Feature[] = [
     title: "AI lip sync",
     body: "Dub your videos into new languages with lips that actually match. One shoot, every audience.",
     visual: "lipsync",
+    img: "/features/lip_sync.png",
   },
 ];
 
@@ -187,29 +192,50 @@ function StackCard({
 
   return (
     <div
-      className="sticky flex justify-center"
-      style={{ top: `calc(12vh + ${index * 1.6}rem)` }}
+      className="flex justify-center md:sticky"
+      style={{ top: `calc(8vh + ${index * 1.6}rem)` }}
     >
+      {/* The card fills the pinned viewport exactly; the screenshot gets the
+          larger column and is never cropped (object-contain), so the whole
+          UI is readable. On mobile the cards flow normally at full height. */}
       <motion.div
-        style={reduced ? undefined : { scale }}
-        className="relative mb-10 w-full origin-top overflow-hidden rounded-3xl border border-line bg-surface p-8 shadow-[var(--shadow-lift)] md:p-14"
+        style={{
+          ...(reduced ? {} : { scale }),
+          "--stack-mh": `calc(90vh - ${index * 1.6}rem)`,
+        } as React.CSSProperties & { "--stack-mh": string }}
+        className="relative mb-10 flex w-full origin-top flex-col overflow-hidden rounded-3xl border border-line bg-surface p-7 shadow-[var(--shadow-lift)] md:h-(--stack-mh) md:p-10"
       >
-        <div className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
-          <div>
+        <div className="grid min-h-0 flex-1 items-center gap-8 md:grid-cols-[2fr_3fr] md:gap-12">
+          <div className="min-w-0">
             <div className="flex items-center gap-4">
               <span className="font-mono text-sm text-muted">{feature.n}</span>
               <span className="rounded-full border border-line p-2.5">
                 <feature.icon className="size-5 text-accent" strokeWidth={1.5} />
               </span>
             </div>
-            <h3 className="mt-8 text-3xl font-semibold tracking-tighter md:text-5xl">
+            <h3 className="mt-6 text-3xl font-semibold tracking-tighter md:text-4xl">
               {feature.title}
             </h3>
-            <p className="mt-5 max-w-md leading-relaxed text-muted md:text-lg">
+            <p className="mt-4 max-w-md leading-relaxed text-muted">
               {feature.body}
             </p>
+            <div className="mt-8 hidden md:block">
+              <Visual />
+            </div>
           </div>
-          <div className="flex justify-start md:justify-center">
+
+          {/* Product demo screenshot — full image, never cropped */}
+          <div className="relative flex min-h-0 items-center justify-center self-stretch overflow-hidden rounded-2xl border border-line/60 bg-surface-2 p-2 md:p-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={feature.img}
+              alt={`${feature.title} — Broll demo`}
+              className="max-h-full w-full rounded-xl object-contain"
+              loading="lazy"
+            />
+          </div>
+
+          <div className="md:hidden">
             <Visual />
           </div>
         </div>

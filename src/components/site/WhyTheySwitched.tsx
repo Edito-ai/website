@@ -9,7 +9,7 @@ import {
   useTransform,
   type MotionValue,
 } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { ArrowRight, ArrowDown } from "lucide-react";
 
 const OLD_STEPS = [
   "Import footage",
@@ -31,15 +31,15 @@ function OldStep({
   index: number;
   p: MotionValue<number>;
 }) {
-  // Each step gets struck through in sequence as the scroll progresses.
-  const t0 = 0.1 + index * 0.045;
+  // Struck through one by one as the scroll progresses.
+  const t0 = 0.08 + index * 0.05;
   const strike = useTransform(p, [t0, t0 + 0.05], [0, 1]);
   const dim = useTransform(p, [t0, t0 + 0.05], [1, 0.35]);
 
   return (
-    <motion.li style={{ opacity: dim }} className="relative flex items-baseline gap-4 py-2.5">
+    <motion.li style={{ opacity: dim }} className="flex items-baseline gap-4 py-3 md:py-4">
       <span className="font-mono text-xs text-muted">{String(index + 1).padStart(2, "0")}</span>
-      <span className="relative text-xl font-medium tracking-tight md:text-2xl">
+      <span className="relative text-xl font-medium tracking-tight md:text-3xl">
         {step}
         <motion.span
           aria-hidden
@@ -51,10 +51,44 @@ function OldStep({
   );
 }
 
+function NewStep({
+  step,
+  index,
+  p,
+}: {
+  step: string;
+  index: number;
+  p: MotionValue<number>;
+}) {
+  // Each new step rises in after the arrow has drawn.
+  const t0 = 0.56 + index * 0.07;
+  const opacity = useTransform(p, [t0, t0 + 0.07], [0, 1]);
+  const y = useTransform(p, [t0, t0 + 0.09], [40, 0]);
+
+  return (
+    <motion.li
+      style={{ opacity, y }}
+      className="flex items-baseline gap-4 py-4 md:py-5"
+    >
+      <span className="font-mono text-xs text-muted">{String(index + 1).padStart(2, "0")}</span>
+      <span
+        className={
+          index === 1
+            ? "font-serif text-2xl italic md:text-4xl"
+            : "text-2xl font-medium tracking-tight md:text-4xl"
+        }
+      >
+        {step}
+      </span>
+    </motion.li>
+  );
+}
+
 /**
- * An editorial before/after of the workflow itself. Scrolling strikes out
- * the old process step by step, draws an arrow, and lets the new three-step
- * reality rise in its place. Eight hours becomes twelve minutes.
+ * An editorial before/after of the workflow itself, side by side across the
+ * full width. Scrolling strikes out the old process step by step, draws an
+ * arrow across the divide, and the new three-step reality rises on the
+ * right. Eight hours becomes twelve minutes.
  */
 export default function WhyTheySwitched() {
   const ref = useRef<HTMLDivElement>(null);
@@ -65,15 +99,13 @@ export default function WhyTheySwitched() {
   });
   const p = useSpring(scrollYProgress, { stiffness: 90, damping: 26 });
 
-  const oldY = useTransform(p, [0.36, 0.54], [0, -48]);
-  const oldOpacity = useTransform(p, [0.36, 0.54], [1, 0.1]);
-  const oldHoursStrike = useTransform(p, [0.38, 0.44], [0, 1]);
-  const arrowDraw = useTransform(p, [0.4, 0.52], [0, 1]);
-  const arrowOpacity = useTransform(p, [0.4, 0.46, 0.6, 0.66], [0, 1, 1, 0]);
-  const newOpacity = useTransform(p, [0.52, 0.62], [0, 1]);
-  const newY = useTransform(p, [0.52, 0.66], [70, 0]);
-  const minutesScale = useTransform(p, [0.68, 0.82], [0.85, 1]);
-  const minutesOpacity = useTransform(p, [0.68, 0.8], [0, 1]);
+  const oldDim = useTransform(p, [0.42, 0.52], [1, 0.45]);
+  const oldHoursStrike = useTransform(p, [0.42, 0.48], [0, 1]);
+  const arrowDraw = useTransform(p, [0.46, 0.56], [0, 1]);
+  const arrowHeadOpacity = useTransform(p, [0.54, 0.58], [0, 1]);
+  const newLabelOpacity = useTransform(p, [0.52, 0.58], [0, 1]);
+  const minutesScale = useTransform(p, [0.8, 0.92], [0.85, 1]);
+  const minutesOpacity = useTransform(p, [0.8, 0.9], [0, 1]);
 
   if (reduced) {
     return (
@@ -82,8 +114,7 @@ export default function WhyTheySwitched() {
           Why they switched
         </p>
         <p className="mt-6 text-2xl text-ink-2 md:text-3xl">
-          Six manual steps and eight hours became three steps and twelve
-          minutes.
+          Six manual steps and eight hours became three steps and twelve minutes.
         </p>
       </section>
     );
@@ -91,23 +122,24 @@ export default function WhyTheySwitched() {
 
   return (
     <section ref={ref} className="relative h-[320vh]">
-      <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-clip px-6">
-        <p className="absolute top-[8vh] font-mono text-xs tracking-widest text-muted uppercase">
+      <div className="sticky top-0 flex h-screen flex-col overflow-clip px-6 md:px-10">
+        <p className="pt-[7vh] text-center font-mono text-xs tracking-widest text-muted uppercase">
           Why they switched
         </p>
 
-        <div className="relative w-full max-w-xl">
+        {/* Full-width split: old on the left, new on the right */}
+        <div className="mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 content-center gap-6 md:grid-cols-[1fr_minmax(6rem,10rem)_1fr] md:items-center md:gap-0">
           {/* Old workflow */}
-          <motion.div style={{ y: oldY, opacity: oldOpacity }}>
+          <motion.div style={{ opacity: oldDim }}>
             <p className="font-mono text-base font-medium tracking-widest text-ink-2 uppercase md:text-lg">
               Old workflow
             </p>
-            <ul className="mt-4 border-l border-line pl-6">
+            <ul className="mt-4 border-l border-line pl-6 md:mt-6">
               {OLD_STEPS.map((step, i) => (
                 <OldStep key={step} step={step} index={i} p={p} />
               ))}
             </ul>
-            <p className="relative mt-6 inline-block text-4xl font-semibold tracking-tighter text-muted md:text-5xl">
+            <p className="relative mt-6 inline-block text-5xl font-semibold tracking-tighter text-muted md:mt-8 md:text-7xl">
               8 hours
               <motion.span
                 aria-hidden
@@ -117,60 +149,65 @@ export default function WhyTheySwitched() {
             </p>
           </motion.div>
 
-          {/* Transition arrow */}
-          <motion.div
-            style={{ opacity: arrowOpacity }}
-            className="pointer-events-none absolute inset-x-0 top-1/2 flex -translate-y-1/2 justify-center"
-          >
-            <div className="flex flex-col items-center">
-              <svg width="2" height="120" viewBox="0 0 2 120" className="overflow-visible">
+          {/* The arrow across the divide */}
+          <div className="flex items-center justify-center py-2 md:h-full md:py-0">
+            {/* Horizontal on desktop */}
+            <div className="hidden w-full items-center md:flex">
+              <svg className="h-2 w-full overflow-visible" viewBox="0 0 100 2" preserveAspectRatio="none">
+                <motion.line
+                  x1="0"
+                  y1="1"
+                  x2="100"
+                  y2="1"
+                  stroke="var(--accent)"
+                  strokeWidth="2"
+                  vectorEffect="non-scaling-stroke"
+                  style={{ pathLength: arrowDraw }}
+                />
+              </svg>
+              <motion.span style={{ opacity: arrowHeadOpacity }}>
+                <ArrowRight className="-ml-1 size-6 shrink-0 text-accent" />
+              </motion.span>
+            </div>
+            {/* Vertical on mobile */}
+            <div className="flex flex-col items-center md:hidden">
+              <svg width="2" height="56" viewBox="0 0 2 56" className="overflow-visible">
                 <motion.line
                   x1="1"
                   y1="0"
                   x2="1"
-                  y2="120"
+                  y2="56"
                   stroke="var(--accent)"
                   strokeWidth="2"
                   style={{ pathLength: arrowDraw }}
                 />
               </svg>
-              <ArrowDown className="-mt-1 size-5 text-accent" />
+              <motion.span style={{ opacity: arrowHeadOpacity }}>
+                <ArrowDown className="-mt-1 size-5 text-accent" />
+              </motion.span>
             </div>
-          </motion.div>
+          </div>
 
           {/* New workflow */}
-          <motion.div
-            style={{ opacity: newOpacity, y: newY }}
-            className="absolute inset-x-0 top-0"
-          >
-            <p className="font-mono text-base font-medium tracking-widest text-accent uppercase md:text-lg">
+          <div>
+            <motion.p
+              style={{ opacity: newLabelOpacity }}
+              className="font-mono text-base font-medium tracking-widest text-accent uppercase md:text-lg"
+            >
               New workflow
-            </p>
-            <ul className="mt-4 border-l border-accent/40 pl-6">
+            </motion.p>
+            <ul className="mt-4 border-l border-accent/40 pl-6 md:mt-6">
               {NEW_STEPS.map((step, i) => (
-                <li key={step} className="flex items-baseline gap-4 py-4">
-                  <span className="font-mono text-xs text-muted">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span
-                    className={
-                      i === 1
-                        ? "font-serif text-2xl italic md:text-3xl"
-                        : "text-2xl font-medium tracking-tight md:text-3xl"
-                    }
-                  >
-                    {step}
-                  </span>
-                </li>
+                <NewStep key={step} step={step} index={i} p={p} />
               ))}
             </ul>
             <motion.p
               style={{ scale: minutesScale, opacity: minutesOpacity }}
-              className="mt-8 origin-left text-6xl font-semibold tracking-tighter md:text-8xl"
+              className="mt-6 origin-left text-6xl font-semibold tracking-tighter md:mt-8 md:text-8xl"
             >
               12 minutes<span className="text-accent">.</span>
             </motion.p>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

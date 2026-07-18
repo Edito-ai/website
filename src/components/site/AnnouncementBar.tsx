@@ -11,11 +11,8 @@ function Message() {
   return (
     <span className="flex items-center gap-2 text-xs whitespace-nowrap text-white/70">
       <span aria-hidden>🚀</span>
-      Broll is powering{" "}
+      Broll is currently powering{" "}
       <strong className="font-semibold text-white">200M+</strong> monthly views
-      for a <strong className="font-semibold text-white">15M+</strong> follower
-      production house.
-      <ArrowRight aria-hidden className="size-3.5 text-white/50" />
     </span>
   );
 }
@@ -78,7 +75,7 @@ export default function AnnouncementBar() {
     <button
       ref={ref}
       onClick={toFeatures}
-      aria-label="Broll is powering 200M+ monthly views for a 15M+ follower production house. Jump to features."
+      aria-label="Broll is currently powering 200M+ monthly views"
       className="fixed inset-x-0 top-0 z-50 flex h-10 w-full cursor-pointer items-center justify-center overflow-hidden border-b border-white/[0.08] bg-black px-4"
     >
       <Message />
