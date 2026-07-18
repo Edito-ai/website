@@ -1,7 +1,7 @@
 // Single source of truth for absolute URLs (metadata, sitemap, JSON-LD).
-// Set NEXT_PUBLIC_SITE_URL to the production domain when deploying.
+// NEXT_PUBLIC_SITE_URL overrides for preview/staging deployments.
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://trybroll.com";
 
 export const SITE_NAME = "Broll";
 
