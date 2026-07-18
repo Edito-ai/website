@@ -20,7 +20,7 @@ const OLD_STEPS = [
   "Export",
 ];
 
-const NEW_STEPS = ["Upload footage", "Broll understands everything", "Finished video"];
+const NEW_STEPS = ["Upload your footage", "Tell Broll what you want", "Get your finished cut"];
 
 function OldStep({
   step,
@@ -102,7 +102,7 @@ export default function WhyTheySwitched() {
   const oldDim = useTransform(p, [0.42, 0.52], [1, 0.45]);
   const oldHoursStrike = useTransform(p, [0.42, 0.48], [0, 1]);
   const arrowDraw = useTransform(p, [0.46, 0.56], [0, 1]);
-  const arrowHeadOpacity = useTransform(p, [0.54, 0.58], [0, 1]);
+  const arrowHeadOpacity = useTransform(arrowDraw, [0.85, 1], [0, 1]);
   const newLabelOpacity = useTransform(p, [0.52, 0.58], [0, 1]);
   const minutesScale = useTransform(p, [0.8, 0.92], [0.85, 1]);
   const minutesOpacity = useTransform(p, [0.8, 0.9], [0, 1]);
@@ -153,37 +153,22 @@ export default function WhyTheySwitched() {
           <div className="flex items-center justify-center py-2 md:h-full md:py-0">
             {/* Horizontal on desktop */}
             <div className="hidden w-full items-center md:flex">
-              <svg className="h-2 w-full overflow-visible" viewBox="0 0 100 2" preserveAspectRatio="none">
-                <motion.line
-                  x1="0"
-                  y1="1"
-                  x2="100"
-                  y2="1"
-                  stroke="var(--accent)"
-                  strokeWidth="2"
-                  vectorEffect="non-scaling-stroke"
-                  style={{ pathLength: arrowDraw }}
-                />
-              </svg>
+              <motion.div
+                style={{ scaleX: arrowDraw }}
+                className="h-0.5 min-w-0 flex-1 origin-left bg-accent"
+              />
               <motion.span style={{ opacity: arrowHeadOpacity }}>
-                <ArrowRight className="-ml-1 size-6 shrink-0 text-accent" />
+                <ArrowRight className="-ml-2 size-6 shrink-0 text-accent" />
               </motion.span>
             </div>
             {/* Vertical on mobile */}
             <div className="flex flex-col items-center md:hidden">
-              <svg width="2" height="56" viewBox="0 0 2 56" className="overflow-visible">
-                <motion.line
-                  x1="1"
-                  y1="0"
-                  x2="1"
-                  y2="56"
-                  stroke="var(--accent)"
-                  strokeWidth="2"
-                  style={{ pathLength: arrowDraw }}
-                />
-              </svg>
+              <motion.div
+                style={{ scaleY: arrowDraw }}
+                className="h-14 w-0.5 origin-top bg-accent"
+              />
               <motion.span style={{ opacity: arrowHeadOpacity }}>
-                <ArrowDown className="-mt-1 size-5 text-accent" />
+                <ArrowDown className="-mt-2 size-5 text-accent" />
               </motion.span>
             </div>
           </div>
