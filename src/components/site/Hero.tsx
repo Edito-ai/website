@@ -1,5 +1,6 @@
 "use client";
 
+
 import { useRef } from "react";
 import {
   motion,
@@ -21,12 +22,12 @@ import Particles from "@/components/fx/Particles";
  * bottom. Animated signal lines connect the clips while they float free.
  */
 const CLIPS = [
-  { label: "A012_TAKE3", dur: "00:07", x: 7, y: 16, r: -7, depth: 1.0, slot: 0 },
-  { label: "DRONE_04", dur: "00:12", x: 78, y: 11, r: 5, depth: 0.6, slot: 1 },
-  { label: "INT_STUDIO", dur: "00:05", x: 85, y: 54, r: -4, depth: 1.2, slot: 2 },
-  { label: "B-ROLL_CITY", dur: "00:09", x: 4, y: 60, r: 6, depth: 0.8, slot: 3 },
-  { label: "VO_FINAL", dur: "00:14", x: 66, y: 78, r: -5, depth: 1.4, slot: 4 },
-  { label: "CU_HANDS", dur: "00:04", x: 23, y: 82, r: 8, depth: 0.7, slot: 5 },
+  { label: "A012_TAKE3", dur: "00:07", x: 7, y: 16, r: -7, depth: 1.0, slot: 0, img: "/clips/a012_take3.png" },
+  { label: "DRONE_04", dur: "00:12", x: 78, y: 11, r: 5, depth: 0.6, slot: 1, img: "/clips/drone_04.png" },
+  { label: "INT_STUDIO", dur: "00:05", x: 85, y: 54, r: -4, depth: 1.2, slot: 2, img: "/clips/int_studio.png" },
+  { label: "B-ROLL_CITY", dur: "00:09", x: 4, y: 60, r: 6, depth: 0.8, slot: 3, img: "/clips/broll_city.png" },
+  { label: "VO_FINAL", dur: "00:14", x: 66, y: 78, r: -5, depth: 1.4, slot: 4, img: "/clips/vo_final.png" },
+  { label: "CU_HANDS", dur: "00:04", x: 23, y: 82, r: 8, depth: 0.7, slot: 5, img: "/clips/cu_hands.png" },
 ];
 
 const SLOT_COUNT = CLIPS.length;
@@ -84,8 +85,14 @@ function Clip({
         className="rounded-xl border border-line bg-surface p-2 shadow-[var(--shadow-lift)]"
       >
         <div className="cursor-media relative h-16 overflow-hidden rounded-lg bg-gradient-to-br from-surface-2 to-line md:h-20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgb(120_120_130/0.25),transparent_60%)]" />
-          <Play className="absolute top-1.5 left-1.5 size-3 text-muted" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={clip.img}
+            alt={clip.label}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
+          <Play className="absolute top-1.5 left-1.5 size-3 text-white/80 drop-shadow-sm" />
           {/* Live audio waveform */}
           <div className="absolute inset-x-1.5 bottom-1.5 flex h-4 items-end gap-[2px]">
             {WAVES.map((h, i) => (
@@ -95,7 +102,7 @@ function Clip({
                   height: `${h * 100}%`,
                   animationDelay: `${(i + clip.slot) * 140}ms`,
                 }}
-                className="animate-eq w-full rounded-full bg-muted/50"
+                className="animate-eq w-full rounded-full bg-white/30"
               />
             ))}
           </div>
