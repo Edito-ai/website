@@ -11,6 +11,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/demo",
   },
+  openGraph: {
+    title: "Claim your free demo — Broll",
+    description:
+      "Tell us about your production house and we'll set up Broll for your team within 24 hours.",
+    url: "/demo",
+  },
 };
 
 export default function DemoPage() {

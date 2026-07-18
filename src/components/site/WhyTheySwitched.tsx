@@ -110,9 +110,9 @@ export default function WhyTheySwitched() {
   if (reduced) {
     return (
       <section className="mx-auto max-w-3xl px-6 py-28 text-center">
-        <p className="font-mono text-xs tracking-widest text-muted uppercase">
+        <h2 className="font-mono text-xs tracking-widest text-muted uppercase">
           Why they switched
-        </p>
+        </h2>
         <p className="mt-6 text-2xl text-ink-2 md:text-3xl">
           Six manual steps and eight hours became three steps and twelve minutes.
         </p>
@@ -123,9 +123,9 @@ export default function WhyTheySwitched() {
   return (
     <section ref={ref} className="relative h-[320vh]">
       <div className="sticky top-0 flex h-screen flex-col overflow-clip px-6 md:px-10">
-        <p className="pt-[7vh] text-center font-mono text-xs tracking-widest text-muted uppercase">
+        <h2 className="pt-[7vh] text-center font-mono text-xs tracking-widest text-muted uppercase">
           Why they switched
-        </p>
+        </h2>
 
         {/* Full-width split: old on the left, new on the right */}
         <div className="mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 content-center gap-6 md:grid-cols-[1fr_minmax(6rem,10rem)_1fr] md:items-center md:gap-0">

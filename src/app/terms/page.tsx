@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/terms",
   },
+  openGraph: {
+    title: "Terms of Service — Broll",
+    description:
+      "The terms that govern your use of the Broll website and service.",
+    url: "/terms",
+  },
 };
 
 export default function TermsPage() {

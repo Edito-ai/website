@@ -18,16 +18,19 @@ export default function GetDemo() {
       />
 
       <div className="relative mx-auto max-w-5xl text-center">
-        <WordReveal
-          text="Get your"
-          className="text-5xl font-semibold tracking-tighter md:text-8xl"
-        />
-        <WordReveal
-          as="p"
-          text="free demo."
-          delay={0.2}
-          className="mt-2 font-serif text-6xl italic md:text-9xl"
-        />
+        <h2>
+          <WordReveal
+            as="span"
+            text="Get your"
+            className="block text-5xl font-semibold tracking-tighter md:text-8xl"
+          />
+          <WordReveal
+            as="span"
+            text="free demo."
+            delay={0.2}
+            className="mt-2 block font-serif text-6xl italic md:text-9xl"
+          />
+        </h2>
 
         <Reveal delay={0.4}>
           <div className="mt-14 flex justify-center">

@@ -88,7 +88,7 @@ function Clip({
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={clip.img}
-            alt={clip.label}
+            alt=""
             className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
@@ -226,28 +226,30 @@ export default function Hero() {
             Agentic video editing
           </motion.p>
 
-          <span className="block overflow-hidden">
-            <motion.span
-              initial={reduced ? false : { y: "104%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="block text-[clamp(4.5rem,16vw,12rem)] leading-[0.95] font-semibold tracking-tighter"
-            >
-              Broll<span className="text-accent">.</span>
-            </motion.span>
-          </span>
+          <h1>
+            <span className="block overflow-hidden">
+              <motion.span
+                initial={reduced ? false : { y: "104%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="block text-[clamp(4.5rem,16vw,12rem)] leading-[0.95] font-semibold tracking-tighter"
+              >
+                Broll<span className="text-accent">.</span>
+              </motion.span>
+            </span>
 
-          <span className="mt-4 block overflow-hidden pb-[0.15em]">
-            <motion.span
-              initial={reduced ? false : { y: "108%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="block text-xl font-medium tracking-tight text-ink-2 text-balance md:text-3xl"
-            >
-              The AI editor that finishes videos{" "}
-              <span className="font-serif italic">before</span> you do.
-            </motion.span>
-          </span>
+            <span className="mt-4 block overflow-hidden pb-[0.15em]">
+              <motion.span
+                initial={reduced ? false : { y: "108%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                className="block text-xl font-medium tracking-tight text-ink-2 text-balance md:text-3xl"
+              >
+                The AI editor that finishes videos{" "}
+                <span className="font-serif italic">before</span> you do.
+              </motion.span>
+            </span>
+          </h1>
 
       
 

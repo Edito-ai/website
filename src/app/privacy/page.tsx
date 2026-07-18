@@ -8,6 +8,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/privacy",
   },
+  openGraph: {
+    title: "Privacy Policy — Broll",
+    description: "How Broll collects, uses, and protects your information.",
+    url: "/privacy",
+  },
 };
 
 export default function PrivacyPage() {
