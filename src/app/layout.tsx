@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import SmoothScroll from "@/components/providers/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,13 +13,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  weight: "400",
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: {
-    default: "Adarpan Labs — A mirror to what we build",
-    template: "%s — Adarpan Labs",
+    default: "Broll — The AI editor that finishes videos before you do",
+    template: "%s — Broll",
   },
   description:
-    "Adarpan Labs is the studio behind Adarpan Cut, a prompt-based desktop video editor, and AccessWay, AI-powered accessible navigation for people with disabilities.",
+    "Broll understands your footage, builds the narrative, edits every scene, creates captions, transitions, sound design and exports production-ready videos — without timelines.",
 };
 
 export default function RootLayout({
@@ -31,13 +37,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
     >
-      <body className="flex min-h-full flex-col font-sans">
+      <body className="font-sans">
         <div aria-hidden className="bg-grain pointer-events-none fixed inset-0 z-50" />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );
