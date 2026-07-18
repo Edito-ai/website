@@ -5,6 +5,9 @@ import LegalPage, { LegalSection } from "@/components/site/LegalPage";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "The terms that govern your use of the Broll website and service.",
+  alternates: {
+    canonical: "/terms",
+  },
 };
 
 export default function TermsPage() {

@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Claim your free demo",
   description:
     "Tell us about your production house and we'll set up Broll for your team within 24 hours.",
+  alternates: {
+    canonical: "/demo",
+  },
 };
 
 export default function DemoPage() {

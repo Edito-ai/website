@@ -5,6 +5,9 @@ import LegalPage, { LegalSection } from "@/components/site/LegalPage";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "How Broll collects, uses, and protects your information.",
+  alternates: {
+    canonical: "/privacy",
+  },
 };
 
 export default function PrivacyPage() {
