@@ -5,7 +5,7 @@ import Reveal from "@/components/fx/Reveal";
 import Particles from "@/components/fx/Particles";
 
 const STATS = [
-  { value: 20, suffix: "M+", label: "Followers" },
+  { value: 200, suffix: "M+", label: "Monthly views" },
   { value: 500, suffix: "+", label: "Hours edited" },
   { value: 98, suffix: "%", label: "Editing time saved" },
 ];
@@ -46,8 +46,9 @@ export default function SocialProof() {
 
         <Reveal delay={0.3}>
           <p className="mx-auto mt-20 max-w-xl text-center text-lg leading-relaxed text-dark-muted md:text-xl">
-            Trusted by one of India&apos;s fastest-growing production houses —
-            where Broll cuts the videos their audience watches every day.
+            Trusted by a 15M+ follower production house — one of India&apos;s
+            fastest-growing — where Broll cuts the videos behind 200M+ monthly
+            views.
           </p>
         </Reveal>
       </div>

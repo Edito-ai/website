@@ -95,7 +95,7 @@ export default function ScrollStory() {
   if (reduced) return null;
 
   return (
-    <section ref={ref} aria-hidden className="relative h-[400vh] bg-dark-bg">
+    <section ref={ref} id="demo" aria-hidden className="relative h-[400vh] bg-dark-bg">
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-clip px-4 md:px-6">
         <motion.p className="mb-8 font-mono text-xs tracking-widest text-dark-muted uppercase">
           {stage}

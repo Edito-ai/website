@@ -6,7 +6,7 @@ const QUOTES = [
   {
     quote:
       "We stopped opening our editing software. Footage goes in after a shoot, a finished Broll cut is waiting by the time we've had coffee.",
-    who: "Head of Content, production house · 20M+ followers",
+    who: "Head of Content · 15M+ follower production house",
   },
   {
     quote:

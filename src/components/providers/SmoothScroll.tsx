@@ -22,6 +22,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     });
 
     lenis.on("scroll", ScrollTrigger.update);
+    // Anchor navigation (announcement bar, nav links) rides Lenis directly.
+    (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
 
     const tick = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(tick);
@@ -29,6 +31,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     return () => {
       gsap.ticker.remove(tick);
+      delete (window as unknown as { __lenis?: Lenis }).__lenis;
       lenis.destroy();
     };
   }, []);

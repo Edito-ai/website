@@ -9,7 +9,7 @@ import {
   useTransform,
   type MotionValue,
 } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, FileCode2 } from "lucide-react";
 
 const OLD_STEPS = [
   "Import footage",
@@ -32,7 +32,7 @@ function OldStep({
   p: MotionValue<number>;
 }) {
   // Each step gets struck through in sequence as the scroll progresses.
-  const t0 = 0.12 + index * 0.05;
+  const t0 = 0.1 + index * 0.045;
   const strike = useTransform(p, [t0, t0 + 0.05], [0, 1]);
   const dim = useTransform(p, [t0, t0 + 0.05], [1, 0.35]);
 
@@ -65,15 +65,18 @@ export default function WhyTheySwitched() {
   });
   const p = useSpring(scrollYProgress, { stiffness: 90, damping: 26 });
 
-  const oldY = useTransform(p, [0.42, 0.62], [0, -48]);
-  const oldOpacity = useTransform(p, [0.42, 0.62], [1, 0.14]);
-  const oldHoursStrike = useTransform(p, [0.44, 0.5], [0, 1]);
-  const arrowDraw = useTransform(p, [0.46, 0.58], [0, 1]);
-  const arrowOpacity = useTransform(p, [0.46, 0.52, 0.72, 0.8], [0, 1, 1, 0]);
-  const newOpacity = useTransform(p, [0.6, 0.72], [0, 1]);
-  const newY = useTransform(p, [0.6, 0.78], [70, 0]);
-  const minutesScale = useTransform(p, [0.78, 0.9], [0.85, 1]);
-  const minutesOpacity = useTransform(p, [0.78, 0.88], [0, 1]);
+  const oldY = useTransform(p, [0.36, 0.54], [0, -48]);
+  const oldOpacity = useTransform(p, [0.36, 0.54], [1, 0.1]);
+  const oldHoursStrike = useTransform(p, [0.38, 0.44], [0, 1]);
+  const arrowDraw = useTransform(p, [0.4, 0.52], [0, 1]);
+  const arrowOpacity = useTransform(p, [0.4, 0.46, 0.6, 0.66], [0, 1, 1, 0]);
+  const newOpacity = useTransform(p, [0.52, 0.62], [0, 1]);
+  const newY = useTransform(p, [0.52, 0.66], [70, 0]);
+  const minutesScale = useTransform(p, [0.64, 0.74], [0.85, 1]);
+  const minutesOpacity = useTransform(p, [0.64, 0.72], [0, 1]);
+  // One last beat: the finished cut isn't a dead end — XML out, any editor in.
+  const xmlOpacity = useTransform(p, [0.82, 0.9], [0, 1]);
+  const xmlY = useTransform(p, [0.82, 0.92], [44, 0]);
 
   if (reduced) {
     return (
@@ -82,14 +85,15 @@ export default function WhyTheySwitched() {
           Why they switched
         </p>
         <p className="mt-6 text-2xl text-ink-2 md:text-3xl">
-          Six manual steps and eight hours became three steps and twelve minutes.
+          Six manual steps and eight hours became three steps and twelve
+          minutes — with XML export to any editor.
         </p>
       </section>
     );
   }
 
   return (
-    <section ref={ref} className="relative h-[320vh]">
+    <section ref={ref} className="relative h-[380vh]">
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-clip px-6">
         <p className="absolute top-[8vh] font-mono text-xs tracking-widest text-muted uppercase">
           Why they switched
@@ -169,6 +173,23 @@ export default function WhyTheySwitched() {
             >
               12 minutes<span className="text-accent">.</span>
             </motion.p>
+
+            {/* And you're never locked in. */}
+            <motion.div
+              style={{ opacity: xmlOpacity, y: xmlY }}
+              className="mt-10 flex flex-wrap items-center gap-x-4 gap-y-3"
+            >
+              <span className="flex shrink-0 items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-xs text-muted">
+                <FileCode2 className="size-4 text-accent" />
+                timeline.xml
+              </span>
+              <p className="max-w-md leading-relaxed text-muted">
+                Never locked in — export XML and open the cut in{" "}
+                <span className="text-ink">Premiere Pro</span>,{" "}
+                <span className="text-ink">DaVinci Resolve</span> or{" "}
+                <span className="text-ink">Final Cut</span>.
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </div>

@@ -22,11 +22,11 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: {
-    default: "Broll — The AI editor that finishes videos before you do",
+    default: "Broll — The operating system for autonomous video editing",
     template: "%s — Broll",
   },
   description:
-    "Broll understands your footage, builds the narrative, edits every scene, creates captions, transitions, sound design and exports production-ready videos — without timelines.",
+    "From raw footage to publish-ready videos. Broll understands every frame, builds the story, edits, captions, color grades and exports — without timelines.",
 };
 
 export default function RootLayout({

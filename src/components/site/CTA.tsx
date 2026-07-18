@@ -7,7 +7,7 @@ import Button from "@/components/ui/button";
 
 export default function CTA() {
   return (
-    <section className="relative overflow-hidden bg-dark-bg py-36 text-dark-ink md:py-52">
+    <section id="pricing" className="relative overflow-hidden bg-dark-bg py-36 text-dark-ink md:py-52">
       {/* Slowly morphing ambient background — monochrome with a breath of glow. */}
       <div aria-hidden className="absolute inset-0">
         <div className="animate-drift absolute -top-1/3 left-1/4 size-[60vw] rounded-full bg-[radial-gradient(circle,rgb(255_255_255/0.05),transparent_65%)]" />

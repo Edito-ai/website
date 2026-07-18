@@ -22,14 +22,27 @@ Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · Tailwind v4
 ScrollTrigger (horizontal pin) · Lenis (driven by GSAP ticker in
 `providers/SmoothScroll.tsx`).
 
+## Brand assets & claims
+
+- **Logo**: `public/broll-logo.png` (uploaded asset — never recreate). White
+  RGBA mark rendered via CSS mask filled with `currentColor`
+  (`site/BrollLogo.tsx`) so it adapts to any surface. Navbar 34px, hero
+  ~92px (mask reveal + float + cursor rotate + hover glow), footer large.
+- **Credibility numbers**: "200M+ monthly views" and "15M+ follower
+  production house". Emphasis on scale, not follower count. No testimonial
+  section, no fake logos. 20M+ is retired.
+
 ## Page flow (`src/app/page.tsx`)
 
-1. **Hero** — giant "Broll." wordmark; footage clips drift continuously with
-   live waveforms, connected by flowing dashed SVG signal lines; mouse
-   parallax; clips assemble onto a timeline as you scroll (220vh sticky).
-2. **EditorialTestimonial** — full-screen ★★★★★ card, cursor tilt (`fx/Tilt`),
-   quote lands line by line, animated 20M+ counter below. Replaced the old
-   logo/audience strip.
+0. **AnnouncementBar** — fixed 40px pure-black marquee above the navbar
+   (pauses on hover, GSAP slide-in, hides on scroll down / returns on scroll
+   up via a `--annbar-offset` var the navbar follows; click rides Lenis to
+   `#demo`).
+1. **Hero** — eyebrow "Powering the next generation of video production",
+   masked-reveal logo, headline "The operating system for *autonomous* video
+   editing.", quiet ✓-proof line under the CTAs; footage clips drift with
+   live waveforms, signal lines, mouse parallax; clips assemble onto a
+   timeline as you scroll (220vh sticky).
 3. **WhyTheySwitched** — 320vh pinned scene: old 6-step workflow struck out
    line by line, "8 hours" crossed, accent arrow draws, new 3-step workflow
    rises, "12 minutes." scales in.
@@ -43,8 +56,8 @@ ScrollTrigger (horizontal pin) · Lenis (driven by GSAP ticker in
 7. **ScrollStory** — 400vh pinned dark editor that edits itself: clips fly in,
    playhead scrubs, cuts, captions, zoom markers, waveform fill, color grade
    wash, export button + glow.
-8. **SocialProof** — dark stats: 20M+ followers / 500+ hours edited / 98% time
-   saved, spring counters. No fake logos.
+8. **SocialProof** — dark stats: 200M+ monthly views / 500+ hours edited /
+   98% time saved, spring counters. No fake logos.
 9. **Comparison** — draggable raw vs. cinematic split slider.
 10. **WhyBroll** — Think. Plan. Create. Repeat.
 11. **Testimonials** — infinite marquee of quote cards, hover pauses.

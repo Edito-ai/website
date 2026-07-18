@@ -35,6 +35,8 @@ function GithubIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+import BrollLogo from "@/components/site/BrollLogo";
+
 const COLUMNS = [
   {
     title: "Product",
@@ -59,12 +61,13 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-dark-line bg-dark-bg pt-20 pb-10 text-dark-ink">
+    <footer
+      id="contact"
+      className="border-t border-dark-line bg-dark-bg pt-20 pb-10 text-dark-ink"
+    >
       <div className="mx-auto max-w-6xl px-6 md:px-8">
         <div className="flex flex-col justify-between gap-14 md:flex-row">
-          <p className="text-6xl font-semibold tracking-tighter md:text-8xl">
-            Broll<span className="text-accent">.</span>
-          </p>
+          <BrollLogo className="size-28 shrink-0 text-dark-ink md:size-36" />
 
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-3">
             {COLUMNS.map((col) => (

@@ -208,6 +208,8 @@ export default function Hero() {
           style={reduced ? undefined : { y: headlineY, opacity: headlineOpacity }}
           className="relative z-10 mx-auto flex h-full max-w-5xl flex-col items-center justify-center px-6 text-center"
         >
+        
+
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -240,16 +242,7 @@ export default function Hero() {
             </motion.span>
           </span>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 max-w-2xl text-base leading-relaxed text-muted md:text-lg"
-          >
-            Broll understands your footage, builds the narrative, edits every
-            scene, creates captions, transitions, sound design and exports
-            production-ready videos — without timelines.
-          </motion.p>
+      
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -267,6 +260,7 @@ export default function Hero() {
               </Button>
             </Magnetic>
           </motion.div>
+    
         </motion.div>
       </div>
     </section>

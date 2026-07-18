@@ -1,6 +1,6 @@
+import AnnouncementBar from "@/components/site/AnnouncementBar";
 import Navbar from "@/components/site/Navbar";
 import Hero from "@/components/site/Hero";
-import EditorialTestimonial from "@/components/site/EditorialTestimonial";
 import WhyTheySwitched from "@/components/site/WhyTheySwitched";
 import MorphTransition from "@/components/site/MorphTransition";
 import FeatureGrid from "@/components/site/FeatureGrid";
@@ -16,10 +16,10 @@ import Footer from "@/components/site/Footer";
 export default function Home() {
   return (
     <>
+      <AnnouncementBar />
       <Navbar />
       <main>
         <Hero />
-        <EditorialTestimonial />
         <WhyTheySwitched />
         <MorphTransition />
         <FeatureGrid />
