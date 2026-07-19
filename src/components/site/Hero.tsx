@@ -22,12 +22,12 @@ import Particles from "@/components/fx/Particles";
  * bottom. Animated signal lines connect the clips while they float free.
  */
 const CLIPS = [
-  { label: "A012_TAKE3", dur: "00:07", x: 7, y: 16, r: -7, depth: 1.0, slot: 0, img: "/clips/a012_take3.png" },
-  { label: "DRONE_04", dur: "00:12", x: 78, y: 11, r: 5, depth: 0.6, slot: 1, img: "/clips/drone_04.png" },
-  { label: "INT_STUDIO", dur: "00:05", x: 85, y: 54, r: -4, depth: 1.2, slot: 2, img: "/clips/int_studio.png" },
-  { label: "B-ROLL_CITY", dur: "00:09", x: 4, y: 60, r: 6, depth: 0.8, slot: 3, img: "/clips/broll_city.png" },
-  { label: "VO_FINAL", dur: "00:14", x: 66, y: 78, r: -5, depth: 1.4, slot: 4, img: "/clips/vo_final.png" },
-  { label: "CU_HANDS", dur: "00:04", x: 23, y: 82, r: 8, depth: 0.7, slot: 5, img: "/clips/cu_hands.png" },
+  { label: "A012_TAKE3", dur: "00:07", x: 7, y: 16, r: -7, depth: 1.0, slot: 0, img: "/clips/a012_take3.webp" },
+  { label: "DRONE_04", dur: "00:12", x: 78, y: 11, r: 5, depth: 0.6, slot: 1, img: "/clips/drone_04.webp" },
+  { label: "INT_STUDIO", dur: "00:05", x: 85, y: 54, r: -4, depth: 1.2, slot: 2, img: "/clips/int_studio.webp" },
+  { label: "B-ROLL_CITY", dur: "00:09", x: 4, y: 60, r: 6, depth: 0.8, slot: 3, img: "/clips/broll_city.webp" },
+  { label: "VO_FINAL", dur: "00:14", x: 66, y: 78, r: -5, depth: 1.4, slot: 4, img: "/clips/vo_final.webp" },
+  { label: "CU_HANDS", dur: "00:04", x: 23, y: 82, r: 8, depth: 0.7, slot: 5, img: "/clips/cu_hands.webp" },
 ];
 
 const SLOT_COUNT = CLIPS.length;
@@ -89,6 +89,9 @@ function Clip({
           <img
             src={clip.img}
             alt=""
+            width={512}
+            height={512}
+            decoding="async"
             className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />

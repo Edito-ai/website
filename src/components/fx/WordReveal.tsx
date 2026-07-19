@@ -23,7 +23,10 @@ export default function WordReveal({
   if (reduced) return <Tag className={className}>{text}</Tag>;
 
   return (
-    <Tag className={cn(className)} aria-label={text}>
+    // aria-label is prohibited on generic elements (span), so the accessible
+    // text lives in a visually hidden span instead.
+    <Tag className={cn(className)}>
+      <span className="sr-only">{text}</span>
       {words.map((word, i) => (
         <span key={i} className="inline-block overflow-hidden pb-[0.12em] align-bottom">
           <motion.span

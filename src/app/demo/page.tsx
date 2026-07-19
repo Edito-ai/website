@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import ClaimForm from "@/components/site/ClaimForm";
+import { breadcrumbJsonLd } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Claim your free demo",
@@ -23,6 +24,12 @@ export default function DemoPage() {
   return (
     // No announcement bar on this page, so the navbar sits flush at the top.
     <div style={{ "--annbar-offset": "0px" } as CSSProperties}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd("Claim your free demo", "/demo")),
+        }}
+      />
       <Navbar />
       <main className="relative min-h-screen overflow-hidden px-6 pt-36 pb-28 md:pt-44">
         <div

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LegalPage, { LegalSection } from "@/components/site/LegalPage";
+import { breadcrumbJsonLd } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -18,7 +19,14 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <LegalPage
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd("Terms of Service", "/terms")),
+        }}
+      />
+      <LegalPage
       eyebrow="Legal"
       title={
         <>
@@ -121,6 +129,7 @@ export default function TermsPage() {
           .
         </p>
       </LegalSection>
-    </LegalPage>
+      </LegalPage>
+    </>
   );
 }

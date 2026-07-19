@@ -39,6 +39,11 @@ export const metadata: Metadata = {
     "AI color grading",
     "export XML to Premiere Pro",
     "video editing without timelines",
+    "AI video search",
+    "semantic video search",
+    "AI clip finder",
+    "search inside videos",
+    "AI b-roll",
   ],
   category: "technology",
   openGraph: {

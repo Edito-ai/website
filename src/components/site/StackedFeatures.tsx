@@ -36,7 +36,7 @@ const FEATURES: Feature[] = [
     title: "Prompt-based editing",
     body: "Describe the edit in a sentence. Broll cuts silences, punches in on the hook, restructures the story — no timeline, no keyframes.",
     visual: "prompt",
-    img: "/features/prompt_editing.png",
+    img: "/features/prompt_editing.webp",
   },
   {
     icon: FileCode2,
@@ -44,7 +44,7 @@ const FEATURES: Feature[] = [
     title: "Export XML to any platform",
     body: "The finished cut is never locked in. One click exports an XML timeline that opens in Premiere Pro, DaVinci Resolve or Final Cut.",
     visual: "xml",
-    img: "/features/xml_export.png",
+    img: "/features/xml_export.webp",
   },
   {
     icon: Palette,
@@ -52,7 +52,7 @@ const FEATURES: Feature[] = [
     title: "AI color grading",
     body: "One consistent cinematic grade across every camera, take and lighting condition — matched to your brand look.",
     visual: "grade",
-    img: "/features/color_grading.png",
+    img: "/features/color_grading.webp",
   },
   {
     icon: AudioLines,
@@ -60,7 +60,7 @@ const FEATURES: Feature[] = [
     title: "AI lip sync",
     body: "Dub your videos into new languages with lips that actually match. One shoot, every audience.",
     visual: "lipsync",
-    img: "/features/lip_sync.png",
+    img: "/features/lip_sync.webp",
   },
 ];
 
@@ -230,8 +230,11 @@ function StackCard({
             <img
               src={feature.img}
               alt={`${feature.title} — Broll demo`}
+              width={1024}
+              height={1024}
               className="max-h-full w-full rounded-xl object-contain"
               loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -267,6 +270,10 @@ export default function StackedFeatures() {
         text="What Broll can do."
         className="mt-4 text-4xl font-semibold tracking-tighter md:text-6xl"
       />
+      <p className="mt-5 max-w-xl leading-relaxed text-muted">
+        One AI video editor that searches your footage, builds the story, and
+        ships the edit.
+      </p>
 
       <div ref={ref} className="relative mt-16">
         {FEATURES.map((feature, i) => (

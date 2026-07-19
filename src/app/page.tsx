@@ -4,9 +4,11 @@ import Navbar from "@/components/site/Navbar";
 import Hero from "@/components/site/Hero";
 import WhyTheySwitched from "@/components/site/WhyTheySwitched";
 import StackedFeatures from "@/components/site/StackedFeatures";
+import Faq from "@/components/site/Faq";
 import GetDemo from "@/components/site/GetDemo";
 import Footer from "@/components/site/Footer";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
+import { FAQS } from "@/lib/faqs";
 
 export const metadata: Metadata = {
   alternates: {
@@ -42,6 +44,15 @@ const structuredData = {
       operatingSystem: "Web",
       publisher: { "@id": `${SITE_URL}/#organization` },
     },
+    {
+      "@type": "FAQPage",
+      "@id": `${SITE_URL}/#faq`,
+      mainEntity: FAQS.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: { "@type": "Answer", text: faq.a },
+      })),
+    },
   ],
 };
 
@@ -58,6 +69,7 @@ export default function Home() {
         <Hero />
         <WhyTheySwitched />
         <StackedFeatures />
+        <Faq />
         <GetDemo />
       </main>
       <Footer />

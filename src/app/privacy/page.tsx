@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LegalPage, { LegalSection } from "@/components/site/LegalPage";
+import { breadcrumbJsonLd } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -17,7 +18,14 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd("Privacy Policy", "/privacy")),
+        }}
+      />
+      <LegalPage
       eyebrow="Legal"
       title={
         <>
@@ -109,6 +117,7 @@ export default function PrivacyPage() {
           communicated to active customers directly.
         </p>
       </LegalSection>
-    </LegalPage>
+      </LegalPage>
+    </>
   );
 }
