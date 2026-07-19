@@ -145,8 +145,8 @@ export default function Hero() {
   }
 
   return (
-    <section ref={ref} onPointerMove={onMove} className="relative h-[220vh]">
-      <div className="sticky top-0 h-screen overflow-clip">
+    <section ref={ref} onPointerMove={onMove} className="relative h-[140vh] md:h-[220vh]">
+      <div className="sticky top-0 h-svh overflow-clip">
         {/* Ambient background — moving light, dust, never empty. */}
         <div aria-hidden className="absolute inset-0">
           <div className="animate-drift absolute -top-1/4 -left-1/4 size-[70vw] rounded-full bg-[radial-gradient(circle,var(--accent-soft),transparent_60%)] opacity-40" />
@@ -216,7 +216,7 @@ export default function Hero() {
         {/* Copy */}
         <motion.div
           style={reduced ? undefined : { y: headlineY, opacity: headlineOpacity }}
-          className="relative z-10 mx-auto flex h-full max-w-5xl flex-col items-center justify-center px-6 text-center"
+          className="relative z-10 mx-auto flex h-full max-w-5xl flex-col items-center justify-center px-5 text-center sm:px-6"
         >
         
 
@@ -235,7 +235,7 @@ export default function Hero() {
                 initial={reduced ? false : { y: "104%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="block text-[clamp(4.5rem,16vw,12rem)] leading-[0.95] font-semibold tracking-tighter"
+                className="block text-[clamp(3.5rem,16vw,12rem)] leading-[0.95] font-semibold tracking-tighter"
               >
                 Broll<span className="text-accent">.</span>
               </motion.span>
@@ -246,7 +246,7 @@ export default function Hero() {
                 initial={reduced ? false : { y: "108%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="block text-xl font-medium tracking-tight text-ink-2 text-balance md:text-3xl"
+                className="block text-lg font-medium tracking-tight text-ink-2 text-balance sm:text-xl md:text-3xl"
               >
                 The AI editor that finishes videos{" "}
                 <span className="font-serif italic">before</span> you do.

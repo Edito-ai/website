@@ -6,7 +6,7 @@ import { FAQS } from "@/lib/faqs";
 /** Native details/summary — crawlable text, keyboard accessible, zero JS. */
 export default function Faq() {
   return (
-    <section id="faq" className="mx-auto max-w-3xl px-6 py-28 md:py-40">
+    <section id="faq" className="mx-auto max-w-3xl px-5 py-24 sm:px-6 md:py-40">
       <p className="font-mono text-xs tracking-widest text-muted uppercase">
         FAQ
       </p>

@@ -10,7 +10,7 @@ export default function GetDemo() {
   const router = useRouter();
 
   return (
-    <section id="demo" className="relative overflow-hidden px-6 py-36 md:py-52">
+    <section id="demo" className="relative overflow-hidden px-5 py-28 sm:px-6 sm:py-36 md:py-52">
       {/* Quiet moving light behind the ask */}
       <div
         aria-hidden
@@ -22,13 +22,13 @@ export default function GetDemo() {
           <WordReveal
             as="span"
             text="Get your"
-            className="block text-5xl font-semibold tracking-tighter md:text-8xl"
+            className="block text-4xl font-semibold tracking-tighter sm:text-5xl md:text-8xl"
           />
           <WordReveal
             as="span"
             text="free demo."
             delay={0.2}
-            className="mt-2 block font-serif text-6xl italic md:text-9xl"
+            className="mt-2 block font-serif text-5xl italic sm:text-6xl md:text-9xl"
           />
         </h2>
 
@@ -37,7 +37,7 @@ export default function GetDemo() {
             <Magnetic strength={0.4}>
               <Button
                 size="lg"
-                className="px-14 py-5 text-lg"
+                className="px-10 py-4 text-base sm:px-14 sm:py-5 sm:text-lg"
                 onClick={() => router.push("/demo")}
               >
                 Claim

@@ -5,8 +5,9 @@ import { useForm, ValidationError } from "@formspree/react";
 import { Check } from "lucide-react";
 import Button from "@/components/ui/button";
 
+// text-base on mobile keeps iOS Safari from auto-zooming focused inputs (<16px triggers it).
 const inputClass =
-  "w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm text-ink placeholder:text-muted/70 outline-none transition-colors duration-300 focus:border-accent";
+  "w-full rounded-xl border border-line bg-surface px-4 py-3 text-base text-ink placeholder:text-muted/70 outline-none transition-colors duration-300 focus:border-accent sm:text-sm";
 
 const SOURCES = [
   "YouTube",

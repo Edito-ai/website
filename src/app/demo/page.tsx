@@ -31,7 +31,7 @@ export default function DemoPage() {
         }}
       />
       <Navbar />
-      <main className="relative min-h-screen overflow-hidden px-6 pt-36 pb-28 md:pt-44">
+      <main className="relative min-h-screen overflow-hidden px-5 pt-32 pb-24 sm:px-6 sm:pt-36 md:pt-44">
         <div
           aria-hidden
           className="animate-drift absolute -top-1/4 left-1/4 size-[55vw] rounded-full bg-[radial-gradient(circle,var(--accent-soft),transparent_60%)] opacity-40"

@@ -37,9 +37,9 @@ function OldStep({
   const dim = useTransform(p, [t0, t0 + 0.05], [1, 0.35]);
 
   return (
-    <motion.li style={{ opacity: dim }} className="flex items-baseline gap-4 py-3 md:py-4">
+    <motion.li style={{ opacity: dim }} className="flex items-baseline gap-3 py-1 md:gap-4 md:py-4">
       <span className="font-mono text-xs text-muted">{String(index + 1).padStart(2, "0")}</span>
-      <span className="relative text-xl font-medium tracking-tight md:text-3xl">
+      <span className="relative text-base font-medium tracking-tight md:text-3xl">
         {step}
         <motion.span
           aria-hidden
@@ -68,14 +68,14 @@ function NewStep({
   return (
     <motion.li
       style={{ opacity, y }}
-      className="flex items-baseline gap-4 py-4 md:py-5"
+      className="flex items-baseline gap-3 py-1.5 md:gap-4 md:py-5"
     >
       <span className="font-mono text-xs text-muted">{String(index + 1).padStart(2, "0")}</span>
       <span
         className={
           index === 1
-            ? "font-serif text-2xl italic md:text-4xl"
-            : "text-2xl font-medium tracking-tight md:text-4xl"
+            ? "font-serif text-xl italic md:text-4xl"
+            : "text-lg font-medium tracking-tight md:text-4xl"
         }
       >
         {step}
@@ -121,25 +121,25 @@ export default function WhyTheySwitched() {
   }
 
   return (
-    <section ref={ref} className="relative h-[320vh]">
-      <div className="sticky top-0 flex h-screen flex-col overflow-clip px-6 md:px-10">
-        <h2 className="pt-[7vh] text-center font-mono text-xs tracking-widest text-muted uppercase">
+    <section ref={ref} className="relative h-[260vh] md:h-[320vh]">
+      <div className="sticky top-0 flex h-svh flex-col overflow-clip px-5 md:px-10">
+        <h2 className="pt-[4vh] text-center font-mono text-xs tracking-widest text-muted uppercase md:pt-[7vh]">
           Why they switched
         </h2>
 
         {/* Full-width split: old on the left, new on the right */}
-        <div className="mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 content-center gap-6 md:grid-cols-[1fr_minmax(6rem,10rem)_1fr] md:items-center md:gap-0">
+        <div className="mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 content-center gap-2 md:grid-cols-[1fr_minmax(6rem,10rem)_1fr] md:items-center md:gap-0">
           {/* Old workflow */}
           <motion.div style={{ opacity: oldDim }}>
-            <p className="font-mono text-base font-medium tracking-widest text-ink-2 uppercase md:text-lg">
+            <p className="font-mono text-xs font-medium tracking-widest text-ink-2 uppercase md:text-lg">
               Old workflow
             </p>
-            <ul className="mt-4 border-l border-line pl-6 md:mt-6">
+            <ul className="mt-3 border-l border-line pl-4 md:mt-6 md:pl-6">
               {OLD_STEPS.map((step, i) => (
                 <OldStep key={step} step={step} index={i} p={p} />
               ))}
             </ul>
-            <p className="relative mt-6 inline-block text-5xl font-semibold tracking-tighter text-muted md:mt-8 md:text-7xl">
+            <p className="relative mt-3 inline-block text-3xl font-semibold tracking-tighter text-muted md:mt-8 md:text-7xl">
               8 hours
               <motion.span
                 aria-hidden
@@ -150,7 +150,7 @@ export default function WhyTheySwitched() {
           </motion.div>
 
           {/* The arrow across the divide */}
-          <div className="flex items-center justify-center py-2 md:h-full md:py-0">
+          <div className="flex items-center justify-center py-1 md:h-full md:py-0">
             {/* Horizontal on desktop */}
             <div className="hidden w-full items-center md:flex">
               <motion.div
@@ -165,7 +165,7 @@ export default function WhyTheySwitched() {
             <div className="flex flex-col items-center md:hidden">
               <motion.div
                 style={{ scaleY: arrowDraw }}
-                className="h-14 w-0.5 origin-top bg-accent"
+                className="h-8 w-0.5 origin-top bg-accent"
               />
               <motion.span style={{ opacity: arrowHeadOpacity }}>
                 <ArrowDown className="-mt-2 size-5 text-accent" />
@@ -177,18 +177,18 @@ export default function WhyTheySwitched() {
           <div>
             <motion.p
               style={{ opacity: newLabelOpacity }}
-              className="font-mono text-base font-medium tracking-widest text-accent uppercase md:text-lg"
+              className="font-mono text-xs font-medium tracking-widest text-accent uppercase md:text-lg"
             >
               New workflow
             </motion.p>
-            <ul className="mt-4 border-l border-accent/40 pl-6 md:mt-6">
+            <ul className="mt-3 border-l border-accent/40 pl-4 md:mt-6 md:pl-6">
               {NEW_STEPS.map((step, i) => (
                 <NewStep key={step} step={step} index={i} p={p} />
               ))}
             </ul>
             <motion.p
               style={{ scale: minutesScale, opacity: minutesOpacity }}
-              className="mt-6 origin-left text-6xl font-semibold tracking-tighter md:mt-8 md:text-8xl"
+              className="mt-3 origin-left text-4xl font-semibold tracking-tighter md:mt-8 md:text-8xl"
             >
               12 minutes<span className="text-accent">.</span>
             </motion.p>

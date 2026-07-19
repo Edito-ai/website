@@ -9,9 +9,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 function Message() {
   return (
-    <span className="flex items-center gap-2 text-xs whitespace-nowrap text-white/70">
+    <span className="flex items-center gap-1.5 text-[11px] whitespace-nowrap text-white/70 sm:gap-2 sm:text-xs">
       <span aria-hidden>🚀</span>
-      Broll is currently powering{" "}
+      <span className="hidden sm:inline">Broll is currently powering</span>
+      <span className="sm:hidden">Broll powers</span>
       <strong className="font-semibold text-white">200M+</strong> monthly views
     </span>
   );

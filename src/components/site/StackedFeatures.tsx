@@ -203,9 +203,9 @@ function StackCard({
           ...(reduced ? {} : { scale }),
           "--stack-mh": `calc(90vh - ${index * 1.6}rem)`,
         } as React.CSSProperties & { "--stack-mh": string }}
-        className="relative mb-10 flex w-full origin-top flex-col overflow-hidden rounded-3xl border border-line bg-surface p-7 shadow-[var(--shadow-lift)] md:h-(--stack-mh) md:p-10"
+        className="relative mb-10 flex w-full origin-top flex-col overflow-hidden rounded-3xl border border-line bg-surface p-5 shadow-[var(--shadow-lift)] sm:p-7 md:h-(--stack-mh) md:p-10"
       >
-        <div className="grid min-h-0 flex-1 items-center gap-8 md:grid-cols-[2fr_3fr] md:gap-12">
+        <div className="grid min-h-0 flex-1 items-center gap-6 md:grid-cols-[2fr_3fr] md:gap-12">
           <div className="min-w-0">
             <div className="flex items-center gap-4">
               <span className="font-mono text-sm text-muted">{feature.n}</span>
@@ -213,7 +213,7 @@ function StackCard({
                 <feature.icon className="size-5 text-accent" strokeWidth={1.5} />
               </span>
             </div>
-            <h3 className="mt-6 text-3xl font-semibold tracking-tighter md:text-4xl">
+            <h3 className="mt-5 text-2xl font-semibold tracking-tighter sm:text-3xl md:mt-6 md:text-4xl">
               {feature.title}
             </h3>
             <p className="mt-4 max-w-md leading-relaxed text-muted">
@@ -262,7 +262,7 @@ export default function StackedFeatures() {
   });
 
   return (
-    <section id="features" className="mx-auto max-w-5xl px-4 py-28 md:px-8 md:py-40">
+    <section id="features" className="mx-auto max-w-5xl px-5 py-24 sm:px-6 md:px-8 md:py-40">
       <p className="font-mono text-xs tracking-widest text-muted uppercase">
         Capabilities
       </p>
