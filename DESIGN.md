@@ -44,16 +44,21 @@ anchor rides).
    "The AI editor that finishes videos *before* you do.", original
    description; floating clips with live waveforms + signal lines assemble
    onto a timeline while scrolling (220vh sticky, mouse parallax).
-3. **WhyTheySwitched** — 380vh pinned scene: old 6-step workflow struck out,
+3. **BackedBy** (`#backed-by`) — hairline-ruled credibility band: "Backed by"
+   eyebrow, Google for Startups pill (official 4-colour G — the one place
+   colour is not interaction-only), "Building Broll with *Google behind us.*"
+   Mirrored in the Organization JSON-LD as `memberOf`. One real badge, no
+   logo wall.
+4. **WhyTheySwitched** — 380vh pinned scene: old 6-step workflow struck out,
    "8 hours" crossed, arrow draws, new 3-step workflow rises, "12 minutes."
    scales in, then a final beat: `timeline.xml` chip — export XML and open in
    Premiere Pro / DaVinci Resolve / Final Cut.
-4. **StackedFeatures** (`#features`) — scroll-stacking cards: each card pins,
+5. **StackedFeatures** (`#features`) — scroll-stacking cards: each card pins,
    then recedes to the back (scales down + dims) as the next slides over it.
    Cards: Prompt-based editing (console mock), Export XML to any platform
    (timeline.xml → editor pills), AI color grading (swatch cycle), AI lip
    sync (waveform + language pills).
-5. **Footer** (`#contact`) — minimal, dark, large logo, links, inline social
+6. **Footer** (`#contact`) — minimal, dark, large logo, links, inline social
    SVGs.
 
 ## Conventions

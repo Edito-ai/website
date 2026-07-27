@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import AnnouncementBar from "@/components/site/AnnouncementBar";
 import Navbar from "@/components/site/Navbar";
 import Hero from "@/components/site/Hero";
+import BackedBy from "@/components/site/BackedBy";
 import WhyTheySwitched from "@/components/site/WhyTheySwitched";
 import StackedFeatures from "@/components/site/StackedFeatures";
 import Faq from "@/components/site/Faq";
@@ -26,6 +27,11 @@ const structuredData = {
       url: SITE_URL,
       logo: `${SITE_URL}/broll-logo.png`,
       slogan: SITE_TAGLINE,
+      memberOf: {
+        "@type": "Organization",
+        name: "Google for Startups",
+        url: "https://startup.google.com/",
+      },
     },
     {
       "@type": "WebSite",
@@ -67,6 +73,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <BackedBy />
         <WhyTheySwitched />
         <StackedFeatures />
         <Faq />
