@@ -251,10 +251,30 @@ homepage's money keywords directly and have the least competition; add `Article`
 
 ## 6. Remaining recommendations (not implemented — need your call or external action)
 
-1. **Google Search Console**: verify trybroll.com (DNS TXT), submit `sitemap.xml`, then use URL Inspection on `/` to request indexing.
+1. **Google Search Console — STILL NOT DONE, and this is why the site is
+   invisible.** Verified 2026-07-27: zero pages indexed, no presence for any
+   query. `robots.txt` and `sitemap.xml` both serve 200 and are correct — but
+   nothing has told Google the site exists, and a brand-new domain with no
+   backlinks is not discovered on its own. Verify the domain (DNS TXT, or set
+   `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` in Vercel for the meta-tag method),
+   submit `sitemap.xml`, then URL-Inspect `/` → Request Indexing. Same for
+   Bing Webmaster Tools (`NEXT_PUBLIC_BING_SITE_VERIFICATION`) — Bing's index
+   also feeds ChatGPT search.
 2. **Build `/pricing`** (or retarget the navbar's dead `#pricing` anchor).
 3. **Blog + feature pages** per §4/§5 — this is the real ranking lever; a 4-page site will not outrank incumbents for "AI video editor" on technical SEO alone.
 4. **Hero SSR visibility** — only if CWV field data (CrUX) shows poor LCP: render above-the-fold text visible before hydration.
-5. **Host-level**: confirm the host 301s `www.trybroll.com` → `trybroll.com` and HTTP → HTTPS (one canonical origin). Vercel does this when both domains are assigned.
+5. **Host-level — CONFIRMED BROKEN, verified live 2026-07-27.** The redirect
+   runs the *wrong way*: `trybroll.com` 308s → `www.trybroll.com`, while every
+   canonical, OG URL and sitemap `<loc>` we emit says `https://trybroll.com`.
+   So Google crawls www and is told the real page is a URL that redirects back
+   to www. Fix in **Vercel → Project → Settings → Domains**: set
+   `trybroll.com` as the *primary* domain so `www` redirects to it. (The
+   alternative — set `NEXT_PUBLIC_SITE_URL=https://www.trybroll.com` — also
+   works but changes every canonical already published.)
 6. **Backlinks**: the durable path to #1 — directory listings (G2, Product Hunt, Futurepedia-class AI directories), founder posts, and the credibility numbers you already own (200M+ monthly views) turned into case-study content.
 7. Re-run Lighthouse on the **live** site after deploy; lab numbers here are throttled local measurements.
+8. **"broll" as a target query is not winnable.** It resolves to "b-roll", an
+   industry term owned by VEED, OpusClip, Submagic, Kapwing et al. Brand
+   queries that *can* be won: "trybroll", "broll ai", "broll ai editor",
+   "trybroll.com". Rank for those first; treat "broll" as a long-term goal
+   that follows brand volume, not something on-page SEO can force.

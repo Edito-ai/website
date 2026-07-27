@@ -59,6 +59,14 @@ export const metadata: Metadata = {
     title: "Broll — The operating system for autonomous video editing",
     description: SITE_DESCRIPTION,
   },
+  // Search Console / Bing Webmaster ownership. Set the env vars in Vercel —
+  // undefined values are simply omitted from the head.
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : {},
+  },
   robots: {
     index: true,
     follow: true,
