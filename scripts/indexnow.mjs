@@ -18,7 +18,7 @@ const KEY = "af3a479972f65369645a9373ed086b30";
 const SITE_URL = (
   process.argv[2] ??
   process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://trybroll.com"
+  "https://www.trybroll.com"
 ).replace(/\/$/, "");
 
 const host = new URL(SITE_URL).host;
