@@ -2,22 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 
-export function LegalSection({
-  title,
-  children,
-}: {
-  title: string;
-  children: ReactNode;
-}) {
-  return (
-    <section className="mt-12 first:mt-0">
-      <h2 className="text-xl font-semibold tracking-tight md:text-2xl">{title}</h2>
-      <div className="mt-4 space-y-4 leading-relaxed text-muted [&_strong]:font-medium [&_strong]:text-ink [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5">
-        {children}
-      </div>
-    </section>
-  );
-}
+export { default as LegalSection } from "@/components/site/ContentSection";
 
 /** Shared shell for /privacy and /terms: quiet, readable, on-brand. */
 export default function LegalPage({

@@ -5,13 +5,17 @@ const COLUMNS = [
     title: "Product",
     links: [
       { label: "Features", href: "/#features" },
+      { label: "AI Video Editor", href: "/ai-video-editor" },
+      { label: "For Production Houses", href: "/ai-video-editor-for-production-houses" },
       { label: "FAQ", href: "/#faq" },
-      { label: "Get a demo", href: "/#demo" },
     ],
   },
   {
     title: "Company",
-    links: [{ label: "Contact", href: "/demo" }],
+    links: [
+      { label: "About", href: "/about" },
+      { label: "Contact", href: "/demo" },
+    ],
   },
   {
     title: "Legal",
