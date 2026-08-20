@@ -5,6 +5,7 @@ import Hero from "@/components/site/Hero";
 import BackedBy from "@/components/site/BackedBy";
 import WhyTheySwitched from "@/components/site/WhyTheySwitched";
 import StackedFeatures from "@/components/site/StackedFeatures";
+import HowItWorks from "@/components/site/HowItWorks";
 import Faq from "@/components/site/Faq";
 import GetDemo from "@/components/site/GetDemo";
 import Footer from "@/components/site/Footer";
@@ -76,6 +77,7 @@ export default function Home() {
         <BackedBy />
         <WhyTheySwitched />
         <StackedFeatures />
+        <HowItWorks />
         <Faq />
         <GetDemo />
       </main>

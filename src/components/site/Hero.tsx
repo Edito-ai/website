@@ -118,6 +118,8 @@ function Clip({
   );
 }
 
+const SHOW_CLIPS = true;
+
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
@@ -157,7 +159,7 @@ export default function Hero() {
         {!reduced && <Particles />}
 
         {/* Signal lines connecting the floating clips */}
-        {!reduced && (
+        {SHOW_CLIPS && !reduced && (
           <motion.svg
             aria-hidden
             style={{ opacity: linesOpacity }}
@@ -189,7 +191,7 @@ export default function Hero() {
         )}
 
         {/* Floating clips */}
-        {!reduced && (
+        {SHOW_CLIPS && !reduced && (
           <div aria-hidden className="absolute inset-0 hidden md:block">
             {CLIPS.map((clip) => (
               <Clip key={clip.label} clip={clip} progress={assemble} mx={mx} my={my} />
@@ -198,19 +200,21 @@ export default function Hero() {
         )}
 
         {/* Timeline ruler the clips land on */}
-        <motion.div
-          aria-hidden
-          style={{ opacity: timelineOpacity }}
-          className="absolute inset-x-[8vw] top-[72vh] hidden md:block"
-        >
-          <div className="flex justify-between font-mono text-[10px] text-muted">
-            {["00:00", "00:10", "00:20", "00:30", "00:40"].map((t) => (
-              <span key={t}>{t}</span>
-            ))}
-          </div>
-          <div className="mt-2 h-px bg-line-strong" />
-          <div className="mt-14 h-px bg-line" />
-        </motion.div>
+        {SHOW_CLIPS && (
+          <motion.div
+            aria-hidden
+            style={{ opacity: timelineOpacity }}
+            className="absolute inset-x-[8vw] top-[72vh] hidden md:block"
+          >
+            <div className="flex justify-between font-mono text-[10px] text-muted">
+              {["00:00", "00:10", "00:20", "00:30", "00:40"].map((t) => (
+                <span key={t}>{t}</span>
+              ))}
+            </div>
+            <div className="mt-2 h-px bg-line-strong" />
+            <div className="mt-14 h-px bg-line" />
+          </motion.div>
+        )}
 
         {/* Copy */}
         <motion.div
