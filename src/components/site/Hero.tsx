@@ -13,7 +13,6 @@ import {
 } from "framer-motion";
 import { Play } from "lucide-react";
 import Button from "@/components/ui/button";
-import Magnetic from "@/components/fx/Magnetic";
 import Particles from "@/components/fx/Particles";
 
 /**
@@ -262,15 +261,11 @@ export default function Hero() {
             transition={{ duration: 0.9, delay: 0.95, ease: [0.22, 1, 0.36, 1] }}
             className="mt-10 flex flex-wrap items-center justify-center gap-4"
           >
-            <Magnetic>
-              <Button size="lg">Start Creating</Button>
-            </Magnetic>
-            <Magnetic>
-              <Button size="lg" variant="ghost">
-                <Play className="size-4" />
-                Watch Demo
-              </Button>
-            </Magnetic>
+            <Button size="lg">Start Creating</Button>
+            <Button size="lg" variant="ghost">
+              <Play className="size-4" />
+              Watch Demo
+            </Button>
           </motion.div>
     
         </motion.div>
