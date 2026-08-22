@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useForm, ValidationError } from "@formspree/react";
+import { useRouter } from "next/navigation";
 import { Check } from "lucide-react";
 import Button from "@/components/ui/button";
 
@@ -20,6 +21,7 @@ const SOURCES = [
 
 /** Production-house demo request, submitted to Formspree. */
 export default function ClaimForm() {
+  const router = useRouter();
   const [state, handleSubmit] = useForm("mdaqgenb");
 
   if (state.succeeded) {
@@ -35,9 +37,16 @@ export default function ClaimForm() {
         </span>
         <p className="mt-6 text-2xl font-semibold tracking-tight">Demo claimed.</p>
         <p className="mt-3 leading-relaxed text-muted">
-          We&apos;ll reach out within 24 hours to set up Broll for your
-          production house.
+          Want to skip the wait? Pick a time now and we&apos;ll walk you
+          through Broll live.
         </p>
+        <Button
+          size="lg"
+          className="mt-6 w-full"
+          onClick={() => router.push("/schedule-demo")}
+        >
+          Schedule your demo
+        </Button>
       </motion.div>
     );
   }
