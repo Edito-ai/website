@@ -38,25 +38,50 @@ export default function ScheduleDemoPage() {
       <Navbar />
 
       <main className="relative overflow-hidden">
-        {/* Subtle ambient glow */}
+        {/* Very subtle ambient glow */}
         <div
           aria-hidden
           className="pointer-events-none absolute -right-48 -top-48 -z-10 size-[600px] rounded-full bg-[radial-gradient(circle,var(--accent-soft),transparent_65%)] opacity-15 blur-3xl"
         />
 
         {/* Hero */}
-        <section className="px-5 pb-0 pt-16 sm:px-6 sm:pt-20 md:pb-0">
+        <section className="px-5 pb-12 pt-32 sm:px-6 sm:pt-40 md:pb-16">
           <div className="mx-auto max-w-6xl">
-            <div className="grid items-end gap-6 md:grid-cols-[1.5fr_0.5fr]">
+            <div className="grid items-end gap-10 md:grid-cols-[1.5fr_0.5fr]">
+              <div>
+                <p className="mb-6 font-mono text-[10px] tracking-[0.2em] text-muted uppercase">
+                  Schedule a demo
+                </p>
+
+                <h1 className="max-w-4xl text-[3.5rem] font-semibold leading-[0.9] tracking-[-0.06em] sm:text-6xl md:text-7xl lg:text-[6rem]">
+                  See Broll{" "}
+                  <span className="font-serif font-normal italic">
+                    in action.
+                  </span>
+                </h1>
+              </div>
+
+              <div className="max-w-xs pb-1 md:ml-auto">
+                <p className="text-sm leading-6 text-muted">
+                  See how Broll fits into your production workflow. We&apos;ll
+                  walk you through the product and answer your questions live.
+                </p>
+
+                <div className="mt-5 h-px w-10 bg-foreground/20" />
+
+                <p className="mt-4 font-mono text-[10px] tracking-[0.18em] text-muted uppercase">
+                  30 min · Live · Free
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Booking */}
-        <section className="px-5 pb-16 sm:px-6 md:pb-20">
+        <section className="px-5 pb-24 sm:px-6 md:pb-32">
           <div className="mx-auto max-w-6xl">
             {/* Section heading */}
-            <div className="mb-5 flex items-center justify-between border-t border-foreground/10 pt-6">
+            <div className="mb-7 flex items-center justify-between border-t border-foreground/10 pt-7">
               <div>
                 <p className="font-mono text-[10px] tracking-[0.18em] text-muted uppercase">
                   Choose a time
@@ -73,7 +98,7 @@ export default function ScheduleDemoPage() {
             </div>
 
             {/* Calendar */}
-            <div className="w-full -mt-45">
+            <div className="w-full">
               <ScheduleDemo />
             </div>
           </div>

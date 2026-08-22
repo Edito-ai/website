@@ -38,15 +38,16 @@ export default function ScheduleDemo() {
   }, []);
 
   return (
-    <div className="w-full bg-transparent">
+    <div className="w-full overflow-y-auto bg-transparent">
       <Cal
         namespace={CAL_NAMESPACE}
         calLink={CAL_LINK}
         style={{
           width: "100%",
-          height: "1100px",
-          minHeight: "1100px",
-          border: "none",
+          height: "680px",
+          minHeight: "680px",
+          overflow: "auto",
+          border: "0",
           outline: "none",
           background: "transparent",
         }}
