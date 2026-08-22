@@ -9,7 +9,7 @@ export const SITE_TAGLINE =
   "The AI editor that finishes videos before you do.";
 
 export const SITE_DESCRIPTION =
-  "From raw footage to publish-ready videos. Broll understands every frame, builds the story, edits, captions, color grades and exports — without timelines.";
+  "Transform raw footage into publish-ready videos automatically with Broll AI. Try the official timeline-free agentic AI video editor today.";
 
 /** BreadcrumbList JSON-LD for a subpage (Home → page). */
 export function breadcrumbJsonLd(name: string, path: string) {

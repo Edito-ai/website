@@ -24,7 +24,7 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Broll — The operating system for autonomous video editing",
+    default: "Broll AI | Agentic AI Video Editor (Official Site)",
     template: "%s — Broll",
   },
   description: SITE_DESCRIPTION,
@@ -51,12 +51,12 @@ export const metadata: Metadata = {
     url: "/",
     siteName: SITE_NAME,
     locale: "en_US",
-    title: "Broll — The operating system for autonomous video editing",
+    title: "Broll AI | Agentic AI Video Editor (Official Site)",
     description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Broll — The operating system for autonomous video editing",
+    title: "Broll AI | Agentic AI Video Editor (Official Site)",
     description: SITE_DESCRIPTION,
   },
   // Search Console / Bing Webmaster ownership. Set the env vars in Vercel —
