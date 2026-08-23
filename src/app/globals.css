@@ -2,22 +2,23 @@
 
 /* ---------------------------------------------------------------------------
    Stedtio design tokens — premium monochrome, accent only on interaction.
-   Light is the default; dark follows the system automatically.
+   Dark is the only theme — no light mode, regardless of system preference.
 --------------------------------------------------------------------------- */
 
 :root {
-  --bg: #fafaf9;
-  --surface: #ffffff;
-  --surface-2: #f4f4f3;
-  --ink: #0a0a0b;
-  --ink-2: #3f3f44;
-  --muted: #77777e;
-  --line: rgb(10 10 11 / 0.09);
-  --line-strong: rgb(10 10 11 / 0.16);
-  --accent: #3c5eff;
-  --accent-soft: rgb(60 94 255 / 0.12);
+  color-scheme: dark;
+  --bg: #070708;
+  --surface: #0e0e10;
+  --surface-2: #131316;
+  --ink: #f4f4f2;
+  --ink-2: #c9c9cd;
+  --muted: #8f8f98;
+  --line: rgb(255 255 255 / 0.09);
+  --line-strong: rgb(255 255 255 / 0.18);
+  --accent: #5c7bff;
+  --accent-soft: rgb(92 123 255 / 0.16);
   --glow: #8b5cf6;
-  --shadow-lift: 0 24px 48px -24px rgb(10 10 11 / 0.18);
+  --shadow-lift: 0 24px 48px -24px rgb(0 0 0 / 0.7);
 
   /* Sections that are always dark, in either theme */
   --dark-bg: #060607;
@@ -25,22 +26,6 @@
   --dark-ink: #f4f4f2;
   --dark-muted: #8f8f98;
   --dark-line: rgb(255 255 255 / 0.1);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #070708;
-    --surface: #0e0e10;
-    --surface-2: #131316;
-    --ink: #f4f4f2;
-    --ink-2: #c9c9cd;
-    --muted: #8f8f98;
-    --line: rgb(255 255 255 / 0.09);
-    --line-strong: rgb(255 255 255 / 0.18);
-    --accent: #5c7bff;
-    --accent-soft: rgb(92 123 255 / 0.16);
-    --shadow-lift: 0 24px 48px -24px rgb(0 0 0 / 0.7);
-  }
 }
 
 @theme inline {
