@@ -30,6 +30,14 @@ export const FAQS: Faq[] = [
     q: "How do I get started?",
     a: "Claim a free demo below — tell us about your team and we'll set Broll up for you within 24 hours. No card required.",
   },
+  {
+    q: "Is Broll the same as a B-roll generator?",
+    a: "No. A B-roll generator adds supplementary footage into an edit you've already made. Broll is a full agentic video editor — it takes your raw footage and builds, cuts, captions, grades and exports the entire video, not just one layer of it.",
+  },
+  {
+    q: "How much does Broll cost?",
+    a: "Broll doesn't have public self-serve pricing yet — book a free demo and we'll set up a plan for your team within 24 hours, no card required.",
+  },
 ];
 
 export const ABOUT_FAQS: Faq[] = [
@@ -41,9 +49,17 @@ export const ABOUT_FAQS: Faq[] = [
     q: "What is trybroll.com?",
     a: "trybroll.com is the official website of Broll. It's where you can learn about the product and request a free demo — there is no other official Broll site.",
   },
+  {
+    q: "Is Broll a B-roll generator?",
+    a: "No, and the similar name is a common mix-up. B-roll generators insert supplementary clips into footage you've already edited. Broll is a full agentic video editor: it works from your raw footage and produces the entire finished video — story, cut, captions, color and lip sync included.",
+  },
 ];
 
 export const AI_VIDEO_EDITOR_FAQS: Faq[] = [
+  {
+    q: "Is Broll AI video editing software?",
+    a: "Yes — Broll is AI video editing software, and specifically an agentic AI video editor: it doesn't just apply automation to footage you've already selected, it makes the editorial decisions itself, from raw footage to a finished, publish-ready video.",
+  },
   {
     q: "What is an agentic AI video editor?",
     a: "An agentic AI video editor doesn't just apply automation to footage you've already selected — it makes the editorial decisions itself. Broll watches your raw footage, understands what's in it, finds the moments that matter, and builds the story, rather than handing you a set of tools to apply by hand.",
@@ -63,6 +79,25 @@ export const AI_VIDEO_EDITOR_FAQS: Faq[] = [
   {
     q: "Does Broll's AI video editor export to Premiere Pro, DaVinci Resolve or Final Cut?",
     a: "Yes. Every edit can be exported as a standard timeline XML, so editors can open it in Premiere Pro, DaVinci Resolve or Final Cut Pro and keep working exactly where the agent left off.",
+  },
+];
+
+export const COMPARISON_FAQS: Faq[] = [
+  {
+    q: "What is the difference between Broll and a B-roll generator?",
+    a: "A B-roll generator is a feature: it finds or creates supplementary footage to drop into an edit you've already made elsewhere. Broll is the editor itself — it takes your raw footage from zero and builds the entire finished video: story, cut, captions, color grade and lip sync.",
+  },
+  {
+    q: "Why does Broll sound like \"b-roll\"?",
+    a: "It's a coincidence of naming, not the same category. \"B-roll\" is an industry term for supplementary footage, and several tools use it as a product name for that one feature. Broll (no hyphen, one product) is a full agentic AI video editor — the name overlap is the most common point of confusion we hear about, which is why this page exists.",
+  },
+  {
+    q: "Can a B-roll generator replace a full edit like Broll produces?",
+    a: "No. B-roll generators assume you've already logged footage, chosen your main cuts, and just need supplementary shots layered in. Broll starts from raw, unorganized footage with no pre-selection required, and produces the complete edit — not one layer of an edit you built by hand.",
+  },
+  {
+    q: "Does Broll do what B-roll generators do, too?",
+    a: "Yes, as part of the same pass. Broll's footage-understanding step naturally surfaces b-roll that matches the story while it builds the edit — you don't need a separate tool for that layer.",
   },
 ];
 

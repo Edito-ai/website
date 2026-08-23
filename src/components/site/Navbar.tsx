@@ -13,6 +13,7 @@ import Magnetic from "@/components/fx/Magnetic";
 // Absolute anchors so they work from /demo as well as the homepage.
 const links = [
   { href: "/#features", label: "Product" },
+  { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
   { href: "/#contact", label: "Contact" },
 ];

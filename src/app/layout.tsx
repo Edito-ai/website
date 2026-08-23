@@ -31,6 +31,7 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
   keywords: [
     "AI video editor",
+    "AI video editing software",
     "agentic video editing",
     "autonomous video editing",
     "AI video editing software",

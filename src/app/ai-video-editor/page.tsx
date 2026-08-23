@@ -8,9 +8,9 @@ import FaqSection from "@/components/site/FaqSection";
 import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/site";
 import { AI_VIDEO_EDITOR_FAQS } from "@/lib/faqs";
 
-const TITLE = "AI Video Editor — Broll";
+const TITLE = "AI Video Editor & AI Video Editing Software — Broll";
 const DESCRIPTION =
-  "Broll is an agentic AI video editor: it understands raw footage, finds the moments, builds the story, edits the timeline, and exports a finished video.";
+  "Broll is an agentic AI video editor and AI video editing software: it understands raw footage, finds the moments, builds the story, edits the timeline, and exports a finished video.";
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
