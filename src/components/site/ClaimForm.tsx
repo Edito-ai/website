@@ -24,6 +24,26 @@ export default function ClaimForm() {
   const router = useRouter();
   const [state, handleSubmit] = useForm("mdaqgenb");
 
+  // Fire our own confirmation email alongside the Formspree submission —
+  // best-effort, must not block or fail the actual form submit.
+  function sendConfirmationEmail(form: HTMLFormElement) {
+    const data = new FormData(form);
+    fetch("/api/send-confirmation", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: data.get("name"),
+        email: data.get("email"),
+        production_house: data.get("production_house"),
+      }),
+    }).catch(() => {});
+  }
+
+  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    sendConfirmationEmail(event.currentTarget);
+    handleSubmit(event);
+  }
+
   if (state.succeeded) {
     return (
       <motion.div
@@ -53,7 +73,7 @@ export default function ClaimForm() {
 
   return (
     <motion.form
-      onSubmit={handleSubmit}
+      onSubmit={onSubmit}
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
