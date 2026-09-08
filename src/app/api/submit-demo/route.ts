@@ -8,6 +8,7 @@ import {
   scheduleLink,
   type DemoRequestFields,
 } from "@/lib/email";
+import { saveDemoRequest } from "@/lib/db";
 
 export const runtime = "nodejs";
 
@@ -19,13 +20,16 @@ function str(value: unknown): string {
 
 /** Replaces the Formspree submission this form used to POST to directly.
  *  This endpoint IS the form backend now: it is the source of truth for
- *  "did this submission happen," which is why the lead-notification email
- *  (to `LEAD_NOTIFICATION_EMAIL`) is sent first and its failure fails the
- *  whole request — losing that email means losing the lead, same as a
- *  failed Formspree POST would have. The confirmation email to the person
- *  who submitted the form is sent best-effort after, exactly like this
- *  route's predecessor (`/api/send-confirmation`) already treated it: nice
- *  to have, must never block or fail the submission itself. */
+ *  "did this submission happen." Order matters and is deliberate:
+ *    1. Save to Postgres (`demo_requests`) — the durable record. Failure
+ *       here fails the whole request; a submission that isn't saved
+ *       shouldn't silently report success.
+ *    2. Send the lead-notification email to `LEAD_NOTIFICATION_EMAIL` —
+ *       also required to succeed, same reasoning as the DB write.
+ *    3. Send the confirmation email to the person who submitted the form,
+ *       best-effort, exactly like this route's predecessor
+ *       (`/api/send-confirmation`) already treated it: nice to have, must
+ *       never block or fail the submission itself. */
 export async function POST(request: NextRequest) {
   let body: Body;
   try {
@@ -57,6 +61,13 @@ export async function POST(request: NextRequest) {
       { error: `Missing required field(s): ${missing.join(", ")}` },
       { status: 400 },
     );
+  }
+
+  try {
+    await saveDemoRequest(fields);
+  } catch (err) {
+    console.error("Failed to save demo request to the database:", err);
+    return NextResponse.json({ error: "Failed to submit form" }, { status: 500 });
   }
 
   const transporter = getTransporter();
