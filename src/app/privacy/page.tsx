@@ -82,10 +82,11 @@ export default function PrivacyPage() {
 
       <LegalSection title="Third-party services">
         <p>
-          Our demo form is processed by Formspree, which receives the details
-          you submit so we can respond to you. Our website and service run on
-          third-party hosting infrastructure. These providers process data on
-          our behalf and are not permitted to use it for their own purposes.
+          Our demo form is processed on our own servers and delivered by
+          email so our team can respond to you. Our website and service run
+          on third-party hosting infrastructure. These providers process
+          data on our behalf and are not permitted to use it for their own
+          purposes.
         </p>
       </LegalSection>
 

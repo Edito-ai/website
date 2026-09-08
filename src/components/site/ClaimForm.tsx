@@ -1,10 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { useForm, ValidationError } from "@formspree/react";
 import { useRouter } from "next/navigation";
 import { Check } from "lucide-react";
 import Button from "@/components/ui/button";
+import { COUNTRY_CODES, DEFAULT_COUNTRY_ISO } from "@/lib/countryCodes";
 
 // text-base on mobile keeps iOS Safari from auto-zooming focused inputs (<16px triggers it).
 const inputClass =
@@ -19,32 +20,56 @@ const SOURCES = [
   "Other",
 ];
 
-/** Production-house demo request, submitted to Formspree. */
+type SubmitState = "idle" | "submitting" | "succeeded" | "error";
+
+/** Production-house demo request. Submits to our own `/api/submit-demo`
+ *  route (own inbuilt backend — not Formspree): it emails the submitter a
+ *  confirmation and notifies the team, replacing what Formspree did. */
 export default function ClaimForm() {
   const router = useRouter();
-  const [state, handleSubmit] = useForm("xdeoobap");
+  const [state, setState] = useState<SubmitState>("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [countryIso, setCountryIso] = useState(DEFAULT_COUNTRY_ISO);
 
-  // Fire our own confirmation email alongside the Formspree submission —
-  // best-effort, must not block or fail the actual form submit.
-  function sendConfirmationEmail(form: HTMLFormElement) {
-    const data = new FormData(form);
-    fetch("/api/send-confirmation", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: data.get("name"),
-        email: data.get("email"),
-        production_house: data.get("production_house"),
-      }),
-    }).catch(() => {});
+  const selectedCountry =
+    COUNTRY_CODES.find((c) => c.iso === countryIso) ?? COUNTRY_CODES[0];
+
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setState("submitting");
+    setErrorMessage(null);
+
+    const data = new FormData(event.currentTarget);
+    const phoneNumber = String(data.get("phone_number") ?? "").trim();
+
+    try {
+      const res = await fetch("/api/submit-demo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          phone: phoneNumber ? `${selectedCountry.dial} ${phoneNumber}` : "",
+          production_house: data.get("production_house"),
+          channel_link: data.get("channel_link"),
+          details: data.get("details"),
+          referral_source: data.get("referral_source"),
+        }),
+      });
+
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.error || "Something went wrong. Please try again.");
+      }
+
+      setState("succeeded");
+    } catch (err) {
+      setState("error");
+      setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    }
   }
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    sendConfirmationEmail(event.currentTarget);
-    handleSubmit(event);
-  }
-
-  if (state.succeeded) {
+  if (state === "succeeded") {
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
@@ -91,11 +116,6 @@ export default function ClaimForm() {
           placeholder="Studio or channel name"
           className={inputClass}
         />
-        <ValidationError
-          field="production_house"
-          errors={state.errors}
-          className="mt-1 block text-xs text-accent"
-        />
       </div>
 
       <div>
@@ -109,11 +129,6 @@ export default function ClaimForm() {
           required
           placeholder="Who should we ask for?"
           className={inputClass}
-        />
-        <ValidationError
-          field="name"
-          errors={state.errors}
-          className="mt-1 block text-xs text-accent"
         />
       </div>
 
@@ -129,11 +144,37 @@ export default function ClaimForm() {
           placeholder="you@studio.com"
           className={inputClass}
         />
-        <ValidationError
-          field="email"
-          errors={state.errors}
-          className="mt-1 block text-xs text-accent"
-        />
+      </div>
+
+      <div>
+        <label htmlFor="phone-number" className="mb-1.5 block text-sm font-medium">
+          Phone number
+        </label>
+        <div className="flex gap-2">
+          <select
+            id="phone-country"
+            value={countryIso}
+            onChange={(e) => setCountryIso(e.target.value)}
+            aria-label="Country code"
+            className="w-[5.5rem] shrink-0 appearance-none rounded-xl border border-line bg-surface px-2 py-3 text-base text-ink outline-none transition-colors duration-300 focus:border-accent sm:text-sm"
+          >
+            {COUNTRY_CODES.map((c) => (
+              <option key={c.iso} value={c.iso}>
+                {c.iso} {c.dial}
+              </option>
+            ))}
+          </select>
+          <input
+            id="phone-number"
+            type="tel"
+            name="phone_number"
+            required
+            inputMode="tel"
+            autoComplete="tel-national"
+            placeholder="Phone number"
+            className={`${inputClass} min-w-0 flex-1`}
+          />
+        </div>
       </div>
 
       <div>
@@ -147,11 +188,6 @@ export default function ClaimForm() {
           placeholder="YouTube / Instagram URL"
           className={inputClass}
         />
-        <ValidationError
-          field="channel_link"
-          errors={state.errors}
-          className="mt-1 block text-xs text-accent"
-        />
       </div>
 
       <div>
@@ -164,11 +200,6 @@ export default function ClaimForm() {
           rows={3}
           placeholder="Formats, volume per week, team size…"
           className={inputClass}
-        />
-        <ValidationError
-          field="details"
-          errors={state.errors}
-          className="mt-1 block text-xs text-accent"
         />
       </div>
 
@@ -192,22 +223,19 @@ export default function ClaimForm() {
             </option>
           ))}
         </select>
-        <ValidationError
-          field="referral_source"
-          errors={state.errors}
-          className="mt-1 block text-xs text-accent"
-        />
       </div>
 
-      <ValidationError errors={state.errors} className="block text-xs text-accent" />
+      {state === "error" && errorMessage && (
+        <p className="block text-xs text-accent">{errorMessage}</p>
+      )}
 
       <Button
         type="submit"
-        disabled={state.submitting}
+        disabled={state === "submitting"}
         size="lg"
         className="w-full disabled:cursor-wait disabled:opacity-60"
       >
-        {state.submitting ? "Claiming…" : "Claim free demo"}
+        {state === "submitting" ? "Claiming…" : "Claim free demo"}
       </Button>
     </motion.form>
   );
