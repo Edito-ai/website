@@ -1,10 +1,10 @@
 import nodemailer from "nodemailer";
 import { SITE_URL } from "@/lib/site";
 
-/** The address that gets notified whenever someone submits the demo-request
+/** The addresses that get notified whenever someone submits the demo-request
  *  form — replaces what Formspree used to do (email a collaborator on every
  *  new submission). */
-export const LEAD_NOTIFICATION_EMAIL = "solankishaab17@gmail.com";
+export const LEAD_NOTIFICATION_EMAIL = "solankishaab17@gmail.com, sagar1teotia@gmail.com";
 
 export function getTransporter() {
   return nodemailer.createTransport({
