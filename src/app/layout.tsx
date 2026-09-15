@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/providers/SmoothScroll";
+import FirebaseAnalytics from "@/components/analytics/FirebaseAnalytics";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 
 const geistSans = Geist({
@@ -97,6 +99,9 @@ export default function RootLayout({
     >
       <body className="font-sans">
         <div aria-hidden className="bg-grain pointer-events-none fixed inset-0 z-50" />
+        <Suspense fallback={null}>
+          <FirebaseAnalytics />
+        </Suspense>
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
