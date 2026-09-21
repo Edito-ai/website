@@ -66,10 +66,10 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <BackedBy />
         <WhyTheySwitched />
         <StackedFeatures />
         <HowItWorks />
+        <BackedBy />
         <Faq />
         <GetDemo />
       </main>

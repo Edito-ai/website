@@ -1,32 +1,92 @@
 "use client";
 
-import { useRef } from "react";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-  type MotionValue,
-} from "framer-motion";
-import {
-  Terminal,
-  FileCode2,
-  Palette,
-  AudioLines,
-  ArrowRight,
-  type LucideIcon,
-} from "lucide-react";
+import { Terminal, FileCode2, Palette, AudioLines, type LucideIcon } from "lucide-react";
+import Reveal from "@/components/fx/Reveal";
 import WordReveal from "@/components/fx/WordReveal";
+import PixelDiagram, { type Point, line, ring, ellipse, waveform, dust, dot } from "@/components/fx/PixelDiagram";
 
-type VisualKind = "prompt" | "xml" | "grade" | "lipsync";
+const PROMPT_POINTS: Point[] = [
+  // terminal window
+  ...line(40, 50, 280, 50, 26, 0.5, 1),
+  ...line(40, 190, 280, 190, 26, 0.5, 40),
+  ...line(40, 50, 40, 190, 14, 0.5, 80),
+  ...line(280, 50, 280, 190, 14, 0.5, 100),
+  // title bar controls
+  ...[0, 1, 2].map((i) => ({ x: 58 + i * 14, y: 66, r: 2, o: 0.8 })),
+  // ">" prompt chevron
+  ...line(62, 108, 80, 122, 7, 0.9, 200),
+  ...line(80, 122, 62, 136, 7, 0.9, 220),
+  // blinking cursor
+  { x: 92, y: 122, r: 2, o: 1 },
+  // typed command
+  ...line(104, 122, 250, 122, 20, 0.35, 260),
+  // ambient dust
+  ...dust(60, 10, 10, 310, 230, 500),
+];
+
+const EXPORT_POINTS: Point[] = [
+  // document with folded corner
+  ...line(60, 40, 150, 40, 12, 0.5, 1),
+  ...line(60, 40, 60, 190, 22, 0.5, 30),
+  ...line(60, 190, 170, 190, 16, 0.5, 60),
+  ...line(170, 60, 170, 190, 20, 0.5, 90),
+  ...line(150, 40, 170, 60, 6, 0.6, 120),
+  // inner text lines
+  ...line(75, 75, 140, 75, 10, 0.3, 150),
+  ...line(75, 95, 150, 95, 12, 0.3, 170),
+  ...line(75, 115, 130, 115, 8, 0.3, 190),
+  // export flow
+  ...line(182, 115, 228, 115, 12, 0.7, 210),
+  // three destination nodes (Premiere, Resolve, Final Cut)
+  ...ring(268, 68, 14, 10, 0.6, 260),
+  ...ring(278, 115, 14, 10, 0.6, 290),
+  ...ring(268, 162, 14, 10, 0.6, 320),
+  ...line(228, 115, 268, 68, 8, 0.3, 350),
+  ...line(228, 115, 278, 115, 6, 0.3, 370),
+  ...line(228, 115, 268, 162, 8, 0.3, 390),
+  ...dust(55, 10, 10, 310, 230, 700),
+];
+
+const GRADE_POINTS: Point[] = [
+  ...ring(170, 120, 18, 10, 0.9, 1),
+  ...ring(170, 120, 36, 16, 0.7, 40),
+  ...ring(170, 120, 54, 22, 0.5, 90),
+  ...ring(170, 120, 72, 28, 0.32, 150),
+  ...ring(170, 120, 90, 34, 0.18, 220),
+  ...[0, 1, 2, 3].map((i) => {
+    const angle = (i / 4) * Math.PI * 2 + 0.4;
+    return dot(170 + Math.cos(angle) * 90, 120 + Math.sin(angle) * 90, 3.2, 0.95);
+  }),
+  ...dust(50, 10, 10, 320, 230, 900),
+];
+
+const LIPSYNC_POINTS: Point[] = [
+  ...waveform(55, 265, 22, 100, 60, 0.75, 5),
+  ...ellipse(160, 175, 30, 13, 22, 0.6, 400),
+  ...dust(45, 10, 10, 310, 220, 1100),
+];
+
+function PromptDiagram() {
+  return <PixelDiagram points={PROMPT_POINTS} />;
+}
+function ExportDiagram() {
+  return <PixelDiagram points={EXPORT_POINTS} />;
+}
+function GradeDiagram() {
+  return <PixelDiagram points={GRADE_POINTS} />;
+}
+function LipsyncDiagram() {
+  return <PixelDiagram points={LIPSYNC_POINTS} />;
+}
+
+/* --- Feature data --------------------------------------------------------- */
 
 interface Feature {
   icon: LucideIcon;
   n: string;
   title: string;
   body: string;
-  visual: VisualKind;
-  img: string;
+  Diagram: () => React.ReactNode;
 }
 
 const FEATURES: Feature[] = [
@@ -35,232 +95,63 @@ const FEATURES: Feature[] = [
     n: "01",
     title: "Prompt-based editing",
     body: "Describe the edit in a sentence. Broll cuts silences, punches in on the hook, restructures the story — no timeline, no keyframes.",
-    visual: "prompt",
-    img: "/features/prompt_editing.webp",
+    Diagram: PromptDiagram,
   },
   {
     icon: FileCode2,
     n: "02",
     title: "Export XML to any platform",
     body: "The finished cut is never locked in. One click exports an XML timeline that opens in Premiere Pro, DaVinci Resolve or Final Cut.",
-    visual: "xml",
-    img: "/features/xml_export.webp",
+    Diagram: ExportDiagram,
   },
   {
     icon: Palette,
     n: "03",
     title: "AI color grading",
     body: "One consistent cinematic grade across every camera, take and lighting condition — matched to your brand look.",
-    visual: "grade",
-    img: "/features/color_grading.webp",
+    Diagram: GradeDiagram,
   },
   {
     icon: AudioLines,
     n: "04",
     title: "AI lip sync",
     body: "Dub your videos into new languages with lips that actually match. One shoot, every audience.",
-    visual: "lipsync",
-    img: "/features/lip_sync.webp",
+    Diagram: LipsyncDiagram,
   },
 ];
 
-/* --- Card visuals ------------------------------------------------------- */
+/* --- Feature grid --------------------------------------------------------- */
 
-function PromptVisual() {
+function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
   return (
-    <div className="w-full rounded-xl border border-line bg-surface-2 p-5 font-mono text-sm">
-      <p className="text-muted">
-        <span className="mr-2 text-accent">›</span>
-        remove the silences, punch in on the hook, add captions
-        <span className="animate-blink ml-0.5 inline-block h-4 w-[2px] translate-y-0.5 bg-ink align-middle" />
-      </p>
-      <div className="mt-5 flex items-center gap-2">
-        <span className="rounded-md border border-line px-2 py-1 text-[10px] tracking-widest text-muted uppercase">
-          Enter
-        </span>
-        <span className="text-[10px] tracking-widest text-muted uppercase">
-          to edit
-        </span>
-      </div>
-    </div>
-  );
-}
-
-function XmlVisual() {
-  return (
-    <div className="flex w-full flex-col items-start gap-4">
-      <span className="flex items-center gap-2 rounded-full border border-line bg-surface-2 px-4 py-2 font-mono text-xs text-muted">
-        <FileCode2 className="size-4 text-accent" />
-        timeline.xml
-      </span>
-      <ArrowRight className="ml-4 size-4 rotate-90 text-muted" />
-      <div className="flex flex-wrap gap-2">
-        {["Premiere Pro", "DaVinci Resolve", "Final Cut"].map((editor) => (
-          <span
-            key={editor}
-            className="rounded-full border border-line px-4 py-2 text-sm text-ink-2 transition-colors hover:border-accent hover:text-accent"
-          >
-            {editor}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function GradeVisual() {
-  const swatches = ["#b9b9bd", "#98989f", "#6f6f78", "#4a4a54", "#26262e"];
-  return (
-    <div className="w-full">
-      <div className="flex items-center gap-3">
-        {swatches.map((c, i) => (
-          <span
-            key={c}
-            className="relative size-10 rounded-full md:size-12"
-            style={{ background: c }}
-          >
-            <span
-              style={{ "--cc-delay": `${i * 1.5}s` } as React.CSSProperties}
-              className="caption-cycle absolute -inset-1 rounded-full border border-accent"
-            />
-          </span>
-        ))}
-      </div>
-      <p className="mt-4 font-mono text-[10px] tracking-widest text-muted uppercase">
-        Grading · Cinematic 01
-      </p>
-    </div>
-  );
-}
-
-function LipsyncVisual() {
-  const wave = [0.4, 0.8, 0.55, 0.95, 0.5, 0.7, 0.35, 0.85, 0.6, 0.9, 0.45, 0.75];
-  return (
-    <div className="w-full">
-      <div className="flex h-12 items-end gap-1">
-        {wave.map((h, i) => (
-          <span
-            key={i}
-            style={{ height: `${h * 100}%`, animationDelay: `${i * 110}ms` }}
-            className="animate-eq w-full rounded-full bg-muted/60"
+    <Reveal delay={0.1 * index} y={28} className="h-full">
+      <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-surface p-6 transition-colors duration-300 hover:border-accent/40 sm:p-8">
+        <div className="relative overflow-hidden rounded-2xl border border-line/60 bg-surface-2">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,var(--accent-soft),transparent_65%)] opacity-70 transition-opacity duration-300 group-hover:opacity-100"
           />
-        ))}
-      </div>
-      <div className="mt-4 flex flex-wrap gap-2">
-        {["English", "हिन्दी", "Español", "日本語"].map((lang) => (
-          <span
-            key={lang}
-            className="rounded-full border border-line px-3 py-1 text-xs text-muted"
-          >
-            {lang}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-const VISUALS: Record<VisualKind, () => React.ReactNode> = {
-  prompt: PromptVisual,
-  xml: XmlVisual,
-  grade: GradeVisual,
-  lipsync: LipsyncVisual,
-};
-
-/* --- Stacked cards ------------------------------------------------------ */
-
-function StackCard({
-  feature,
-  index,
-  total,
-  p,
-}: {
-  feature: Feature;
-  index: number;
-  total: number;
-  p: MotionValue<number>;
-}) {
-  const reduced = useReducedMotion();
-  const Visual = VISUALS[feature.visual];
-
-  // Once this card is pinned, it recedes — shrinking and dimming — while
-  // the next one scrolls over it. Front to back, card by card.
-  const start = index / total;
-  const targetScale = 1 - (total - 1 - index) * 0.06;
-  const scale = useTransform(p, [start, 1], [1, targetScale]);
-  const dim = useTransform(p, [start, 1], [0, index === total - 1 ? 0 : 0.45]);
-
-  return (
-    <div
-      className="flex justify-center md:sticky"
-      style={{ top: `calc(8vh + ${index * 1.6}rem)` }}
-    >
-      {/* The card fills the pinned viewport exactly; the screenshot gets the
-          larger column and is never cropped (object-contain), so the whole
-          UI is readable. On mobile the cards flow normally at full height. */}
-      <motion.div
-        style={{
-          ...(reduced ? {} : { scale }),
-          "--stack-mh": `calc(90vh - ${index * 1.6}rem)`,
-        } as React.CSSProperties & { "--stack-mh": string }}
-        className="relative mb-10 flex w-full origin-top flex-col overflow-hidden rounded-3xl border border-line bg-surface p-5 shadow-[var(--shadow-lift)] sm:p-7 md:h-(--stack-mh) md:p-10"
-      >
-        <div className="grid min-h-0 flex-1 items-center gap-6 md:grid-cols-[2fr_3fr] md:gap-12">
-          <div className="min-w-0">
-            <div className="flex items-center gap-4">
-              <span className="font-mono text-sm text-muted">{feature.n}</span>
-              <span className="rounded-full border border-line p-2.5">
-                <feature.icon className="size-5 text-accent" strokeWidth={1.5} />
-              </span>
-            </div>
-            <h3 className="mt-5 text-2xl font-semibold tracking-tighter sm:text-3xl md:mt-6 md:text-4xl">
-              {feature.title}
-            </h3>
-            <p className="mt-4 max-w-md leading-relaxed text-muted">
-              {feature.body}
-            </p>
-            <div className="mt-8 hidden md:block">
-              <Visual />
-            </div>
-          </div>
-
-          {/* Product demo screenshot — full image, never cropped */}
-          <div className="relative flex min-h-0 items-center justify-center self-stretch overflow-hidden rounded-2xl border border-line/60 bg-surface-2 p-2 md:p-3">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={feature.img}
-              alt={`${feature.title} — Broll demo`}
-              width={1024}
-              height={1024}
-              className="max-h-full w-full rounded-xl object-contain"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-
-          <div className="md:hidden">
-            <Visual />
+          <div className="relative flex aspect-[4/3] items-center justify-center p-6">
+            <feature.Diagram />
           </div>
         </div>
 
-        {/* Dims as the card falls to the back of the stack */}
-        <motion.div
-          aria-hidden
-          style={reduced ? { opacity: 0 } : { opacity: dim }}
-          className="pointer-events-none absolute inset-0 bg-bg"
-        />
-      </motion.div>
-    </div>
+        <div className="mt-6 flex items-center gap-4">
+          <span className="font-mono text-xs text-muted">{feature.n}</span>
+          <span className="flex size-10 items-center justify-center rounded-full border border-line transition-colors duration-300 group-hover:border-accent/40">
+            <feature.icon className="size-5 text-accent" strokeWidth={1.5} />
+          </span>
+        </div>
+        <h3 className="mt-5 text-xl font-semibold tracking-tight sm:text-2xl">
+          {feature.title}
+        </h3>
+        <p className="mt-3 leading-relaxed text-muted">{feature.body}</p>
+      </div>
+    </Reveal>
   );
 }
 
 export default function StackedFeatures() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
-
   return (
     <section id="features" className="mx-auto max-w-5xl px-5 py-24 sm:px-6 md:px-8 md:py-40">
       <p className="font-mono text-xs tracking-widest text-muted uppercase">
@@ -275,15 +166,9 @@ export default function StackedFeatures() {
         ships the edit.
       </p>
 
-      <div ref={ref} className="relative mt-16">
+      <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
         {FEATURES.map((feature, i) => (
-          <StackCard
-            key={feature.n}
-            feature={feature}
-            index={i}
-            total={FEATURES.length}
-            p={scrollYProgress}
-          />
+          <FeatureCard key={feature.n} feature={feature} index={i} />
         ))}
       </div>
     </section>
