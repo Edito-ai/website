@@ -1,0 +1,357 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Globe, Monitor, Sparkles, Check, ArrowRight } from "lucide-react";
+import Reveal from "@/components/fx/Reveal";
+import WordReveal from "@/components/fx/WordReveal";
+import BrollLogo from "@/components/site/BrollLogo";
+import { cn } from "@/lib/utils";
+
+const CYCLE_MS = 7000;
+
+/* --- Shared mock pieces ---------------------------------------------------- */
+
+const CLIPS = [
+  { src: "/clips/int_studio.webp", w: 26 },
+  { src: "/clips/cu_hands.webp", w: 14 },
+  { src: "/clips/broll_city.webp", w: 22 },
+  { src: "/clips/drone_04.webp", w: 18 },
+  { src: "/clips/a012_take3.webp", w: 20 },
+];
+
+function Frame({ src, className }: { src: string; className?: string }) {
+  return (
+    <div className={cn("relative overflow-hidden bg-surface-2", className)}>
+      <Image src={src} alt="" fill sizes="480px" className="object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+    </div>
+  );
+}
+
+function Timeline({ playhead = 42, tall = false }: { playhead?: number; tall?: boolean }) {
+  return (
+    <div className="relative">
+      <div className={cn("flex gap-[3px]", tall ? "h-11" : "h-9")}>
+        {CLIPS.map((c) => (
+          <div key={c.src} style={{ width: `${c.w}%` }} className="relative">
+            <Frame src={c.src} className="h-full rounded-[5px] border border-white/10" />
+          </div>
+        ))}
+      </div>
+      <div className="mt-[3px] flex h-3 gap-[3px]">
+        {[30, 18, 34, 12].map((w, i) => (
+          <div
+            key={i}
+            style={{ width: `${w}%` }}
+            className="rounded-[3px] bg-accent/30"
+          />
+        ))}
+      </div>
+      <div
+        className="absolute -top-1.5 -bottom-1 w-px bg-accent shadow-[0_0_10px_var(--accent)]"
+        style={{ left: `${playhead}%` }}
+      >
+        <span className="absolute -top-0.5 left-1/2 size-2 -translate-x-1/2 rounded-full bg-accent" />
+      </div>
+    </div>
+  );
+}
+
+function Prompt({ text, reply }: { text: string; reply: string }) {
+  return (
+    <div className="space-y-2 text-[11px] leading-snug">
+      <div className="ml-auto w-fit max-w-[92%] rounded-xl rounded-br-sm border border-line bg-surface-2 px-3 py-2 text-ink-2">
+        {text}
+      </div>
+      <div className="flex gap-2">
+        <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-accent/20">
+          <Sparkles className="size-3 text-accent" />
+        </span>
+        <div className="text-muted">{reply}</div>
+      </div>
+    </div>
+  );
+}
+
+function Chrome({ children, title, kind }: { children: React.ReactNode; title: string; kind: "browser" | "desktop" | "resolve" }) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-line-strong bg-surface shadow-[var(--shadow-lift)]">
+      <div className="flex items-center gap-2 border-b border-line bg-surface-2 px-4 py-2.5">
+        <div className="flex gap-1.5">
+          {[0, 1, 2].map((i) => (
+            <span key={i} className="size-2.5 rounded-full bg-white/15" />
+          ))}
+        </div>
+        {kind === "browser" ? (
+          <span className="mx-auto flex w-[55%] items-center justify-center gap-1.5 rounded-md bg-black/30 py-1 font-mono text-[10px] text-muted">
+            <Globe className="size-3" /> {title}
+          </span>
+        ) : (
+          <span className="mx-auto font-mono text-[10px] text-muted">{title}</span>
+        )}
+        <span className="w-10" />
+      </div>
+      {children}
+    </div>
+  );
+}
+
+/* --- The three stages ------------------------------------------------------ */
+
+function BrowserStage() {
+  return (
+    <Chrome kind="browser" title="Broll — open a tab, start editing">
+      <div className="grid gap-4 p-4 md:grid-cols-[1.5fr_1fr]">
+        <div className="space-y-3">
+          <Frame src="/clips/int_studio.webp" className="aspect-video rounded-xl border border-line" />
+          <Timeline />
+        </div>
+        <div className="flex flex-col justify-between gap-4 rounded-xl border border-line bg-black/20 p-3">
+          <Prompt
+            text="Cut the silences and punch in on the hook"
+            reply="Done — removed 14 pauses, tightened the intro to 9s."
+          />
+          <div className="rounded-lg border border-line bg-surface-2 px-3 py-2 text-[11px] text-muted">
+            Describe your edit…
+          </div>
+        </div>
+      </div>
+    </Chrome>
+  );
+}
+
+function DesktopStage() {
+  return (
+    <Chrome kind="desktop" title="Broll — Brand film · Local project">
+      <div className="grid gap-4 p-4 md:grid-cols-[88px_1.6fr]">
+        <div className="hidden grid-cols-1 gap-2 md:grid">
+          {CLIPS.slice(0, 4).map((c, i) => (
+            <Frame key={i} src={c.src} className="aspect-video rounded-md border border-line" />
+          ))}
+        </div>
+        <div className="space-y-3">
+          <div className="relative">
+            <Frame src="/clips/drone_04.webp" className="aspect-video rounded-xl border border-line" />
+            <span className="absolute top-3 left-3 rounded-full border border-white/15 bg-black/50 px-2.5 py-1 font-mono text-[10px] text-ink-2 backdrop-blur">
+              4K · read from D:\Footage
+            </span>
+          </div>
+          <Timeline tall playhead={58} />
+        </div>
+      </div>
+    </Chrome>
+  );
+}
+
+function ResolveStage() {
+  return (
+    <Chrome kind="resolve" title="DaVinci Resolve Studio — Workspace › Workflow Integrations › Broll AI">
+      <div className="flex gap-1 border-b border-line px-4 py-2 font-mono text-[10px] text-muted">
+        {["Media", "Cut", "Edit", "Fusion", "Color", "Fairlight", "Deliver"].map((t) => (
+          <span
+            key={t}
+            className={cn("rounded px-2 py-0.5", t === "Edit" && "bg-white/10 text-ink")}
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+      <div className="grid gap-4 p-4 md:grid-cols-[1.5fr_1fr]">
+        <div className="space-y-3">
+          <Frame src="/clips/broll_city.webp" className="aspect-video rounded-xl border border-line" />
+          <Timeline playhead={34} />
+        </div>
+        <div className="flex flex-col gap-3 rounded-xl border border-line bg-black/20 p-3">
+          <div className="flex items-center gap-2 text-[11px] font-medium">
+            <Image src="/davinci-resolve-logo.png" alt="" width={16} height={16} className="size-4" />
+            Broll AI
+          </div>
+          <Prompt
+            text="Grade it warm, add captions, keep my original"
+            reply="Built it on a new timeline."
+          />
+          <div className="space-y-1.5 text-[10px]">
+            {["Colour grade applied", "Animated captions added", "Saved as Timeline v2"].map((l) => (
+              <div key={l} className="flex items-center gap-2 rounded-md border border-line bg-surface-2 px-2.5 py-1.5 text-ink-2">
+                <Check className="size-3 text-accent" /> {l}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </Chrome>
+  );
+}
+
+/* --- Surfaces -------------------------------------------------------------- */
+
+const SURFACES = [
+  {
+    key: "web",
+    label: "Browser",
+    title: "Start anywhere. Nothing to install.",
+    body: "Open a tab, drop in footage, describe the edit. Our own editor, always up to date.",
+    Stage: BrowserStage,
+    Icon: () => (
+      <span className="relative">
+        <BrollLogo className="size-5" />
+        <Globe className="absolute -right-2 -bottom-2 size-3.5 rounded-full bg-surface text-accent" />
+      </span>
+    ),
+  },
+  {
+    key: "desktop",
+    label: "Desktop app",
+    title: "Heavy footage? Keep it local.",
+    body: "The same editor as a native app. Long projects and 4K media stay on your drives, at full speed.",
+    Stage: DesktopStage,
+    Icon: () => (
+      <span className="relative">
+        <BrollLogo className="size-5" />
+        <Monitor className="absolute -right-2 -bottom-2 size-3.5 rounded-full bg-surface text-accent" />
+      </span>
+    ),
+  },
+  {
+    key: "resolve",
+    label: "DaVinci Resolve plugin",
+    title: "Finish inside Resolve.",
+    body: "Broll AI is a chat panel in Resolve Studio. It builds every edit on a new timeline — your original is never touched.",
+    Stage: ResolveStage,
+    Icon: () => (
+      <Image src="/davinci-resolve-logo.png" alt="DaVinci Resolve" width={28} height={28} className="size-7" />
+    ),
+  },
+];
+
+/* --- Section --------------------------------------------------------------- */
+
+export default function WorkAnywhere() {
+  const reduced = useReducedMotion();
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (reduced || paused) return;
+    const t = setTimeout(() => setActive((a) => (a + 1) % SURFACES.length), CYCLE_MS);
+    return () => clearTimeout(t);
+  }, [active, paused, reduced]);
+
+  const { Stage } = SURFACES[active];
+
+  return (
+    <section id="platforms" className="mx-auto max-w-6xl px-5 pt-24 sm:px-6 md:px-8 md:pt-40">
+      <p className="font-mono text-xs tracking-widest text-muted uppercase">Where it runs</p>
+      <WordReveal
+        text="One editor. Three places."
+        className="mt-4 text-4xl font-semibold tracking-tighter md:text-6xl"
+      />
+      <p className="mt-5 max-w-xl leading-relaxed text-muted">
+        Start a cut in your browser, refine it on desktop, finish it inside DaVinci Resolve.
+        Same Broll, same account — wherever you already edit.
+      </p>
+
+      <Reveal y={28}>
+        <div
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          className="relative mt-14 grid gap-6 overflow-hidden rounded-[2rem] border border-line bg-surface p-3 sm:p-4 lg:grid-cols-[360px_1fr] lg:gap-4"
+        >
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-40 right-0 size-[520px] rounded-full bg-[radial-gradient(circle,var(--accent-soft),transparent_70%)]"
+          />
+
+          {/* Selector */}
+          <div role="tablist" className="relative flex flex-col gap-2 lg:p-2">
+            {SURFACES.map((s, i) => {
+              const on = i === active;
+              return (
+                <button
+                  key={s.key}
+                  role="tab"
+                  aria-selected={on}
+                  onClick={() => setActive(i)}
+                  className={cn(
+                    "group relative overflow-hidden rounded-2xl border p-4 text-left transition-colors duration-300 sm:p-5",
+                    on ? "border-line-strong bg-surface-2" : "border-transparent hover:bg-white/[0.03]",
+                  )}
+                >
+                  <div className="flex items-center gap-3">
+                    <span
+                      className={cn(
+                        "flex size-10 items-center justify-center rounded-xl border bg-surface transition-colors",
+                        on ? "border-accent/50" : "border-line",
+                      )}
+                    >
+                      <s.Icon />
+                    </span>
+                    <span className="flex-1">
+                      <span className="block font-mono text-[10px] tracking-widest text-muted uppercase">
+                        0{i + 1}
+                      </span>
+                      <span className="block font-semibold tracking-tight">{s.label}</span>
+                    </span>
+                    <ArrowRight
+                      className={cn(
+                        "size-4 transition-all duration-300",
+                        on ? "translate-x-0 text-accent opacity-100" : "-translate-x-1 opacity-0",
+                      )}
+                    />
+                  </div>
+                  <div
+                    className={cn(
+                      "grid transition-all duration-500",
+                      on ? "mt-4 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+                    )}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="text-lg leading-snug font-medium tracking-tight">{s.title}</p>
+                      <p className="mt-2 text-sm leading-relaxed text-muted">{s.body}</p>
+                    </div>
+                  </div>
+                  {on && !reduced && (
+                    <motion.span
+                      key={`${active}-${paused}`}
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: paused ? 0 : 1 }}
+                      transition={{ duration: CYCLE_MS / 1000, ease: "linear" }}
+                      className="absolute bottom-0 left-0 h-px w-full origin-left bg-accent"
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Stage */}
+          <div className="relative flex items-center rounded-2xl border border-line bg-[radial-gradient(ellipse_at_50%_0%,var(--accent-soft),transparent_70%)] p-3 sm:p-6">
+            <div className="w-full">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={active}
+                  initial={reduced ? false : { opacity: 0, y: 16, scale: 0.985 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={reduced ? undefined : { opacity: 0, y: -12, scale: 0.99 }}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <Stage />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      </Reveal>
+
+      <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted">
+        {["Same Broll account everywhere", "Your original footage is never overwritten", "Export XML to Premiere, Resolve or Final Cut"].map((t) => (
+          <li key={t} className="flex items-center gap-2">
+            <Check className="size-4 text-accent" strokeWidth={2} /> {t}
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}

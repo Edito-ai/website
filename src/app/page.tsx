@@ -4,6 +4,7 @@ import Navbar from "@/components/site/Navbar";
 import Hero from "@/components/site/Hero";
 import BackedBy from "@/components/site/BackedBy";
 import WhyTheySwitched from "@/components/site/WhyTheySwitched";
+import WorkAnywhere from "@/components/site/WorkAnywhere";
 import StackedFeatures from "@/components/site/StackedFeatures";
 import HowItWorks from "@/components/site/HowItWorks";
 import Faq from "@/components/site/Faq";
@@ -67,6 +68,7 @@ export default function Home() {
       <main>
         <Hero />
         <WhyTheySwitched />
+        <WorkAnywhere />
         <StackedFeatures />
         <HowItWorks />
         <BackedBy />
