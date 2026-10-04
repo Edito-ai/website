@@ -85,11 +85,11 @@ function Chrome({ children, title, kind }: { children: React.ReactNode; title: s
           ))}
         </div>
         {kind === "browser" ? (
-          <span className="mx-auto flex w-[55%] items-center justify-center gap-1.5 rounded-md bg-black/30 py-1 font-mono text-[10px] text-muted">
+          <span className="mx-auto flex w-[55%] min-w-0 items-center justify-center gap-1.5 truncate whitespace-nowrap rounded-md bg-black/30 py-1 font-mono text-[10px] text-muted">
             <Globe className="size-3" /> {title}
           </span>
         ) : (
-          <span className="mx-auto font-mono text-[10px] text-muted">{title}</span>
+          <span className="mx-auto min-w-0 truncate font-mono text-[10px] text-muted">{title}</span>
         )}
         <span className="w-10" />
       </div>
@@ -242,7 +242,7 @@ export default function WorkAnywhere() {
   const { Stage } = SURFACES[active];
 
   return (
-    <section id="platforms" className="mx-auto max-w-6xl px-5 pt-24 sm:px-6 md:px-8 md:pt-40">
+    <section id="platforms" className="mx-auto max-w-5xl px-5 pt-24 sm:px-6 md:px-8 md:pt-40">
       <p className="font-mono text-xs tracking-widest text-muted uppercase">Where it runs</p>
       <WordReveal
         text="One editor. Three places."
@@ -257,7 +257,7 @@ export default function WorkAnywhere() {
         <div
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
-          className="relative mt-14 grid gap-6 overflow-hidden rounded-[2rem] border border-line bg-surface p-3 sm:p-4 lg:grid-cols-[360px_1fr] lg:gap-4"
+          className="relative mt-14 grid grid-cols-1 gap-6 overflow-hidden rounded-[2rem] border border-line bg-surface p-3 sm:p-4 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-4"
         >
           <div
             aria-hidden
@@ -265,7 +265,7 @@ export default function WorkAnywhere() {
           />
 
           {/* Selector */}
-          <div role="tablist" className="relative flex flex-col gap-2 lg:p-2">
+          <div role="tablist" className="relative flex min-w-0 flex-col gap-2 lg:p-2">
             {SURFACES.map((s, i) => {
               const on = i === active;
               return (
@@ -327,7 +327,7 @@ export default function WorkAnywhere() {
           </div>
 
           {/* Stage */}
-          <div className="relative flex items-center rounded-2xl border border-line bg-[radial-gradient(ellipse_at_50%_0%,var(--accent-soft),transparent_70%)] p-3 sm:p-6">
+          <div className="relative flex min-w-0 items-center overflow-hidden rounded-2xl border border-line bg-[radial-gradient(ellipse_at_50%_0%,var(--accent-soft),transparent_70%)] p-3 sm:p-6">
             <div className="w-full">
               <AnimatePresence mode="wait">
                 <motion.div
