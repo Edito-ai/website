@@ -8,6 +8,9 @@ interface WordRevealProps {
   className?: string;
   delay?: number;
   as?: "h1" | "h2" | "h3" | "p" | "span";
+  /** Fill words with the brand gradient (applied per word — background-clip
+   *  does not paint through the animated inline-block word spans). */
+  gradient?: boolean;
 }
 
 /** Section titles reveal word by word, rising out of a clipped line. */
@@ -16,11 +19,12 @@ export default function WordReveal({
   className,
   delay = 0,
   as: Tag = "h2",
+  gradient = false,
 }: WordRevealProps) {
   const reduced = useReducedMotion();
   const words = text.split(" ");
 
-  if (reduced) return <Tag className={className}>{text}</Tag>;
+  if (reduced) return <Tag className={cn(className, gradient && "text-brand")}>{text}</Tag>;
 
   return (
     // aria-label is prohibited on generic elements (span), so the accessible
@@ -31,7 +35,7 @@ export default function WordReveal({
         <span key={i} className="inline-block overflow-hidden pb-[0.12em] align-bottom">
           <motion.span
             aria-hidden
-            className="inline-block will-change-transform"
+            className={cn("inline-block will-change-transform", gradient && "text-brand")}
             initial={{ y: "110%" }}
             whileInView={{ y: 0 }}
             viewport={{ once: true, margin: "-60px" }}

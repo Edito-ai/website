@@ -58,7 +58,7 @@ export default function ProductPage() {
           </p>
           <h1 className="mt-4 text-4xl font-semibold tracking-tighter text-balance md:text-6xl">
             Everything Broll does, from{" "}
-            <span className="font-serif italic">raw footage to finished video</span>.
+            <span className="font-serif text-brand italic">raw footage to finished video</span>.
           </h1>
           <p className="mt-5 max-w-xl leading-relaxed text-muted">
             Broll is an agentic AI video editor — one system that searches

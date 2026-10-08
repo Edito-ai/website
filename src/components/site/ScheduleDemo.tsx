@@ -24,7 +24,7 @@ export default function ScheduleDemo() {
 
         styles: {
           branding: {
-            brandColor: "#3c5eff",
+            brandColor: "#e8465a",
           },
         },
       });

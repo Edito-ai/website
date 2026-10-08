@@ -84,7 +84,7 @@ export default function PricingPage() {
           </p>
           <h1 className="mt-4 text-4xl font-semibold tracking-tighter text-balance md:text-6xl">
             Pricing built{" "}
-            <span className="font-serif italic">around your footage</span>, not a
+            <span className="font-serif text-brand italic">around your footage</span>, not a
             tier.
           </h1>
           <p className="mt-5 max-w-xl leading-relaxed text-muted">

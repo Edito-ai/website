@@ -57,7 +57,7 @@ export default function ComparisonPage() {
           </p>
           <h1 className="mt-4 text-4xl font-semibold tracking-tighter text-balance md:text-6xl">
             Broll is not a{" "}
-            <span className="font-serif italic">B-roll generator</span>.
+            <span className="font-serif text-brand italic">B-roll generator</span>.
           </h1>
           <p className="mt-5 max-w-xl leading-relaxed text-muted">
             Same-sounding name, different category. Here&apos;s the actual

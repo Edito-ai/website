@@ -29,7 +29,7 @@ export default function PrivacyPage() {
       eyebrow="Legal"
       title={
         <>
-          Privacy <span className="font-serif italic">Policy</span>
+          Privacy <span className="font-serif text-brand italic">Policy</span>
         </>
       }
       updated="18 July 2026"

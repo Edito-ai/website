@@ -84,7 +84,7 @@ export default function AiEditingVsManualEditingPage() {
           </p>
           <h1 className="mt-4 text-4xl font-semibold tracking-tighter text-balance md:text-6xl">
             AI editing doesn&apos;t replace{" "}
-            <span className="font-serif italic">human judgment</span>. It removes the hours before it.
+            <span className="font-serif text-brand italic">human judgment</span>. It removes the hours before it.
           </h1>
           <p className="mt-5 max-w-xl leading-relaxed text-muted">
             An honest look at where agentic AI video editing actually saves

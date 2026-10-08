@@ -59,7 +59,7 @@ export default function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-muted transition-colors hover:text-ink"
+              className="text-sm text-muted transition-colors duration-300 hover:text-accent"
             >
               {l.label}
             </a>
@@ -97,7 +97,7 @@ export default function Navbar() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="block rounded-xl px-4 py-3 text-base font-medium text-ink-2 transition-colors hover:bg-surface-2 hover:text-ink"
+                className="block rounded-xl px-4 py-3 text-base font-medium text-ink-2 transition-colors hover:bg-surface-2 hover:text-accent"
               >
                 {l.label}
               </a>

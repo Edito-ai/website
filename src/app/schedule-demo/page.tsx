@@ -55,7 +55,7 @@ export default function ScheduleDemoPage() {
 
                 <h1 className="max-w-4xl text-[3.5rem] font-semibold leading-[0.9] tracking-[-0.06em] sm:text-6xl md:text-7xl lg:text-[6rem]">
                   See Broll{" "}
-                  <span className="font-serif font-normal italic">
+                  <span className="font-serif font-normal text-brand italic">
                     in action.
                   </span>
                 </h1>

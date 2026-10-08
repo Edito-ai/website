@@ -43,7 +43,7 @@ export default function DemoPage() {
           </p>
           <h1 className="mt-4 text-4xl font-semibold tracking-tighter text-balance md:text-6xl">
             Tell us about your{" "}
-            <span className="font-serif italic">production house</span>.
+            <span className="font-serif text-brand italic">production house</span>.
           </h1>
           <p className="mx-auto mt-5 max-w-md leading-relaxed text-muted">
             We&apos;ll set up Broll around the way your team already works —

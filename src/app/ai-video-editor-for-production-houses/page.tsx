@@ -60,7 +60,7 @@ export default function ProductionHousesPage() {
           </p>
           <h1 className="mt-4 text-4xl font-semibold tracking-tighter text-balance md:text-6xl">
             An AI video editor built for{" "}
-            <span className="font-serif italic">production houses</span>.
+            <span className="font-serif text-brand italic">production houses</span>.
           </h1>
           <p className="mt-5 max-w-xl leading-relaxed text-muted">
             Broll handles the volume production teams actually work with —

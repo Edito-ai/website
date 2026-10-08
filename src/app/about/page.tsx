@@ -50,7 +50,7 @@ export default function AboutPage() {
         <div className="relative mx-auto max-w-2xl">
           <p className="font-mono text-xs tracking-widest text-muted uppercase">About</p>
           <h1 className="mt-4 text-4xl font-semibold tracking-tighter text-balance md:text-6xl">
-            Broll is an <span className="font-serif italic">agentic AI video editor</span>.
+            Broll is an <span className="font-serif text-brand italic">agentic AI video editor</span>.
           </h1>
           <p className="mt-5 max-w-xl leading-relaxed text-muted">
             trybroll.com is the official website of Broll — AI video editing

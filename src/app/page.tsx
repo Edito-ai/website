@@ -3,6 +3,7 @@ import AnnouncementBar from "@/components/site/AnnouncementBar";
 import Navbar from "@/components/site/Navbar";
 import Hero from "@/components/site/Hero";
 import BackedBy from "@/components/site/BackedBy";
+import BrollFilm from "@/components/site/BrollFilm";
 import WhyTheySwitched from "@/components/site/WhyTheySwitched";
 import WorkAnywhere from "@/components/site/WorkAnywhere";
 import StackedFeatures from "@/components/site/StackedFeatures";
@@ -52,6 +53,16 @@ const structuredData = {
       operatingSystem: "Web",
       publisher: { "@id": `${SITE_URL}/#organization` },
     },
+    {
+      "@type": "VideoObject",
+      name: "Broll — 300 clips, 12 minutes",
+      description:
+        "Watch Broll turn a full shoot into a first cut — before anyone opens a timeline.",
+      thumbnailUrl: `${SITE_URL}/film/poster.webp`,
+      contentUrl: `${SITE_URL}/film/broll-film.mp4`,
+      uploadDate: "2026-10-08",
+      duration: "PT1M20S",
+    },
     faqPageJsonLd(FAQS, "/"),
   ],
 };
@@ -67,6 +78,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <BrollFilm />
         <WhyTheySwitched />
         <WorkAnywhere />
         <StackedFeatures />

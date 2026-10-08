@@ -42,7 +42,7 @@ export default function BlogIndexPage() {
         <div className="relative mx-auto max-w-2xl">
           <p className="font-mono text-xs tracking-widest text-muted uppercase">Blog</p>
           <h1 className="mt-4 text-4xl font-semibold tracking-tighter text-balance md:text-6xl">
-            Guides on <span className="font-serif italic">agentic editing</span>.
+            Guides on <span className="font-serif text-brand italic">agentic editing</span>.
           </h1>
           <p className="mt-5 max-w-xl leading-relaxed text-muted">
             How agentic AI video editing, video search and production workflows actually work.

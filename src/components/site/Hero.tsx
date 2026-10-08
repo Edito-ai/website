@@ -152,7 +152,7 @@ export default function Hero() {
         <div aria-hidden className="absolute inset-0">
           <div className="animate-drift absolute -top-1/4 -left-1/4 size-[70vw] rounded-full bg-[radial-gradient(circle,var(--accent-soft),transparent_60%)] opacity-40" />
           <div
-            className="animate-drift absolute -right-1/3 top-1/3 size-[60vw] rounded-full bg-[radial-gradient(circle,rgb(139_92_246/0.06),transparent_60%)]"
+            className="animate-drift absolute -right-1/3 top-1/3 size-[60vw] rounded-full bg-[radial-gradient(circle,rgb(232_70_90/0.07),transparent_60%)]"
             style={{ animationDelay: "-8s" }}
           />
         </div>
@@ -252,7 +252,7 @@ export default function Hero() {
                 className="block text-lg font-medium tracking-tight text-ink-2 text-balance sm:text-xl md:text-3xl"
               >
                 The AI editor that finishes videos{" "}
-                <span className="font-serif italic">before</span> you do.
+                <span className="font-serif text-brand italic">before</span> you do.
               </motion.span>
             </span>
           </h1>

@@ -1,7 +1,10 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Stedtio design tokens — premium monochrome, accent only on interaction.
+   Broll design tokens — derived from the logo mark.
+   The logo is a white "B" over a diagonal band: ink-navy → slate-navy →
+   crimson → coral → peach. Surfaces are the deep navy end of that band;
+   crimson is the interaction accent; peach is the glow.
    Dark is the only theme — no light mode, regardless of system preference.
 --------------------------------------------------------------------------- */
 
@@ -15,9 +18,10 @@
   --muted: #8f8f98;
   --line: rgb(255 255 255 / 0.09);
   --line-strong: rgb(255 255 255 / 0.18);
-  --accent: #5c7bff;
-  --accent-soft: rgb(92 123 255 / 0.16);
-  --glow: #8b5cf6;
+  /* Logo red — the single accent */
+  --accent: #e8465a;
+  --accent-soft: rgb(232 70 90 / 0.16);
+  --glow: #e8465a;
   --shadow-lift: 0 24px 48px -24px rgb(0 0 0 / 0.7);
 
   /* Sections that are always dark, in either theme */
@@ -80,6 +84,17 @@ body {
 ::selection {
   background-color: var(--accent-soft);
   color: var(--ink);
+}
+
+/* Important words — logo red, with a soft glow that wakes on hover. */
+.text-brand {
+  color: var(--accent);
+  transition: color 0.4s ease, text-shadow 0.4s ease;
+}
+
+.text-brand:hover {
+  color: #ff6b7d;
+  text-shadow: 0 0 28px rgb(232 70 90 / 0.55);
 }
 
 /* Fine grain over everything — makes flat surfaces feel printed. */

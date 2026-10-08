@@ -69,6 +69,7 @@ export default function BackedBy() {
             as="span"
             text="Google behind us."
             delay={0.3}
+              gradient
             className="mt-1 block font-serif text-4xl italic sm:text-5xl md:text-7xl"
           />
         </h2>

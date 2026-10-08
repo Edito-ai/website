@@ -28,6 +28,7 @@ export default function GetDemo() {
             as="span"
             text="free demo."
             delay={0.2}
+              gradient
             className="mt-2 block font-serif text-5xl italic sm:text-6xl md:text-9xl"
           />
         </h2>

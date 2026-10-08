@@ -30,7 +30,7 @@ export default function TermsPage() {
       eyebrow="Legal"
       title={
         <>
-          Terms of <span className="font-serif italic">Service</span>
+          Terms of <span className="font-serif text-brand italic">Service</span>
         </>
       }
       updated="18 July 2026"
