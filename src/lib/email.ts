@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { EARLY_ACCESS_LABEL, LAUNCH_LABEL } from "@/lib/launch";
+import { EARLY_ACCESS_LABEL } from "@/lib/launch";
 
 /** The addresses that get notified whenever someone submits the early-access
  *  form — replaces what Formspree used to do (email a collaborator on every
@@ -37,8 +37,7 @@ export function confirmationEmailHtml(firstName: string, productionHouse: string
       We're excited to put the AI editor that finishes videos before you do in your hands.
     </p>
     <p style="font-size: 15px; line-height: 1.6;">
-      <strong>Your early-access link will be sent to this email starting ${EARLY_ACCESS_LABEL}.</strong>
-      Broll launches publicly on ${LAUNCH_LABEL}, and you'll be in before everyone else.
+      <strong>Your early-access link will be sent to this email on ${EARLY_ACCESS_LABEL}.</strong>
       Nothing more to do for now &mdash; just keep an eye on your inbox.
     </p>
     <p style="font-size: 15px; line-height: 1.6;">
