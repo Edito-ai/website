@@ -4,7 +4,14 @@ import type { DemoRequestFields } from "@/lib/email";
 /** HTTP-based Neon client — no connection pooling to manage, safe to call
  *  from a serverless/edge function per request (unlike a plain TCP `pg`
  *  pool, which would exhaust connections under serverless concurrency). */
-const sql = neon(process.env.DATABASE_URL!);
+let client: ReturnType<typeof neon> | null = null;
+
+/** Created lazily so a missing `DATABASE_URL` (e.g. a Preview deploy without
+ *  the env var) fails the request, not the build. */
+function getSql() {
+  client ??= neon(process.env.DATABASE_URL!);
+  return client;
+}
 
 let schemaReady: Promise<void> | null = null;
 
@@ -13,7 +20,7 @@ let schemaReady: Promise<void> | null = null;
  *  in the same instance skips it entirely. Safe to call concurrently. */
 function ensureSchema(): Promise<void> {
   if (!schemaReady) {
-    schemaReady = sql`
+    schemaReady = getSql()`
       CREATE TABLE IF NOT EXISTS demo_requests (
         id SERIAL PRIMARY KEY,
         name TEXT NOT NULL,
@@ -34,7 +41,7 @@ function ensureSchema(): Promise<void> {
  *  whether a DB failure should fail the whole request. */
 export async function saveDemoRequest(fields: DemoRequestFields): Promise<void> {
   await ensureSchema();
-  await sql`
+  await getSql()`
     INSERT INTO demo_requests
       (name, email, phone, production_house, channel_link, details, referral_source)
     VALUES (
