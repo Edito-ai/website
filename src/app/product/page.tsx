@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
+import PageHero, { PageBody } from "@/components/site/PageHero";
 import ProductStats from "@/components/site/ProductStats";
 import ProductPipeline from "@/components/site/ProductPipeline";
 import ProductCapabilities from "@/components/site/ProductCapabilities";
@@ -46,36 +47,19 @@ export default function ProductPage() {
       />
       <Navbar />
 
-      <main className="relative overflow-hidden px-5 pt-32 pb-16 sm:px-6 sm:pt-36 md:pt-44">
-        <div
-          aria-hidden
-          className="animate-drift absolute -top-1/4 left-1/4 size-[55vw] rounded-full bg-[radial-gradient(circle,var(--accent-soft),transparent_60%)] opacity-40"
+      <main>
+        <PageHero
+          eyebrow="Product"
+          title={
+            <>
+              Everything Broll does, from{" "}
+              <span className="serif-voice text-brand">raw footage to finished video</span>.
+            </>
+          }
+          lede="Broll is an agentic AI video editor — one system that searches your footage, writes the edit, cuts the timeline, captions, grades and lip syncs it, then hands you a publish-ready video or an XML timeline for the editor you already use."
+          cta={{ href: "/demo", label: "Try Broll — book a demo" }}
+          secondary={{ href: "/#film", label: "Watch the teaser" }}
         />
-
-        <div className="relative mx-auto max-w-2xl">
-          <p className="font-mono text-xs tracking-widest text-muted uppercase">
-            Product
-          </p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tighter text-balance md:text-6xl">
-            Everything Broll does, from{" "}
-            <span className="font-serif text-brand italic">raw footage to finished video</span>.
-          </h1>
-          <p className="mt-5 max-w-xl leading-relaxed text-muted">
-            Broll is an agentic AI video editor — one system that searches
-            your footage, writes the edit, cuts the timeline, captions,
-            grades and lip syncs it, then hands you a publish-ready video or
-            an XML timeline for the editor you already use.
-          </p>
-
-          <div className="mt-10">
-            <Link
-              href="/demo"
-              className="btn-liquid relative inline-flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full bg-ink px-8 py-3.5 text-sm font-medium text-bg transition-shadow duration-300 hover:shadow-[0_0_0_1px_var(--accent),0_8px_32px_-8px_var(--accent)]"
-            >
-              Try Broll — book a demo
-            </Link>
-          </div>
-        </div>
       </main>
 
       <ProductStats />
@@ -83,7 +67,7 @@ export default function ProductPage() {
       <ProductCapabilities />
       <ProductAudience />
 
-      <div className="mx-auto max-w-2xl px-5 sm:px-6 md:px-8 md:py-8">
+      <PageBody>
         <ContentSection title="Built for production teams">
           <p>
             Broll is built around the volume professional teams actually work
@@ -91,7 +75,7 @@ export default function ProductPage() {
             once. See how it fits a production pipeline on the{" "}
             <Link
               href="/ai-video-editor-for-production-houses"
-              className="text-accent underline underline-offset-4"
+              className="link-red"
             >
               AI video editor for production houses
             </Link>{" "}
@@ -104,17 +88,17 @@ export default function ProductPage() {
             Every Broll edit exports as a standard timeline XML, so your
             finishing editors keep working in Premiere Pro, DaVinci Resolve
             or Final Cut Pro — exactly where the agent left off. Read more{" "}
-            <Link href="/about" className="text-accent underline underline-offset-4">
+            <Link href="/about" className="link-red">
               about Broll
             </Link>{" "}
             or how{" "}
-            <Link href="/ai-video-editor" className="text-accent underline underline-offset-4">
+            <Link href="/ai-video-editor" className="link-red">
               Broll&apos;s AI video editor works
             </Link>
             .
           </p>
         </ContentSection>
-      </div>
+      </PageBody>
 
       <FaqSection
         id="faq"

@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import AnnouncementBar from "@/components/site/AnnouncementBar";
 import Navbar from "@/components/site/Navbar";
-import Hero from "@/components/site/Hero";
-import BackedBy from "@/components/site/BackedBy";
+import HomeHero from "@/components/home/HomeHero";
+import ProductStats from "@/components/site/ProductStats";
+import HowItWorks from "@/components/home/HowItWorks";
+import Capabilities from "@/components/home/Capabilities";
+import Comparison from "@/components/home/Comparison";
 import BrollFilm from "@/components/site/BrollFilm";
-import WhyTheySwitched from "@/components/site/WhyTheySwitched";
-import WorkAnywhere from "@/components/site/WorkAnywhere";
-import StackedFeatures from "@/components/site/StackedFeatures";
-import HowItWorks from "@/components/site/HowItWorks";
+import UseCases from "@/components/home/UseCases";
+import Workflow from "@/components/home/Workflow";
 import Faq from "@/components/site/Faq";
-import GetDemo from "@/components/site/GetDemo";
+import FinalCta from "@/components/home/FinalCta";
 import Footer from "@/components/site/Footer";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL, faqPageJsonLd } from "@/lib/site";
 import { FAQS } from "@/lib/faqs";
@@ -58,7 +59,7 @@ const structuredData = {
       name: "Broll — 300 clips, 12 minutes",
       description:
         "Watch Broll turn a full shoot into a first cut — before anyone opens a timeline.",
-      thumbnailUrl: `${SITE_URL}/film/poster.webp`,
+      thumbnailUrl: `${SITE_URL}/film/film-poster.webp`,
       contentUrl: `${SITE_URL}/film/broll-film.mp4`,
       uploadDate: "2026-10-08",
       duration: "PT1M20S",
@@ -77,15 +78,16 @@ export default function Home() {
       <AnnouncementBar />
       <Navbar />
       <main>
-        <Hero />
+        <HomeHero />
         <BrollFilm />
-        <WhyTheySwitched />
-        <WorkAnywhere />
-        <StackedFeatures />
+        <ProductStats />
         <HowItWorks />
-        <BackedBy />
+        <Capabilities />
+        <Comparison />
+        <UseCases />
+        <Workflow />
         <Faq />
-        <GetDemo />
+        <FinalCta />
       </main>
       <Footer />
     </>

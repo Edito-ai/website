@@ -9,11 +9,17 @@ gsap.registerPlugin(ScrollTrigger);
 
 function Message() {
   return (
-    <span className="flex items-center gap-1.5 text-[11px] whitespace-nowrap text-white/70 sm:gap-2 sm:text-xs">
-      <span aria-hidden>🚀</span>
+    <span className="flex items-center gap-2.5 text-[11px] whitespace-nowrap text-ink-2/80 sm:gap-3 sm:text-xs">
+      <span className="rounded-full bg-red/15 px-2 py-0.5 text-[10px] font-semibold tracking-wide text-red uppercase">
+        New
+      </span>
       <span className="hidden sm:inline">Broll is currently powering</span>
       <span className="sm:hidden">Broll powers</span>
-      <strong className="font-semibold text-white">200M+</strong> monthly views
+      <strong className="font-semibold text-ink">200M+</strong> monthly views
+      <span aria-hidden className="h-3 w-px bg-line-strong max-sm:hidden" />
+      <span className="flex items-center gap-1 text-ink transition-colors duration-300 group-hover:text-red max-sm:hidden">
+        Watch the teaser <ArrowRight className="size-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+      </span>
     </span>
   );
 }
@@ -21,7 +27,7 @@ function Message() {
 /**
  * 40px announcement bar above the navbar — a single static statement.
  * Slides in from the top, hides on scroll down and returns on scroll up.
- * Clicking it rides Lenis down to the features section.
+ * Clicking it rides Lenis down to the film.
  */
 export default function AnnouncementBar() {
   const ref = useRef<HTMLButtonElement>(null);
@@ -29,6 +35,9 @@ export default function AnnouncementBar() {
   useEffect(() => {
     const bar = ref.current;
     if (!bar) return;
+
+    // The navbar sits under the bar until it hides.
+    document.documentElement.style.setProperty("--annbar-offset", "40px");
 
     gsap.fromTo(
       bar,
@@ -58,26 +67,29 @@ export default function AnnouncementBar() {
       },
     });
 
-    return () => st.kill();
+    return () => {
+      st.kill();
+      document.documentElement.style.removeProperty("--annbar-offset");
+    };
   }, []);
 
-  function toFeatures() {
+  function toFilm() {
     const lenis = (
       window as unknown as {
         __lenis?: { scrollTo: (target: string, opts?: object) => void };
       }
     ).__lenis;
-    if (lenis) lenis.scrollTo("#features", { duration: 1.6 });
+    if (lenis) lenis.scrollTo("#film", { duration: 1.6 });
     else
-      document.getElementById("features")?.scrollIntoView({ behavior: "smooth" });
+      document.getElementById("film")?.scrollIntoView({ behavior: "smooth" });
   }
 
   return (
     <button
       ref={ref}
-      onClick={toFeatures}
-      aria-label="Broll is currently powering 200M+ monthly views"
-      className="fixed inset-x-0 top-0 z-50 flex h-10 w-full cursor-pointer items-center justify-center overflow-hidden border-b border-white/[0.08] bg-black px-4"
+      onClick={toFilm}
+      aria-label="Broll is currently powering 200M+ monthly views — watch the teaser"
+      className="group fixed inset-x-0 top-0 z-[60] flex h-10 w-full cursor-pointer items-center justify-center overflow-hidden border-b border-line bg-[#06070c] px-4"
     >
       <Message />
     </button>

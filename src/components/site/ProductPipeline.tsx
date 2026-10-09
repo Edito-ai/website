@@ -1,5 +1,5 @@
 import Reveal from "@/components/fx/Reveal";
-import WordReveal from "@/components/fx/WordReveal";
+import SectionHeader from "@/components/site/SectionHeader";
 import PixelDiagram, { type Point, line, ring, dust, dot } from "@/components/fx/PixelDiagram";
 
 const NODE_X = [110, 370, 630, 890];
@@ -71,37 +71,45 @@ const STAGES = [
 /** A single wide dot-matrix diagram tracing footage from upload to delivery. */
 export default function ProductPipeline() {
   return (
-    <section className="mx-auto max-w-5xl px-5 py-24 sm:px-6 md:px-8 md:py-32">
-      <p className="font-mono text-xs tracking-widest text-muted uppercase">
-        Under the hood
-      </p>
-      <WordReveal
-        text="From raw footage to a finished cut."
-        className="mt-4 max-w-3xl text-4xl font-semibold tracking-tighter md:text-6xl"
-      />
-      <p className="mt-5 max-w-xl leading-relaxed text-muted">
-        One pipeline, four stages — the same pass that turns hours of footage
-        into a video you can publish.
-      </p>
+    <section className="px-5 py-24 sm:px-8 md:py-32">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeader
+          eyebrow="Under the hood"
+          title="From raw footage to a finished cut."
+          lede="One pipeline, four stages — the same pass that turns hours of footage into a video you can publish."
+        />
 
-      <Reveal delay={0.15} className="mt-14">
-        <div className="overflow-hidden rounded-3xl border border-line bg-surface-2 p-4 sm:p-8">
-          <PixelDiagram
-            points={PIPELINE_POINTS}
-            viewBox="0 0 1000 220"
-            className="h-auto w-full text-accent"
-          />
-        </div>
-      </Reveal>
+        <Reveal delay={0.15} className="mt-16">
+          <div className="panel relative overflow-hidden p-4 sm:p-10">
+            <div className="slate mb-6 flex items-center justify-between">
+              <span className="flex items-center gap-2">
+                <span className="size-1.5 rounded-full bg-red" /> Pipeline
+              </span>
+              <span>4 stages · 1 pass</span>
+            </div>
+            <PixelDiagram
+              points={PIPELINE_POINTS}
+              viewBox="0 0 1000 220"
+              className="h-auto w-full text-red"
+            />
+          </div>
+        </Reveal>
 
-      <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 md:gap-6">
-        {STAGES.map((stage, i) => (
-          <Reveal key={stage.n} delay={0.1 * i}>
-            <span className="font-mono text-xs text-muted">{stage.n}</span>
-            <h3 className="mt-2 text-lg font-semibold tracking-tight">{stage.title}</h3>
-            <p className="mt-2 leading-relaxed text-muted">{stage.body}</p>
-          </Reveal>
-        ))}
+        <ol className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {STAGES.map((stage, i) => (
+            <li key={stage.n} className="h-full">
+              <Reveal delay={0.1 * i} className="h-full">
+                <div className="panel panel-hover group h-full p-7">
+                  <span className="slate tabular-nums transition-colors duration-300 group-hover:text-red">
+                    Stage {stage.n}
+                  </span>
+                  <h3 className="mt-6 text-lg font-semibold tracking-tight">{stage.title}</h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-ink-2/70">{stage.body}</p>
+                </div>
+              </Reveal>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

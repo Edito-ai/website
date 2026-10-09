@@ -29,7 +29,7 @@ export default function PrivacyPage() {
       eyebrow="Legal"
       title={
         <>
-          Privacy <span className="font-serif text-brand italic">Policy</span>
+          Privacy <span className="serif-voice text-brand">Policy</span>
         </>
       }
       updated="18 July 2026"
@@ -47,7 +47,7 @@ export default function PrivacyPage() {
       <LegalSection title="Information we collect">
         <p>
           <strong>Demo requests.</strong> When you request a demo through our{" "}
-          <Link href="/demo" className="text-accent underline underline-offset-4">
+          <Link href="/demo" className="link-red">
             contact form
           </Link>
           , we collect the details you submit: your name, work email, the name
@@ -104,7 +104,7 @@ export default function PrivacyPage() {
           You can ask us at any time to access, correct, or delete the personal
           information we hold about you, or to stop contacting you. Reach us
           through the{" "}
-          <Link href="/demo" className="text-accent underline underline-offset-4">
+          <Link href="/demo" className="link-red">
             contact form
           </Link>{" "}
           and we will respond promptly.

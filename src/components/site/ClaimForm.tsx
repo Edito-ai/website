@@ -9,7 +9,7 @@ import { COUNTRY_CODES, DEFAULT_COUNTRY_ISO } from "@/lib/countryCodes";
 
 // text-base on mobile keeps iOS Safari from auto-zooming focused inputs (<16px triggers it).
 const inputClass =
-  "w-full rounded-xl border border-line bg-surface px-4 py-3 text-base text-ink placeholder:text-muted/70 outline-none transition-colors duration-300 focus:border-accent sm:text-sm";
+  "w-full rounded-xl border border-line bg-bg-2/80 px-4 py-3.5 text-base text-ink placeholder:text-muted/60 outline-none transition-[border-color,box-shadow,background-color] duration-300 hover:border-line-strong focus:border-red focus:bg-bg-2 focus:shadow-[0_0_0_4px_rgb(236_75_82/0.14)] sm:text-sm";
 
 const SOURCES = [
   "YouTube",
@@ -75,12 +75,12 @@ export default function ClaimForm() {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="mx-auto max-w-md rounded-2xl border border-line bg-surface p-10 text-center shadow-[var(--shadow-lift)]"
+        className="panel relative overflow-hidden bg-surface/60 p-10 text-center shadow-[var(--shadow-lift)] backdrop-blur-xl"
       >
-        <span className="mx-auto flex size-12 items-center justify-center rounded-full bg-accent-soft">
-          <Check className="size-5 text-accent" strokeWidth={2.5} />
+        <span className="mx-auto flex size-14 items-center justify-center rounded-full bg-red shadow-[var(--shadow-red)]">
+          <Check className="size-6 text-white" strokeWidth={2.5} />
         </span>
-        <p className="mt-6 text-2xl font-semibold tracking-tight">Demo claimed.</p>
+        <p className="font-display mt-7 text-3xl">Demo claimed.</p>
         <p className="mt-3 leading-relaxed text-muted">
           Want to skip the wait? Pick a time now and we&apos;ll walk you
           through Broll live.
@@ -102,10 +102,10 @@ export default function ClaimForm() {
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-      className="mx-auto max-w-md space-y-4 rounded-2xl border border-line bg-surface p-7 text-left shadow-[var(--shadow-lift)] md:p-9"
+      className="panel relative space-y-5 overflow-hidden bg-surface/60 p-7 text-left shadow-[var(--shadow-lift)] backdrop-blur-xl md:p-10"
     >
       <div>
-        <label htmlFor="production-house" className="mb-1.5 block text-sm font-medium">
+        <label htmlFor="production-house" className="mb-2 block text-sm font-medium text-ink-2">
           Production house
         </label>
         <input
@@ -119,7 +119,7 @@ export default function ClaimForm() {
       </div>
 
       <div>
-        <label htmlFor="name" className="mb-1.5 block text-sm font-medium">
+        <label htmlFor="name" className="mb-2 block text-sm font-medium text-ink-2">
           Your name
         </label>
         <input
@@ -133,7 +133,7 @@ export default function ClaimForm() {
       </div>
 
       <div>
-        <label htmlFor="email" className="mb-1.5 block text-sm font-medium">
+        <label htmlFor="email" className="mb-2 block text-sm font-medium text-ink-2">
           Work email
         </label>
         <input
@@ -147,7 +147,7 @@ export default function ClaimForm() {
       </div>
 
       <div>
-        <label htmlFor="phone-number" className="mb-1.5 block text-sm font-medium">
+        <label htmlFor="phone-number" className="mb-2 block text-sm font-medium text-ink-2">
           Phone number
         </label>
         <div className="flex gap-2">
@@ -156,7 +156,7 @@ export default function ClaimForm() {
             value={countryIso}
             onChange={(e) => setCountryIso(e.target.value)}
             aria-label="Country code"
-            className="w-[5.5rem] shrink-0 appearance-none rounded-xl border border-line bg-surface px-2 py-3 text-base text-ink outline-none transition-colors duration-300 focus:border-accent sm:text-sm"
+            className="w-[5.5rem] shrink-0 appearance-none rounded-xl border border-line bg-bg-2/80 px-2 py-3.5 text-base text-ink outline-none transition-[border-color,box-shadow] duration-300 hover:border-line-strong focus:border-red focus:shadow-[0_0_0_4px_rgb(236_75_82/0.14)] sm:text-sm"
           >
             {COUNTRY_CODES.map((c) => (
               <option key={c.iso} value={c.iso}>
@@ -178,7 +178,7 @@ export default function ClaimForm() {
       </div>
 
       <div>
-        <label htmlFor="channel" className="mb-1.5 block text-sm font-medium">
+        <label htmlFor="channel" className="mb-2 block text-sm font-medium text-ink-2">
           Channel or page link
         </label>
         <input
@@ -191,7 +191,7 @@ export default function ClaimForm() {
       </div>
 
       <div>
-        <label htmlFor="details" className="mb-1.5 block text-sm font-medium">
+        <label htmlFor="details" className="mb-2 block text-sm font-medium text-ink-2">
           What do you publish?
         </label>
         <textarea
@@ -204,7 +204,7 @@ export default function ClaimForm() {
       </div>
 
       <div>
-        <label htmlFor="referral" className="mb-1.5 block text-sm font-medium">
+        <label htmlFor="referral" className="mb-2 block text-sm font-medium text-ink-2">
           How did you get to know about us?
         </label>
         <select
@@ -226,7 +226,7 @@ export default function ClaimForm() {
       </div>
 
       {state === "error" && errorMessage && (
-        <p className="block text-xs text-accent">{errorMessage}</p>
+        <p role="alert" className="block text-sm text-red">{errorMessage}</p>
       )}
 
       <Button

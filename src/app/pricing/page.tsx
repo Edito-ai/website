@@ -3,6 +3,8 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
+import PageHero, { PageBody } from "@/components/site/PageHero";
+import PricingPlans from "@/components/site/PricingPlans";
 import ContentSection from "@/components/site/ContentSection";
 import FaqSection from "@/components/site/FaqSection";
 import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/site";
@@ -72,91 +74,76 @@ export default function PricingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <Navbar />
-      <main className="relative overflow-hidden px-5 pt-32 pb-24 sm:px-6 sm:pt-36 md:pt-44">
-        <div
-          aria-hidden
-          className="animate-drift absolute -top-1/4 left-1/4 size-[55vw] rounded-full bg-[radial-gradient(circle,var(--accent-soft),transparent_60%)] opacity-40"
+      <main>
+        <PageHero
+          eyebrow="Pricing"
+          title={
+            <>
+              Pricing built{" "} <span className="serif-voice text-brand">around your footage</span>, not a tier.
+            </>
+          }
+          lede={
+            <>
+              Broll doesn&apos;t have a public self-serve pricing page. A production house shooting multiple cameras across a long shoot and a creator team turning around shorter videos every week don&apos;t fit the same tier — so we set up pricing per team, after a demo.
+            </>
+          }
+          cta={{ href: "/demo", label: "Book a demo — no card required" }}
+          secondary={{ href: "/#film", label: "Watch the teaser" }}
         />
+        <PricingPlans />
+        <PageBody>
+          <ContentSection title="Why Broll doesn't publish a pricing table">
+            <p>
+              Most editing tools price by seat, because most editing tools
+              are applied to footage one person already selected. Broll is
+              different: it works from raw footage, and how much raw
+              footage a team generates varies enormously. A production
+              house running several shoots a month has a very different
+              footage footprint than a solo creator or a small creator
+              team — so a flat per-seat or per-export price doesn&apos;t
+              map cleanly to the value either kind of team actually gets.
+            </p>
+            <p>
+              Instead of forcing every team into the same tier, we set up
+              pricing after understanding how you shoot and edit —
+              footage volume, team size, and turnaround needs — on a demo
+              call.
+            </p>
+          </ContentSection>
 
-        <div className="relative mx-auto max-w-2xl">
-          <p className="font-mono text-xs tracking-widest text-muted uppercase">
-            Pricing
-          </p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tighter text-balance md:text-6xl">
-            Pricing built{" "}
-            <span className="font-serif text-brand italic">around your footage</span>, not a
-            tier.
-          </h1>
-          <p className="mt-5 max-w-xl leading-relaxed text-muted">
-            Broll doesn&apos;t have a public self-serve pricing page. A
-            production house shooting multiple cameras across a long shoot and
-            a creator team turning around shorter videos every week don&apos;t
-            fit the same tier — so we set up pricing per team, after a demo.
-          </p>
+          <ContentSection title="How to get pricing for your team">
+            <p>
+              Book a free demo and tell us about your team. We&apos;ll set
+              Broll up for you within 24 hours — no card required — and
+              talk through a plan that fits your footage volume, whether
+              you&apos;re a{" "}
+              <Link
+                href="/ai-video-editor-for-production-houses"
+                className="link-red"
+              >
+                production house
+              </Link>{" "}
+              or a creator team.
+            </p>
+          </ContentSection>
 
-          <div className="mt-10">
-            <Link
-              href="/demo"
-              className="btn-liquid relative inline-flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full bg-ink px-8 py-3.5 text-sm font-medium text-bg transition-shadow duration-300 hover:shadow-[0_0_0_1px_var(--accent),0_8px_32px_-8px_var(--accent)]"
-            >
-              Book a demo — no card required
-            </Link>
-          </div>
-
-          <div className="mt-16">
-            <ContentSection title="Why Broll doesn't publish a pricing table">
-              <p>
-                Most editing tools price by seat, because most editing tools
-                are applied to footage one person already selected. Broll is
-                different: it works from raw footage, and how much raw
-                footage a team generates varies enormously. A production
-                house running several shoots a month has a very different
-                footage footprint than a solo creator or a small creator
-                team — so a flat per-seat or per-export price doesn&apos;t
-                map cleanly to the value either kind of team actually gets.
-              </p>
-              <p>
-                Instead of forcing every team into the same tier, we set up
-                pricing after understanding how you shoot and edit —
-                footage volume, team size, and turnaround needs — on a demo
-                call.
-              </p>
-            </ContentSection>
-
-            <ContentSection title="How to get pricing for your team">
-              <p>
-                Book a free demo and tell us about your team. We&apos;ll set
-                Broll up for you within 24 hours — no card required — and
-                talk through a plan that fits your footage volume, whether
-                you&apos;re a{" "}
-                <Link
-                  href="/ai-video-editor-for-production-houses"
-                  className="text-accent underline underline-offset-4"
-                >
-                  production house
-                </Link>{" "}
-                or a creator team.
-              </p>
-            </ContentSection>
-
-            <ContentSection title="Not ready to talk pricing yet?">
-              <p>
-                Read more about how Broll&apos;s{" "}
-                <Link
-                  href="/ai-video-editor"
-                  className="text-accent underline underline-offset-4"
-                >
-                  agentic AI video editor
-                </Link>{" "}
-                works, or learn more{" "}
-                <Link href="/about" className="text-accent underline underline-offset-4">
-                  about Broll
-                </Link>{" "}
-                first — pricing is only a conversation away when you are.
-              </p>
-            </ContentSection>
-          </div>
-        </div>
+          <ContentSection title="Not ready to talk pricing yet?">
+            <p>
+              Read more about how Broll&apos;s{" "}
+              <Link
+                href="/ai-video-editor"
+                className="link-red"
+              >
+                agentic AI video editor
+              </Link>{" "}
+              works, or learn more{" "}
+              <Link href="/about" className="link-red">
+                about Broll
+              </Link>{" "}
+              first — pricing is only a conversation away when you are.
+            </p>
+          </ContentSection>
+        </PageBody>
       </main>
 
       <FaqSection

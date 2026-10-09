@@ -1,5 +1,4 @@
 import Reveal from "@/components/fx/Reveal";
-import WordReveal from "@/components/fx/WordReveal";
 
 /** Official four-colour Google mark — never recolour it. */
 function GoogleMark({ className }: { className?: string }) {
@@ -26,54 +25,21 @@ function GoogleMark({ className }: { className?: string }) {
 }
 
 /**
- * A single quiet credibility beat between the hero and the workflow story:
- * hairline-ruled band, the Google for Startups lockup, one supporting line.
+ * One quiet credibility beat: the Google for Startups lockup and one line.
  * No logo wall — one real badge carries more weight than six.
  */
 export default function BackedBy() {
   return (
-    <section
-      id="backed-by"
-      className="relative border-y border-line px-5 py-20 sm:px-6 md:py-28"
-    >
-      {/* Barely-there light behind the badge so the band is never flat */}
-      <div
-        aria-hidden
-        className="animate-drift pointer-events-none absolute top-1/2 left-1/2 size-[42vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,var(--accent-soft),transparent_65%)] opacity-40"
-      />
-
-      <div className="relative mx-auto max-w-4xl text-center">
-        <Reveal>
-          <p className="font-mono text-xs tracking-widest text-muted uppercase">
-            Backed by
-          </p>
-        </Reveal>
-
-        <Reveal delay={0.1}>
-          <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-line bg-surface px-5 py-3 shadow-[var(--shadow-lift)] transition-colors duration-300 hover:border-line-strong sm:gap-4 sm:px-7 sm:py-4">
-            <GoogleMark className="size-6 shrink-0 sm:size-7" />
-            <span className="text-base font-medium tracking-tight sm:text-xl">
-              Google for Startups
-            </span>
-          </div>
-        </Reveal>
-
-        <h2 className="mt-10">
-          <WordReveal
-            as="span"
-            text="Building Broll with"
-            delay={0.15}
-            className="block text-3xl font-semibold tracking-tighter sm:text-4xl md:text-6xl"
-          />
-          <WordReveal
-            as="span"
-            text="Google behind us."
-            delay={0.3}
-              gradient
-            className="mt-1 block font-serif text-4xl italic sm:text-5xl md:text-7xl"
-          />
+    <section id="backed-by" className="px-5 py-20 sm:px-8 md:py-28">
+      <Reveal className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+        <h2 className="font-display text-3xl md:text-5xl">
+          Building Broll with <span className="serif-voice text-brand">Google behind us.</span>
         </h2>
-      </div>
+        <div className="group inline-flex shrink-0 items-center gap-3 rounded-full border border-line bg-surface px-5 py-3 transition-all duration-500 hover:border-red/50 hover:shadow-[var(--shadow-red)] sm:px-6 sm:py-3.5">
+          <GoogleMark className="size-6 shrink-0 transition-transform duration-500 group-hover:rotate-[360deg]" />
+          <span className="text-base font-medium tracking-tight sm:text-lg">Google for Startups</span>
+        </div>
+      </Reveal>
     </section>
   );
 }

@@ -30,7 +30,7 @@ export default function TermsPage() {
       eyebrow="Legal"
       title={
         <>
-          Terms of <span className="font-serif text-brand italic">Service</span>
+          Terms of <span className="serif-voice text-brand">Service</span>
         </>
       }
       updated="18 July 2026"
@@ -123,7 +123,7 @@ export default function TermsPage() {
           updated&rdquo; date above reflects the current version, and material
           changes will be communicated to active customers. Questions about
           these terms? Reach us through the{" "}
-          <Link href="/demo" className="text-accent underline underline-offset-4">
+          <Link href="/demo" className="link-red">
             contact form
           </Link>
           .

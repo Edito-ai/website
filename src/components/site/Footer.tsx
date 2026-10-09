@@ -1,29 +1,31 @@
+import Link from "next/link";
 import BrollLogo from "@/components/site/BrollLogo";
 
 const COLUMNS = [
   {
     title: "Product",
     links: [
-      { label: "Features", href: "/#features" },
+      { label: "Overview", href: "/product" },
       { label: "AI Video Editor", href: "/ai-video-editor" },
       { label: "For Production Houses", href: "/ai-video-editor-for-production-houses" },
       { label: "Pricing", href: "/pricing" },
+      { label: "FAQ", href: "/#faq" },
+    ],
+  },
+  {
+    title: "Compare",
+    links: [
       { label: "Broll vs. B-Roll Generators", href: "/broll-vs-b-roll-generators" },
       { label: "AI vs. Manual Editing", href: "/ai-editing-vs-manual-editing" },
       { label: "Blog", href: "/blog" },
-      { label: "FAQ", href: "/#faq" },
     ],
   },
   {
     title: "Company",
     links: [
       { label: "About", href: "/about" },
-      { label: "Contact", href: "/demo" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
+      { label: "Book a demo", href: "/demo" },
+      { label: "Schedule a call", href: "/schedule-demo" },
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Service", href: "/terms" },
     ],
@@ -32,29 +34,29 @@ const COLUMNS = [
 
 export default function Footer() {
   return (
-    <footer
-      id="contact"
-      className="border-t border-dark-line bg-dark-bg pt-20 pb-10 text-dark-ink"
-    >
-      <div className="mx-auto max-w-6xl px-6 md:px-8">
-        <div className="flex flex-col justify-between gap-14 md:flex-row">
-          <BrollLogo className="size-28 shrink-0 text-dark-ink md:size-36" />
+    <footer id="contact" className="border-t border-line bg-dark-bg">
+      <div className="mx-auto max-w-6xl px-5 pt-16 pb-10 sm:px-8 md:pt-20">
+        <div className="grid gap-12 md:grid-cols-[1.2fr_2fr]">
+          <div>
+            <Link href="/" aria-label="Broll home" className="group inline-flex items-center gap-2.5">
+              <BrollLogo className="size-8 text-ink transition-colors duration-500 group-hover:text-red" />
+              <span className="font-wordmark text-lg uppercase">Broll</span>
+            </Link>
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted">
+              The agentic AI video editor. Raw footage in, a finished first cut out.
+            </p>
+          </div>
 
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-3">
             {COLUMNS.map((col) => (
               <div key={col.title}>
-                <p className="font-mono text-xs tracking-widest text-dark-muted uppercase">
-                  {col.title}
-                </p>
-                <ul className="mt-4 space-y-2.5">
+                <p className="text-sm font-medium text-ink">{col.title}</p>
+                <ul className="mt-4 space-y-3">
                   {col.links.map((link) => (
                     <li key={link.label}>
-                      <a
-                        href={link.href}
-                        className="text-sm text-dark-muted transition-colors duration-300 hover:text-accent"
-                      >
+                      <Link href={link.href} className="text-sm text-muted transition-colors duration-300 hover:text-red">
                         {link.label}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -63,10 +65,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-20 flex justify-center border-t border-dark-line pt-8 md:justify-start">
-          <p className="font-mono text-xs text-dark-muted">
-            © {new Date().getFullYear()} Broll. All rights reserved.
-          </p>
+        <div className="mt-16 flex flex-col justify-between gap-3 border-t border-line pt-8 text-sm text-muted sm:flex-row">
+          <p>© {new Date().getFullYear()} Broll. All rights reserved.</p>
+          <p>Backed by Google for Startups</p>
         </div>
       </div>
     </footer>

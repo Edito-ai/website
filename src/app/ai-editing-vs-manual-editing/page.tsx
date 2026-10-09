@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
+import PageHero, { PageBody } from "@/components/site/PageHero";
 import ContentSection from "@/components/site/ContentSection";
 import FaqSection from "@/components/site/FaqSection";
 import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/site";
@@ -72,131 +73,117 @@ export default function AiEditingVsManualEditingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <Navbar />
-      <main className="relative overflow-hidden px-5 pt-32 pb-24 sm:px-6 sm:pt-36 md:pt-44">
-        <div
-          aria-hidden
-          className="animate-drift absolute -top-1/4 left-1/4 size-[55vw] rounded-full bg-[radial-gradient(circle,var(--accent-soft),transparent_60%)] opacity-40"
+      <main>
+        <PageHero
+          eyebrow="AI Editing vs. Manual Editing"
+          title={
+            <>
+              AI editing doesn&apos;t replace{" "} <span className="serif-voice text-brand">human judgment</span>. It removes the hours before it.
+            </>
+          }
+          lede={
+            <>
+              An honest look at where agentic AI video editing actually saves time, where a person still needs to make the call, and how the two work together in a real production workflow.
+            </>
+          }
+          cta={{ href: "/demo", label: "Try Broll — book a demo" }}
+          secondary={{ href: "/#film", label: "Watch the teaser" }}
         />
+        <PageBody>
+          <ContentSection title="The short version">
+            <p>
+              Manual editing means a person watches every clip, logs the
+              good takes, finds the right moment, and assembles the story
+              by hand in a timeline. That upstream work — not the creative
+              decisions — is where most of the hours go.
+            </p>
+            <p>
+              <strong>Agentic AI editing</strong>, the way Broll does it,
+              takes raw footage and does that upstream work automatically:
+              watching, indexing, finding moments, building a first cut,
+              writing captions, grading color. What&apos;s left for a
+              person is the part AI can&apos;t judge — tone, brand voice
+              and the final sign-off.
+            </p>
+          </ContentSection>
 
-        <div className="relative mx-auto max-w-2xl">
-          <p className="font-mono text-xs tracking-widest text-muted uppercase">
-            AI Editing vs. Manual Editing
-          </p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tighter text-balance md:text-6xl">
-            AI editing doesn&apos;t replace{" "}
-            <span className="font-serif text-brand italic">human judgment</span>. It removes the hours before it.
-          </h1>
-          <p className="mt-5 max-w-xl leading-relaxed text-muted">
-            An honest look at where agentic AI video editing actually saves
-            time, where a person still needs to make the call, and how the
-            two work together in a real production workflow.
-          </p>
+          <ContentSection title="Where AI saves real time">
+            <ul>
+              <li>
+                <strong>Watching footage</strong> — reviewing hours of raw,
+                unorganized clips to know what you actually have.
+              </li>
+              <li>
+                <strong>Logging takes</strong> — noting which clips are
+                usable, which moments matter, which audio is clean.
+              </li>
+              <li>
+                <strong>Finding the right moment</strong> — searching
+                through footage for the specific shot or line that fits
+                the story, instead of scrubbing manually.
+              </li>
+              <li>
+                <strong>Assembling a first cut</strong> — turning found
+                moments into a structured timeline, with captions and a
+                color grade already applied.
+              </li>
+            </ul>
+            <p>
+              This is the difference between an eight-hour manual edit and
+              a first pass that takes about twelve minutes — the time is
+              saved upstream, before anyone reviews a frame.
+            </p>
+          </ContentSection>
 
-          <div className="mt-10">
-            <Link
-              href="/demo"
-              className="btn-liquid relative inline-flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full bg-ink px-8 py-3.5 text-sm font-medium text-bg transition-shadow duration-300 hover:shadow-[0_0_0_1px_var(--accent),0_8px_32px_-8px_var(--accent)]"
-            >
-              Try Broll — book a demo
-            </Link>
-          </div>
+          <ContentSection title="Where human judgment still matters">
+            <ul>
+              <li>
+                <strong>Creative tone</strong> — whether a cut feels right
+                for the moment, the audience and the platform.
+              </li>
+              <li>
+                <strong>Brand voice</strong> — the specific style, pacing
+                and language a team or client expects, built up over many
+                projects.
+              </li>
+              <li>
+                <strong>Final sign-off</strong> — the decision that a video
+                is actually ready to publish, which stays with a person.
+              </li>
+            </ul>
+            <p>
+              An AI editor can build a strong first pass. It shouldn&apos;t
+              be the last set of eyes on anything that ships.
+            </p>
+          </ContentSection>
 
-          <div className="mt-16">
-            <ContentSection title="The short version">
-              <p>
-                Manual editing means a person watches every clip, logs the
-                good takes, finds the right moment, and assembles the story
-                by hand in a timeline. That upstream work — not the creative
-                decisions — is where most of the hours go.
-              </p>
-              <p>
-                <strong>Agentic AI editing</strong>, the way Broll does it,
-                takes raw footage and does that upstream work automatically:
-                watching, indexing, finding moments, building a first cut,
-                writing captions, grading color. What&apos;s left for a
-                person is the part AI can&apos;t judge — tone, brand voice
-                and the final sign-off.
-              </p>
-            </ContentSection>
-
-            <ContentSection title="Where AI saves real time">
-              <ul>
-                <li>
-                  <strong>Watching footage</strong> — reviewing hours of raw,
-                  unorganized clips to know what you actually have.
-                </li>
-                <li>
-                  <strong>Logging takes</strong> — noting which clips are
-                  usable, which moments matter, which audio is clean.
-                </li>
-                <li>
-                  <strong>Finding the right moment</strong> — searching
-                  through footage for the specific shot or line that fits
-                  the story, instead of scrubbing manually.
-                </li>
-                <li>
-                  <strong>Assembling a first cut</strong> — turning found
-                  moments into a structured timeline, with captions and a
-                  color grade already applied.
-                </li>
-              </ul>
-              <p>
-                This is the difference between an eight-hour manual edit and
-                a first pass that takes about twelve minutes — the time is
-                saved upstream, before anyone reviews a frame.
-              </p>
-            </ContentSection>
-
-            <ContentSection title="Where human judgment still matters">
-              <ul>
-                <li>
-                  <strong>Creative tone</strong> — whether a cut feels right
-                  for the moment, the audience and the platform.
-                </li>
-                <li>
-                  <strong>Brand voice</strong> — the specific style, pacing
-                  and language a team or client expects, built up over many
-                  projects.
-                </li>
-                <li>
-                  <strong>Final sign-off</strong> — the decision that a video
-                  is actually ready to publish, which stays with a person.
-                </li>
-              </ul>
-              <p>
-                An AI editor can build a strong first pass. It shouldn&apos;t
-                be the last set of eyes on anything that ships.
-              </p>
-            </ContentSection>
-
-            <ContentSection title="How they combine in practice">
-              <p>
-                In practice, this isn&apos;t AI or a human editor — it&apos;s
-                AI first, human second. Broll takes raw footage and produces
-                a built story: cut, captions, color grade and lip sync
-                included. An editor then reviews that first pass, adjusts
-                tone and brand voice, and makes the final call.
-              </p>
-              <p>
-                Because Broll exports a standard timeline XML, that review
-                can happen in Premiere Pro, DaVinci Resolve or Final Cut Pro
-                — the same tools a manual edit would have used, just starting
-                from a finished first cut instead of raw footage. Production
-                teams, including{" "}
-                <Link href="/ai-video-editor-for-production-houses" className="text-accent underline underline-offset-4">
-                  15M+ follower production houses
-                </Link>{" "}
-                and creators behind 200M+ monthly views, use this workflow to keep creative
-                control while cutting out the hours of manual assembly. See
-                how the underlying{" "}
-                <Link href="/ai-video-editor" className="text-accent underline underline-offset-4">
-                  AI video editor
-                </Link>{" "}
-                works.
-              </p>
-            </ContentSection>
-          </div>
-        </div>
+          <ContentSection title="How they combine in practice">
+            <p>
+              In practice, this isn&apos;t AI or a human editor — it&apos;s
+              AI first, human second. Broll takes raw footage and produces
+              a built story: cut, captions, color grade and lip sync
+              included. An editor then reviews that first pass, adjusts
+              tone and brand voice, and makes the final call.
+            </p>
+            <p>
+              Because Broll exports a standard timeline XML, that review
+              can happen in Premiere Pro, DaVinci Resolve or Final Cut Pro
+              — the same tools a manual edit would have used, just starting
+              from a finished first cut instead of raw footage. Production
+              teams, including{" "}
+              <Link href="/ai-video-editor-for-production-houses" className="link-red">
+                15M+ follower production houses
+              </Link>{" "}
+              and creators behind 200M+ monthly views, use this workflow to keep creative
+              control while cutting out the hours of manual assembly. See
+              how the underlying{" "}
+              <Link href="/ai-video-editor" className="link-red">
+                AI video editor
+              </Link>{" "}
+              works.
+            </p>
+          </ContentSection>
+        </PageBody>
       </main>
 
       <FaqSection

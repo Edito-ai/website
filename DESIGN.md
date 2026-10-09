@@ -1,73 +1,51 @@
-# Broll — Landing Page Design
+# Broll — Website Design
 
-Single-page marketing site for **Broll**, an AI-powered agentic video editor.
-Quality bar: Cardboard, Mosaic, Linear, Apple, Stripe — editorial, not SaaS.
+Marketing site for **Broll**, the agentic AI video editor.
+Art direction: **a professional product site in the logo's colours** —
+Linear / Runway / Vercel calibre. The launch film is shown once (`#film`);
+it is a source of colour and tone, never something to re-stage scene by
+scene. (A 2026-10-09 "the site is the film" pass that copied film chrome —
+REC dots, timecodes, viewfinders, film scenes — read as "video screenshots
+pasted on a website" and was replaced.)
 
-## Principles
+## Palette (tokens in `src/app/globals.css`)
 
-- **Premium monochrome.** White + black. Light theme default, dark follows
-  `prefers-color-scheme` automatically. Accent (electric blue `--accent`,
-  purple `--glow`) appears **only on interaction** — hover, focus, playhead.
-- **The background is never empty.** Grain overlay, drifting light blobs,
-  floating dust particles (`fx/Particles`), flowing signal lines.
-- **Nothing suddenly appears.** Scroll-driven scenes are scrubbed, not
-  triggered; entrances rise out of clip masks.
-- `prefers-reduced-motion` disables Lenis, pinned scenes, particles, and
-  entrance animations (static fallbacks render instead).
+- Base ink-navy `--bg #090a11`; surfaces `--surface` / `--surface-2`.
+- Logo colours: `--navy #38466b`, `--crimson #b8182c`, `--red #ec4b52`,
+  `--peach #ffc4ae`. `--red` is the single accent: eyebrows, hover, focus,
+  playhead, one accent phrase per headline (`.serif-voice.text-brand`).
+- Brand colour appears as light, never as a full-bleed fill: `.hero-glow`
+  (top of pages), `.band-border` (1px logo-gradient edge on the hero product
+  window and the final CTA card), `.bg-grid` (faint layout grid).
 
-## Brand assets & claims
+## Type
 
-- **Logo**: `public/broll-logo.png` (uploaded asset — never recreate). White
-  RGBA mark rendered via CSS mask filled with `currentColor`
-  (`site/BrollLogo.tsx`). Navbar 34px, footer large. The hero uses the
-  giant "Broll." text wordmark (user's explicit choice over the logo).
-- **Credibility numbers**: "200M+ monthly views" and "15M+ follower
-  production house". No testimonial sections, no fake logos.
+- `.font-display` — Geist semibold, tight tracking. All headlines.
+- `.font-wordmark` — wide Archivo, the BROLL logotype only.
+- `.serif-voice` — Instrument Serif italic, one accent phrase per heading.
+- Section headers: red eyebrow → headline → muted second sentence
+  (`site/SectionHeader.tsx`).
 
-## Stack
+## Home (`src/app/page.tsx`)
 
-Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · Tailwind v4
-(tokens in `globals.css` via `@theme inline`) · Framer Motion · GSAP
-ScrollTrigger (announcement bar) · Lenis (smooth scroll, driven by GSAP
-ticker in `providers/SmoothScroll.tsx`, exposed as `window.__lenis` for
-anchor rides).
+1. **HomeHero** — centred promise + **AppDemo**: a working Broll window built
+   in the DOM (real clip photos, preview with captions/grade, agent
+   checklist, timeline). Runs itself; visitors can type their own prompt.
+2. ProductStats · 3. HowItWorks · 4. Capabilities (live mini-demos)
+5. Comparison (manual vs Broll table) · 6. BrollFilm (`#film`)
+7. UseCases (photo grid) · 8. Workflow · 9. FAQ · 10. FinalCta · Footer
 
-## Page flow (`src/app/page.tsx`) — deliberately short
+## Inner pages
 
-0. **AnnouncementBar** — fixed 40px pure-black static statement (no marquee);
-   GSAP slide-in, hides on scroll down / returns on scroll up via
-   `--annbar-offset` (navbar follows); click rides Lenis to `#features`.
-1. **Navbar** — logo (34px, magnetic + hover glow), Product / Pricing /
-   Contact, "Book Demo". Transparent at rest, glass pill after scrolling.
-   Note: `#pricing` currently has no target section.
-2. **Hero** — pill eyebrow "Agentic video editing", giant "Broll." wordmark,
-   "The AI editor that finishes videos *before* you do.", original
-   description; floating clips with live waveforms + signal lines assemble
-   onto a timeline while scrolling (220vh sticky, mouse parallax).
-3. **BackedBy** (`#backed-by`) — hairline-ruled credibility band: "Backed by"
-   eyebrow, Google for Startups pill (official 4-colour G — the one place
-   colour is not interaction-only), "Building Broll with *Google behind us.*"
-   Mirrored in the Organization JSON-LD as `memberOf`. One real badge, no
-   logo wall.
-4. **WhyTheySwitched** — 380vh pinned scene: old 6-step workflow struck out,
-   "8 hours" crossed, arrow draws, new 3-step workflow rises, "12 minutes."
-   scales in, then a final beat: `timeline.xml` chip — export XML and open in
-   Premiere Pro / DaVinci Resolve / Final Cut.
-5. **StackedFeatures** (`#features`) — scroll-stacking cards: each card pins,
-   then recedes to the back (scales down + dims) as the next slides over it.
-   Cards: Prompt-based editing (console mock), Export XML to any platform
-   (timeline.xml → editor pills), AI color grading (swatch cycle), AI lip
-   sync (waveform + language pills).
-6. **Footer** (`#contact`) — minimal, dark, large logo, links, inline social
-   SVGs.
+`PageHero` (breadcrumb, headline, lede, CTA) → `PageBody` + `ContentSection`
+→ `FaqSection` → `Footer`. Pricing adds `PricingPlans`; Blog uses `BlogGrid`.
 
-## Conventions
+## Rules
 
-- Motion primitives in `src/components/fx/`: `Reveal`, `WordReveal`,
-  `Magnetic`, `Particles`.
-- Buttons (`ui/button.tsx`): magnetic wrap + inflate spring + liquid fill
-  from cursor entry (`.btn-liquid`) + glow on hover only.
-- Sections live in `src/components/site/`; each is self-contained.
-- Fonts: Geist Sans (UI), Geist Mono (labels/eyebrows), Instrument Serif
-  italic (accent words only).
-- Copy style: short, confident, no buzzwords.
+- No film chrome (REC, timecodes, slates, viewfinders), no blurred fake
+  footage — use the real clip photos in `public/clips`.
+- No stock-logo walls, no invented prices or tiers. Credibility: 200M+
+  monthly views, 15M+ follower production house, Google for Startups.
+- `prefers-reduced-motion`: demos render their finished state.
+- No horizontal scroll at 390px (`grid-cols-1` + `min-w-0` on grids;
+  clip decorative glows).

@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
+import PageHero, { PageBody } from "@/components/site/PageHero";
 
 export { default as LegalSection } from "@/components/site/ContentSection";
 
@@ -20,13 +21,9 @@ export default function LegalPage({
     // No announcement bar on legal pages, so the navbar sits flush at the top.
     <div style={{ "--annbar-offset": "0px" } as CSSProperties}>
       <Navbar />
-      <main className="mx-auto max-w-2xl px-6 pt-36 pb-28 md:pt-44">
-        <p className="font-mono text-xs tracking-widest text-muted uppercase">{eyebrow}</p>
-        <h1 className="mt-4 text-4xl font-semibold tracking-tighter text-balance md:text-5xl">
-          {title}
-        </h1>
-        <p className="mt-4 font-mono text-xs text-muted">Last updated: {updated}</p>
-        <div className="mt-14">{children}</div>
+      <main>
+        <PageHero eyebrow={eyebrow} title={title} cta={null} meta={<>Last updated · {updated}</>} />
+        <PageBody>{children}</PageBody>
       </main>
       <Footer />
     </div>

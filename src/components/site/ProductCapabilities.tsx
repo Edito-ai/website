@@ -1,6 +1,8 @@
 import { Search, Terminal, Captions, Palette, AudioLines, FileCode2, type LucideIcon } from "lucide-react";
 import Reveal from "@/components/fx/Reveal";
-import WordReveal from "@/components/fx/WordReveal";
+import Spotlight from "@/components/fx/Spotlight";
+import SectionHeader from "@/components/site/SectionHeader";
+import { cn } from "@/lib/utils";
 
 interface Capability {
   icon: LucideIcon;
@@ -48,44 +50,32 @@ const CAPABILITIES: Capability[] = [
   },
 ];
 
-function CapabilityRow({ capability, index }: { capability: Capability; index: number }) {
-  return (
-    <Reveal delay={0.06 * index}>
-      <div className="group grid grid-cols-[auto_1fr] items-start gap-5 border-b border-line py-8 first:pt-0 last:border-b-0 sm:grid-cols-[3rem_auto_1fr] sm:items-center sm:gap-8">
-        <span className="hidden font-mono text-xs text-muted sm:block">{capability.n}</span>
-        <span className="flex size-11 items-center justify-center rounded-full border border-line bg-surface-2 transition-colors duration-300 group-hover:border-accent/40">
-          <capability.icon className="size-5 text-accent" strokeWidth={1.5} />
-        </span>
-        <div>
-          <h3 className="text-lg font-semibold tracking-tight sm:text-xl">
-            {capability.title}
-          </h3>
-          <p className="mt-2 max-w-xl leading-relaxed text-muted">{capability.body}</p>
-        </div>
-      </div>
-    </Reveal>
-  );
-}
-
 export default function ProductCapabilities() {
   return (
-    <section className="mx-auto max-w-3xl px-5 py-24 sm:px-6 md:px-8 md:py-32">
-      <p className="font-mono text-xs tracking-widest text-accent uppercase">
-        Every capability
-      </p>
-      <WordReveal
-        text="One agent, the whole edit."
-        className="mt-4 text-4xl font-semibold tracking-tighter md:text-6xl"
-      />
-      <p className="mt-5 max-w-xl leading-relaxed text-muted">
-        Six capabilities, all part of the same pass — nothing bolted on
-        separately.
-      </p>
+    <section className="px-5 py-24 sm:px-8 md:py-32">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeader
+          eyebrow="Every capability"
+          title="One agent, the whole edit."
+          lede="Six capabilities, all part of the same pass — nothing bolted on separately."
+        />
 
-      <div className="mt-12">
-        {CAPABILITIES.map((capability, i) => (
-          <CapabilityRow key={capability.n} capability={capability} index={i} />
-        ))}
+        <div className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {CAPABILITIES.map((c, i) => (
+            <Reveal key={c.n} delay={0.06 * i} className={cn(i === 1 && "lg:translate-y-8", i === 4 && "lg:translate-y-8")}>
+              <Spotlight as="article" className="group flex h-full flex-col p-7 md:p-8">
+                <div className="flex items-center justify-between">
+                  <span className="flex size-12 items-center justify-center rounded-2xl border border-line-strong bg-surface-2 transition-all duration-500 group-hover:border-red group-hover:bg-red group-hover:shadow-[0_0_30px_-4px_var(--red)]">
+                    <c.icon className="size-5 text-red transition-colors duration-500 group-hover:text-white" strokeWidth={1.6} />
+                  </span>
+                  <span className="slate tabular-nums">{c.n}</span>
+                </div>
+                <h3 className="mt-10 text-xl font-semibold tracking-tight">{c.title}</h3>
+                <p className="mt-3 leading-relaxed text-ink-2/70">{c.body}</p>
+              </Spotlight>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

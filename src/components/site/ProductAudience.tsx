@@ -1,6 +1,7 @@
 import { Building2, Users, Briefcase } from "lucide-react";
 import Reveal from "@/components/fx/Reveal";
-import WordReveal from "@/components/fx/WordReveal";
+import Spotlight from "@/components/fx/Spotlight";
+import SectionHeader from "@/components/site/SectionHeader";
 
 const AUDIENCE = [
   {
@@ -22,23 +23,25 @@ const AUDIENCE = [
 
 export default function ProductAudience() {
   return (
-    <section className="mx-auto max-w-5xl px-5 py-24 sm:px-6 md:px-8 md:py-32">
-      <p className="font-mono text-xs tracking-widest text-muted uppercase">Who it&apos;s for</p>
-      <WordReveal
-        text="Built for teams shipping video every week."
-        className="mt-4 max-w-2xl text-4xl font-semibold tracking-tighter md:text-6xl"
-      />
+    <section className="px-5 py-24 sm:px-8 md:py-32">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeader eyebrow="Who it's for" title="Built for teams shipping video every week." />
 
-      <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-10">
-        {AUDIENCE.map((a, i) => (
-          <Reveal key={a.title} delay={0.1 * i}>
-            <span className="flex size-11 items-center justify-center rounded-full border border-line bg-surface-2">
-              <a.icon className="size-5 text-accent" strokeWidth={1.5} />
-            </span>
-            <h3 className="mt-5 text-xl font-semibold tracking-tight">{a.title}</h3>
-            <p className="mt-3 leading-relaxed text-muted">{a.body}</p>
-          </Reveal>
-        ))}
+        <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-3">
+          {AUDIENCE.map((a, i) => (
+            <Reveal key={a.title} delay={0.1 * i}>
+              <Spotlight as="article" className="group relative h-full overflow-hidden p-8 md:p-10">
+                <span
+                  aria-hidden
+                  className="hairline-red absolute inset-x-0 top-0 h-px scale-x-0 transition-transform duration-700 group-hover:scale-x-100"
+                />
+                <a.icon className="size-7 text-red" strokeWidth={1.4} />
+                <h3 className="font-display mt-14 text-2xl md:text-3xl">{a.title}</h3>
+                <p className="mt-4 leading-relaxed text-ink-2/70">{a.body}</p>
+              </Spotlight>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

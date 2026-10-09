@@ -6,7 +6,9 @@ import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import ContentSection from "@/components/site/ContentSection";
 import { breadcrumbJsonLd, SITE_URL } from "@/lib/site";
-import { BLOG_POSTS, getBlogPost } from "@/lib/blogPosts";
+import { BLOG_POSTS, getBlogPost, readingMinutes } from "@/lib/blogPosts";
+import PageHero, { PageBody } from "@/components/site/PageHero";
+import { Cover } from "@/components/site/BlogGrid";
 
 export function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({ slug: post.slug }));
@@ -44,6 +46,16 @@ export default async function BlogPostPage({
   const post = getBlogPost(slug);
   if (!post) notFound();
 
+  // Related posts: the curated list first (skipping slugs that don't exist
+  // yet), then same-category posts, three in all.
+  const related = [
+    ...(post.relatedSlugs ?? []).map(getBlogPost),
+    ...BLOG_POSTS.filter((p) => p.eyebrow === post.eyebrow),
+  ]
+    .filter((p): p is NonNullable<typeof p> => !!p && p.slug !== post.slug)
+    .filter((p, i, all) => all.findIndex((q) => q.slug === p.slug) === i)
+    .slice(0, 3);
+
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -71,31 +83,26 @@ export default async function BlogPostPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <Navbar />
-      <main className="relative overflow-hidden px-5 pt-32 pb-24 sm:px-6 sm:pt-36 md:pt-44">
-        <div
-          aria-hidden
-          className="animate-drift absolute -top-1/4 left-1/4 size-[55vw] rounded-full bg-[radial-gradient(circle,var(--accent-soft),transparent_60%)] opacity-40"
+      <main>
+        <PageHero
+          eyebrow={post.eyebrow}
+          title={post.title}
+          lede={post.description}
+          cta={{ href: "/demo", label: "Try Broll — book a demo" }}
+          meta={
+            <>
+              {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })}{" "}
+              · {readingMinutes(post)} min read · Broll team
+            </>
+          }
         />
 
-        <article className="relative mx-auto max-w-2xl">
-          <p className="font-mono text-xs tracking-widest text-muted uppercase">
-            {post.eyebrow}
-          </p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tighter text-balance md:text-6xl">
-            {post.title}
-          </h1>
-          <p className="mt-5 max-w-xl leading-relaxed text-muted">{post.description}</p>
-
-          <div className="mt-10">
-            <Link
-              href="/demo"
-              className="btn-liquid relative inline-flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full bg-ink px-8 py-3.5 text-sm font-medium text-bg transition-shadow duration-300 hover:shadow-[0_0_0_1px_var(--accent),0_8px_32px_-8px_var(--accent)]"
-            >
-              Try Broll — book a demo
-            </Link>
-          </div>
-
-          <div className="mt-16">
+        <article>
+          <PageBody>
             {post.sections.map((section) => (
               <ContentSection key={section.heading} title={section.heading}>
                 {section.paragraphs.map((p) => (
@@ -110,14 +117,34 @@ export default async function BlogPostPage({
                 )}
               </ContentSection>
             ))}
-          </div>
-
-          <div className="mt-16 border-t border-line pt-8">
-            <Link href="/blog" className="text-accent underline underline-offset-4">
-              ← Back to all posts
-            </Link>
-          </div>
+          </PageBody>
         </article>
+
+        {related.length > 0 && (
+          <section className="px-5 pt-16 pb-28 sm:px-8 md:pb-36">
+            <div className="mx-auto max-w-6xl border-t border-line pt-16">
+              <div className="flex items-end justify-between gap-6">
+                <h2 className="font-display text-3xl md:text-4xl">Keep reading.</h2>
+                <Link href="/blog" className="link-draw text-sm text-ink-2/75">
+                  All guides
+                </Link>
+              </div>
+              <ul className="mt-10 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+                {related.map((r) => (
+                  <li key={r.slug}>
+                    <Link href={`/blog/${r.slug}`} className="group block">
+                      <Cover index={BLOG_POSTS.indexOf(r)} eyebrow={r.eyebrow} />
+                      <p className="slate mt-5">{readingMinutes(r)} min read</p>
+                      <h3 className="mt-3 text-xl font-semibold tracking-tight text-balance transition-colors duration-300 group-hover:text-red">
+                        {r.title}
+                      </h3>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
       </main>
 
       <Footer />

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
-import Link from "next/link";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
+import PageHero from "@/components/site/PageHero";
+import BlogGrid from "@/components/site/BlogGrid";
 import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/site";
-import { BLOG_POSTS } from "@/lib/blogPosts";
+import { BLOG_POSTS, readingMinutes } from "@/lib/blogPosts";
 
 const TITLE = "Blog — Broll";
 const DESCRIPTION =
@@ -26,6 +27,15 @@ const structuredData = {
 };
 
 export default function BlogIndexPage() {
+  const posts = BLOG_POSTS.map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    description: p.description,
+    eyebrow: p.eyebrow,
+    publishedAt: p.publishedAt,
+    minutes: readingMinutes(p),
+  }));
+
   return (
     <div style={{ "--annbar-offset": "0px" } as CSSProperties}>
       <script
@@ -33,35 +43,23 @@ export default function BlogIndexPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <Navbar />
-      <main className="relative overflow-hidden px-5 pt-32 pb-24 sm:px-6 sm:pt-36 md:pt-44">
-        <div
-          aria-hidden
-          className="animate-drift absolute -top-1/4 left-1/4 size-[55vw] rounded-full bg-[radial-gradient(circle,var(--accent-soft),transparent_60%)] opacity-40"
+      <main>
+        <PageHero
+          eyebrow="Blog"
+          title={
+            <>
+              Guides on <span className="serif-voice text-brand">agentic editing</span>.
+            </>
+          }
+          lede="How agentic AI video editing, video search and production workflows actually work."
+          cta={null}
+          meta={<>{posts.length} guides · Written by the team building Broll</>}
         />
-
-        <div className="relative mx-auto max-w-2xl">
-          <p className="font-mono text-xs tracking-widest text-muted uppercase">Blog</p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tighter text-balance md:text-6xl">
-            Guides on <span className="font-serif text-brand italic">agentic editing</span>.
-          </h1>
-          <p className="mt-5 max-w-xl leading-relaxed text-muted">
-            How agentic AI video editing, video search and production workflows actually work.
-          </p>
-
-          <div className="mt-16 space-y-10">
-            {BLOG_POSTS.map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
-                <p className="font-mono text-xs tracking-widest text-muted uppercase">
-                  {post.eyebrow}
-                </p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight transition-colors group-hover:text-accent md:text-3xl">
-                  {post.title}
-                </h2>
-                <p className="mt-2 max-w-xl leading-relaxed text-muted">{post.description}</p>
-              </Link>
-            ))}
+        <section className="px-5 pb-28 sm:px-8 md:pb-40">
+          <div className="mx-auto max-w-6xl">
+            <BlogGrid posts={posts} />
           </div>
-        </div>
+        </section>
       </main>
 
       <Footer />

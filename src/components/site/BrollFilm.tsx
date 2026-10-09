@@ -5,10 +5,10 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Maximize, Pause, Play, Volume2, VolumeX } from "lucide-react";
 import Reveal from "@/components/fx/Reveal";
-import WordReveal from "@/components/fx/WordReveal";
+import SectionHeader from "@/components/site/SectionHeader";
 
 const SRC = "/film/broll-film.mp4";
-const POSTER = "/film/poster.webp";
+const POSTER = "/film/film-poster.webp";
 const DURATION_LABEL = "1:20";
 
 function fmt(s: number) {
@@ -72,48 +72,26 @@ export default function BrollFilm() {
   return (
     <section
       id="film"
-      aria-labelledby="film-title"
-      className="relative px-5 py-24 sm:px-6 md:py-36"
+      aria-label="The Broll teaser"
+      className="relative scroll-mt-16 px-5 pt-20 pb-20 sm:px-8 md:pt-24 md:pb-24"
     >
-      {/* Ambient light so the section is never an empty void */}
       <div
         aria-hidden
-        className="animate-drift pointer-events-none absolute top-1/2 left-1/2 size-[70vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,var(--accent-soft),transparent_62%)] opacity-40"
+        className="animate-drift pointer-events-none absolute top-1/2 left-1/2 -z-10 size-[70vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgb(184_24_44/0.22),transparent_62%)]"
       />
 
       <div className="relative mx-auto max-w-6xl">
-        <div className="text-center">
-          <Reveal>
-            <p className="font-mono text-xs tracking-widest text-muted uppercase">
-              The film · {DURATION_LABEL}
-            </p>
-          </Reveal>
-          <h2 id="film-title" className="mt-5">
-            <WordReveal
-              as="span"
-              text="300 clips."
-              className="block text-4xl font-semibold tracking-tighter sm:text-5xl md:text-7xl"
-            />
-            <WordReveal
-              as="span"
-              text="12 minutes."
-              delay={0.2}
-              gradient
-              className="mt-1 block font-serif text-5xl italic sm:text-6xl md:text-8xl"
-            />
-          </h2>
-          <Reveal delay={0.25}>
-            <p className="mx-auto mt-6 max-w-md leading-relaxed text-muted">
-              Watch Broll turn a full shoot into a first cut — before anyone
-              opens a timeline.
-            </p>
-          </Reveal>
-        </div>
+        <SectionHeader
+          align="center"
+          eyebrow="The teaser"
+          title="See it in 80 seconds."
+          voice="From shoot to first cut."
+        />
 
-        <Reveal delay={0.1} y={48} className="mt-12 md:mt-16">
+        <Reveal delay={0.1} y={48} className="mt-14 md:mt-16">
           <div
             ref={frameRef}
-            className="group relative aspect-video overflow-hidden rounded-2xl border border-line-strong bg-black shadow-[var(--shadow-lift)] ring-1 ring-white/5 md:rounded-3xl"
+            className="group relative aspect-video overflow-hidden rounded-2xl border border-line-strong bg-black shadow-[0_60px_120px_-50px_rgb(0_0_0/0.9)] md:rounded-[1.75rem]"
           >
             <video
               ref={videoRef}
@@ -140,7 +118,7 @@ export default function BrollFilm() {
                   key="idle"
                   type="button"
                   onClick={toggle}
-                  aria-label={`Play the Broll film, ${DURATION_LABEL}`}
+                  aria-label={`Play the Broll teaser, ${DURATION_LABEL}`}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.35 }}
                   className="absolute inset-0 isolate flex cursor-pointer items-center justify-center bg-black/25 transition-colors duration-500 hover:bg-black/10 focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-accent"
@@ -152,14 +130,12 @@ export default function BrollFilm() {
                     sizes="(min-width: 1152px) 1104px, 100vw"
                     className="-z-10 object-cover"
                   />
-                                      <span className="flex size-20 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-xl transition-all duration-300 group-hover:scale-110 group-hover:border-accent group-hover:bg-accent/30 group-hover:shadow-[0_0_48px_var(--accent)] md:size-28">
-                      <Play className="ml-1 size-7 fill-current md:size-9" />
-                    </span>
-                                    <span className="absolute bottom-4 left-5 font-mono text-[11px] tracking-widest text-white/80 uppercase md:bottom-6 md:left-8">
-                    Watch the film
+                  <span className="relative flex size-20 items-center justify-center rounded-full bg-white text-[#10121f] transition-all duration-500 group-hover:scale-110 group-hover:bg-red group-hover:text-white group-hover:shadow-[0_0_60px_var(--red)] md:size-28">
+                    <span className="absolute inset-0 animate-ping rounded-full bg-white/20 [animation-duration:2.4s] group-hover:bg-red/30" />
+                    <Play className="ml-1 size-7 fill-current md:size-9" />
                   </span>
-                  <span className="absolute right-5 bottom-4 font-mono text-[11px] tracking-widest text-white/80 md:right-8 md:bottom-6">
-                    {DURATION_LABEL}
+                  <span className="absolute top-4 left-5 rounded-full bg-black/45 px-3 py-1.5 text-[13px] font-medium text-white backdrop-blur md:top-6 md:left-8">
+                    Watch the teaser
                   </span>
                 </motion.button>
               )}

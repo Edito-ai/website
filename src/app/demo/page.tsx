@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import ClaimForm from "@/components/site/ClaimForm";
+import Reveal from "@/components/fx/Reveal";
 import { breadcrumbJsonLd } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -20,6 +21,12 @@ export const metadata: Metadata = {
   },
 };
 
+const NEXT_STEPS = [
+  { n: "01", title: "We read every request", body: "A real person reviews what you publish and how your team edits." },
+  { n: "02", title: "Broll is set up for you", body: "Within 24 hours, on your own footage — no card required." },
+  { n: "03", title: "A live walkthrough", body: "From raw footage to a first cut, while you watch." },
+];
+
 export default function DemoPage() {
   return (
     // No announcement bar on this page, so the navbar sits flush at the top.
@@ -31,26 +38,50 @@ export default function DemoPage() {
         }}
       />
       <Navbar />
-      <main className="relative min-h-screen overflow-hidden px-5 pt-32 pb-24 sm:px-6 sm:pt-36 md:pt-44">
-        <div
-          aria-hidden
-          className="animate-drift absolute -top-1/4 left-1/4 size-[55vw] rounded-full bg-[radial-gradient(circle,var(--accent-soft),transparent_60%)] opacity-40"
-        />
+      <main className="relative isolate min-h-screen overflow-hidden">
+        <div aria-hidden className="hero-glow absolute inset-x-0 top-0 -z-10 h-[700px]" />
+        <div aria-hidden className="bg-grid absolute inset-0 -z-10" />
 
-        <div className="relative mx-auto max-w-2xl text-center">
-          <p className="font-mono text-xs tracking-widest text-muted uppercase">
-            Free demo
-          </p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tighter text-balance md:text-6xl">
-            Tell us about your{" "}
-            <span className="font-serif text-brand italic">production house</span>.
-          </h1>
-          <p className="mx-auto mt-5 max-w-md leading-relaxed text-muted">
-            We&apos;ll set up Broll around the way your team already works —
-            and reach out within 24 hours.
-          </p>
+        <div className="mx-auto grid max-w-6xl gap-16 px-5 pt-32 pb-28 sm:px-8 md:pt-44 lg:grid-cols-[1fr_minmax(0,30rem)] lg:gap-24">
+          <div>
+            <Reveal y={12}>
+              <p className="text-sm font-medium text-red">Free demo · No card required</p>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <h1 className="font-display mt-6 text-[clamp(2.4rem,5vw,4.25rem)] text-balance">
+                Tell us about your{" "}
+                <span className="serif-voice text-brand">production house</span>.
+              </h1>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <p className="mt-8 max-w-md text-lg leading-relaxed text-ink-2/80">
+                We&apos;ll set up Broll around the way your team already works —
+                and reach out within 24 hours.
+              </p>
+            </Reveal>
 
-          <div className="mt-12">
+            <ol className="mt-14 max-w-md border-t border-line">
+              {NEXT_STEPS.map((step, i) => (
+                <li key={step.n}>
+                  <Reveal delay={0.2 + i * 0.08} className="group flex gap-6 border-b border-line py-6">
+                    <span className="pt-0.5 font-mono text-xs text-muted tabular-nums transition-colors group-hover:text-red">
+                      {step.n}
+                    </span>
+                    <div>
+                      <p className="font-medium tracking-tight">{step.title}</p>
+                      <p className="mt-1 text-sm leading-relaxed text-muted">{step.body}</p>
+                    </div>
+                  </Reveal>
+                </li>
+              ))}
+            </ol>
+
+            <Reveal delay={0.5}>
+              <p className="mt-10 text-sm text-muted">Trusted by teams behind 200M+ monthly views</p>
+            </Reveal>
+          </div>
+
+          <div className="lg:pt-6">
             <ClaimForm />
           </div>
         </div>

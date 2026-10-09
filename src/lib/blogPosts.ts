@@ -457,3 +457,12 @@ export const BLOG_POSTS: BlogPost[] = [
 export function getBlogPost(slug: string): BlogPost | undefined {
   return BLOG_POSTS.find((p) => p.slug === slug);
 }
+
+/** Estimated reading time in minutes (~220 wpm), never less than 1. */
+export function readingMinutes(post: BlogPost): number {
+  const words = post.sections
+    .flatMap((s) => [s.heading, ...s.paragraphs, ...(s.list ?? [])])
+    .join(" ")
+    .split(/\s+/).length;
+  return Math.max(1, Math.round(words / 220));
+}
