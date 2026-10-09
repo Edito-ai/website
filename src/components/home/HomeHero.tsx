@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import CtaLink from "@/components/ui/CtaLink";
+import Countdown from "@/components/site/Countdown";
 import { buttonClasses, trackLiquid } from "@/components/ui/button";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -52,9 +53,16 @@ export default function HomeHero() {
           Premiere, Resolve or Final Cut.
         </motion.p>
 
-        <motion.div {...rise(0.4)} className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <CtaLink href="/demo" size="lg">
-            Book a free demo
+        <motion.div {...rise(0.36)} className="mt-10">
+          <p className="mb-4 text-xs font-medium tracking-[0.2em] text-red uppercase">
+            Launching soon
+          </p>
+          <Countdown />
+        </motion.div>
+
+        <motion.div {...rise(0.44)} className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <CtaLink href="/early-access" size="lg">
+            Get early access
           </CtaLink>
           <Link
             href="/#film"
@@ -68,7 +76,7 @@ export default function HomeHero() {
         </motion.div>
 
         <motion.p {...rise(0.5)} className="mt-5 text-sm text-muted">
-          No card required · Set up on your footage within 24 hours
+          No card required · Early-access links sent by email
         </motion.p>
       </div>
     </section>

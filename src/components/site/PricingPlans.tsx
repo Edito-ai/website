@@ -79,7 +79,7 @@ export default function PricingPlans() {
 
               <div className="mt-auto pt-10">
                 <CtaLink
-                  href="/demo"
+                  href="/early-access"
                   variant={plan.featured ? "primary" : "ghost"}
                   className="w-full"
                 >
@@ -91,7 +91,7 @@ export default function PricingPlans() {
         ))}
       </div>
       <p className="slate mx-auto mt-6 max-w-6xl text-center">
-        Every capability for every team · No card required · Pricing agreed on your demo
+        Every capability for every team · No card required · Pricing agreed with your team after launch
       </p>
     </section>
   );

@@ -55,7 +55,7 @@ ${SITE_NAME} is supported by the Google for Startups program.
 - [Broll vs. B-Roll Generators](${SITE_URL}/broll-vs-b-roll-generators): disambiguation from B-roll generator tools
 - [About](${SITE_URL}/about): what Broll is, who it's for, why it's different
 - [Blog](${SITE_URL}/blog): guides on agentic editing, video search and production workflows
-- [Book a demo](${SITE_URL}/demo): free demo request, no card required, set up within 24 hours
+- [Get early access](${SITE_URL}/early-access): join the early-access list, no card required — links are emailed before launch
 - [Privacy](${SITE_URL}/privacy)
 - [Terms](${SITE_URL}/terms)
 

@@ -55,7 +55,7 @@ export default function AiVideoEditorPage() {
               Broll is an agentic AI video editor — it doesn&apos;t just apply automation to clips you&apos;ve already picked. It watches raw footage, finds the moments, and builds the edit.
             </>
           }
-          cta={{ href: "/demo", label: "Try Broll — book a demo" }}
+          cta={{ href: "/early-access", label: "Try Broll — get early access" }}
           secondary={{ href: "/#film", label: "Watch the teaser" }}
         />
         <PageBody>

@@ -13,7 +13,7 @@ export default function PageHero({
   eyebrow,
   title,
   lede,
-  cta = { href: "/demo", label: "Book a demo" },
+  cta = { href: "/early-access", label: "Get early access" },
   secondary,
   meta,
   children,

@@ -22,8 +22,8 @@ export default function FaqSection({
           <h2 className="font-display mt-4 text-4xl text-balance md:text-5xl">{heading}</h2>
           <p className="mt-8 max-w-xs text-sm leading-relaxed text-muted">
             Something we didn&apos;t cover?{" "}
-            <Link href="/demo" className="link-red">
-              Ask us on a demo
+            <Link href="/early-access" className="link-red">
+              Ask us when you join early access
             </Link>
             .
           </p>

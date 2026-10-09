@@ -86,7 +86,7 @@ export default function AiEditingVsManualEditingPage() {
               An honest look at where agentic AI video editing actually saves time, where a person still needs to make the call, and how the two work together in a real production workflow.
             </>
           }
-          cta={{ href: "/demo", label: "Try Broll — book a demo" }}
+          cta={{ href: "/early-access", label: "Try Broll — get early access" }}
           secondary={{ href: "/#film", label: "Watch the teaser" }}
         />
         <PageBody>

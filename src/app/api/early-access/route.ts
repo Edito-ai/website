@@ -5,7 +5,6 @@ import {
   getTransporter,
   LEAD_NOTIFICATION_EMAIL,
   notificationEmailHtml,
-  scheduleLink,
   type DemoRequestFields,
 } from "@/lib/email";
 import { saveDemoRequest } from "@/lib/db";
@@ -18,8 +17,8 @@ function str(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
 }
 
-/** Replaces the Formspree submission this form used to POST to directly.
- *  This endpoint IS the form backend now: it is the source of truth for
+/** Early-access sign-up backend.
+ *  This endpoint IS the form backend: it is the source of truth for
  *  "did this submission happen." Order matters and is deliberate:
  *    1. Save to Postgres (`demo_requests`) — the durable record. Failure
  *       here fails the whole request; a submission that isn't saved
@@ -66,7 +65,7 @@ export async function POST(request: NextRequest) {
   try {
     await saveDemoRequest(fields);
   } catch (err) {
-    console.error("Failed to save demo request to the database:", err);
+    console.error("Failed to save early-access request to the database:", err);
     return NextResponse.json({ error: "Failed to submit form" }, { status: 500 });
   }
 
@@ -77,7 +76,7 @@ export async function POST(request: NextRequest) {
       from: `"Broll" <${process.env.ZOHO_EMAIL_USER}>`,
       to: LEAD_NOTIFICATION_EMAIL,
       replyTo: fields.email,
-      subject: `New demo request — ${fields.production_house}`,
+      subject: `New early-access request — ${fields.production_house}`,
       html: notificationEmailHtml(fields),
     });
   } catch (err) {
@@ -89,8 +88,8 @@ export async function POST(request: NextRequest) {
     await transporter.sendMail({
       from: `"Broll" <${process.env.ZOHO_EMAIL_USER}>`,
       to: fields.email,
-      subject: "Thanks for your interest in Broll — schedule your demo",
-      html: confirmationEmailHtml(firstNameOf(fields.name), fields.production_house, scheduleLink()),
+      subject: "You're on the Broll early-access list",
+      html: confirmationEmailHtml(firstNameOf(fields.name), fields.production_house),
     });
   } catch (err) {
     // Best-effort — the lead is already captured via the notification email above.
