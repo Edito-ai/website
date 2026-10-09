@@ -28,7 +28,7 @@ export const FAQS: Faq[] = [
   },
   {
     q: "How do I get started?",
-    a: "Claim a free demo below — tell us about your team and we'll set Broll up for you within 24 hours. No card required.",
+    a: "Join the early-access list — early-access links are emailed before launch. No card required.",
   },
   {
     q: "Is Broll the same as a B-roll generator?",
@@ -36,7 +36,7 @@ export const FAQS: Faq[] = [
   },
   {
     q: "How much does Broll cost?",
-    a: "Broll doesn't have public self-serve pricing yet — book a free demo and we'll set up a plan for your team within 24 hours, no card required.",
+    a: "Broll doesn't have public self-serve pricing yet — get early access and we'll set up a plan for your team, no card required.",
   },
 ];
 
@@ -47,7 +47,7 @@ export const ABOUT_FAQS: Faq[] = [
   },
   {
     q: "What is trybroll.com?",
-    a: "trybroll.com is the official website of Broll. It's where you can learn about the product and request a free demo — there is no other official Broll site.",
+    a: "trybroll.com is the official website of Broll. It's where you can learn about the product and join the early-access list — there is no other official Broll site.",
   },
   {
     q: "Is Broll a B-roll generator?",

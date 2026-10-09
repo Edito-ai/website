@@ -46,8 +46,8 @@ export default function PrivacyPage() {
 
       <LegalSection title="Information we collect">
         <p>
-          <strong>Demo requests.</strong> When you request a demo through our{" "}
-          <Link href="/demo" className="link-red">
+          <strong>Early-access requests.</strong> When you request early access through our{" "}
+          <Link href="/early-access" className="link-red">
             contact form
           </Link>
           , we collect the details you submit: your name, work email, the name
@@ -68,7 +68,7 @@ export default function PrivacyPage() {
 
       <LegalSection title="How we use your information">
         <ul>
-          <li>To respond to your demo request and set up Broll for your team.</li>
+          <li>To respond to your early-access request and send you your access link.</li>
           <li>To provide, operate, and improve the Broll service.</li>
           <li>To communicate with you about your account and our services.</li>
           <li>To keep the website and service secure and prevent abuse.</li>
@@ -82,7 +82,7 @@ export default function PrivacyPage() {
 
       <LegalSection title="Third-party services">
         <p>
-          Our demo form is processed on our own servers and delivered by
+          Our early-access form is processed on our own servers and delivered by
           email so our team can respond to you. Our website and service run
           on third-party hosting infrastructure. These providers process
           data on our behalf and are not permitted to use it for their own
@@ -92,7 +92,7 @@ export default function PrivacyPage() {
 
       <LegalSection title="Data retention">
         <p>
-          We keep demo-request details for as long as needed to follow up and
+          We keep early-access request details for as long as needed to follow up and
           maintain our business relationship with you. Footage and project
           material are retained only as long as needed to deliver your work,
           after which they can be deleted on request.
@@ -104,7 +104,7 @@ export default function PrivacyPage() {
           You can ask us at any time to access, correct, or delete the personal
           information we hold about you, or to stop contacting you. Reach us
           through the{" "}
-          <Link href="/demo" className="link-red">
+          <Link href="/early-access" className="link-red">
             contact form
           </Link>{" "}
           and we will respond promptly.

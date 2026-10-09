@@ -59,7 +59,7 @@ export default function ComparisonPage() {
               Same-sounding name, different category. Here&apos;s the actual difference between Broll — an agentic AI video editor — and the B-roll generators that add supplementary footage to an edit you&apos;ve already made.
             </>
           }
-          cta={{ href: "/demo", label: "Try Broll — book a demo" }}
+          cta={{ href: "/early-access", label: "Try Broll — get early access" }}
           secondary={{ href: "/#film", label: "Watch the teaser" }}
         />
         <PageBody>

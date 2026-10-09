@@ -62,7 +62,7 @@ export default function ProductionHousesPage() {
               Broll handles the volume production teams actually work with — multiple cameras, long shoots, several projects at once — and hands your editors a built story to finish.
             </>
           }
-          cta={{ href: "/demo", label: "Tell us about your production house" }}
+          cta={{ href: "/early-access", label: "Get early access for your production house" }}
           secondary={{ href: "/#film", label: "Watch the teaser" }}
         />
         <PageBody>

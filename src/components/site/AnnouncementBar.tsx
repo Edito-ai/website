@@ -13,9 +13,8 @@ function Message() {
       <span className="rounded-full bg-red/15 px-2 py-0.5 text-[10px] font-semibold tracking-wide text-red uppercase">
         New
       </span>
-      <span className="hidden sm:inline">Broll is currently powering</span>
-      <span className="sm:hidden">Broll powers</span>
-      <strong className="font-semibold text-ink">200M+</strong> monthly views
+      Broll is <strong className="font-semibold text-ink">launching soon</strong>
+      <span className="hidden sm:inline">· join early access</span>
       <span aria-hidden className="h-3 w-px bg-line-strong max-sm:hidden" />
       <span className="flex items-center gap-1 text-ink transition-colors duration-300 group-hover:text-red max-sm:hidden">
         Watch the teaser <ArrowRight className="size-3 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -88,7 +87,7 @@ export default function AnnouncementBar() {
     <button
       ref={ref}
       onClick={toFilm}
-      aria-label="Broll is currently powering 200M+ monthly views — watch the teaser"
+      aria-label="Broll is launching soon — watch the teaser"
       className="group fixed inset-x-0 top-0 z-[60] flex h-10 w-full cursor-pointer items-center justify-center overflow-hidden border-b border-line bg-[#06070c] px-4"
     >
       <Message />

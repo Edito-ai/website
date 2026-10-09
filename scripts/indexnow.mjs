@@ -23,7 +23,7 @@ const SITE_URL = (
 
 const host = new URL(SITE_URL).host;
 
-const urlList = ["/", "/demo", "/privacy", "/terms"].map(
+const urlList = ["/", "/early-access", "/privacy", "/terms"].map(
   (path) => `${SITE_URL}${path === "/" ? "" : path}`,
 );
 

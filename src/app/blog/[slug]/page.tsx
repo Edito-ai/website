@@ -88,7 +88,7 @@ export default async function BlogPostPage({
           eyebrow={post.eyebrow}
           title={post.title}
           lede={post.description}
-          cta={{ href: "/demo", label: "Try Broll — book a demo" }}
+          cta={{ href: "/early-access", label: "Try Broll — get early access" }}
           meta={
             <>
               {new Date(post.publishedAt).toLocaleDateString("en-US", {

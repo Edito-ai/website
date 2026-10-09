@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 import { Check } from "lucide-react";
 import Button from "@/components/ui/button";
 import { COUNTRY_CODES, DEFAULT_COUNTRY_ISO } from "@/lib/countryCodes";
@@ -22,11 +21,9 @@ const SOURCES = [
 
 type SubmitState = "idle" | "submitting" | "succeeded" | "error";
 
-/** Production-house demo request. Submits to our own `/api/submit-demo`
- *  route (own inbuilt backend — not Formspree): it emails the submitter a
- *  confirmation and notifies the team, replacing what Formspree did. */
-export default function ClaimForm() {
-  const router = useRouter();
+/** Early-access sign-up. Submits to our own `/api/early-access` route:
+ *  it emails the submitter a confirmation and notifies the team. */
+export default function EarlyAccessForm() {
   const [state, setState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [countryIso, setCountryIso] = useState(DEFAULT_COUNTRY_ISO);
@@ -43,7 +40,7 @@ export default function ClaimForm() {
     const phoneNumber = String(data.get("phone_number") ?? "").trim();
 
     try {
-      const res = await fetch("/api/submit-demo", {
+      const res = await fetch("/api/early-access", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -80,18 +77,11 @@ export default function ClaimForm() {
         <span className="mx-auto flex size-14 items-center justify-center rounded-full bg-red shadow-[var(--shadow-red)]">
           <Check className="size-6 text-white" strokeWidth={2.5} />
         </span>
-        <p className="font-display mt-7 text-3xl">Demo claimed.</p>
+        <p className="font-display mt-7 text-3xl">You&apos;re on the list.</p>
         <p className="mt-3 leading-relaxed text-muted">
-          Want to skip the wait? Pick a time now and we&apos;ll walk you
-          through Broll live.
+          We&apos;ve emailed you a confirmation. Your early-access link will
+          land in your inbox before the public launch.
         </p>
-        <Button
-          size="lg"
-          className="mt-6 w-full"
-          onClick={() => router.push("/schedule-demo")}
-        >
-          Schedule your demo
-        </Button>
       </motion.div>
     );
   }
@@ -235,7 +225,7 @@ export default function ClaimForm() {
         size="lg"
         className="w-full disabled:cursor-wait disabled:opacity-60"
       >
-        {state === "submitting" ? "Claiming…" : "Claim free demo"}
+        {state === "submitting" ? "Joining…" : "Get early access"}
       </Button>
     </motion.form>
   );

@@ -16,11 +16,11 @@ export default function FinalCta() {
               <span className="serif-voice text-brand pr-1">minutes</span> away.
             </h2>
             <p className="mx-auto mt-5 max-w-md text-lg text-ink-2/70">
-              Tell us about your team — we&apos;ll set Broll up on your footage within 24 hours.
+              Join the list and your early-access link lands in your inbox before launch.
             </p>
             <div className="mt-9 flex flex-wrap justify-center gap-3">
-              <CtaLink href="/demo" size="lg">
-                Book a free demo
+              <CtaLink href="/early-access" size="lg">
+                Get early access
               </CtaLink>
               <CtaLink href="/product" variant="ghost" size="lg" arrow={false}>
                 Explore the product

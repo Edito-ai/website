@@ -57,7 +57,7 @@ export default function ProductPage() {
             </>
           }
           lede="Broll is an agentic AI video editor — one system that searches your footage, writes the edit, cuts the timeline, captions, grades and lip syncs it, then hands you a publish-ready video or an XML timeline for the editor you already use."
-          cta={{ href: "/demo", label: "Try Broll — book a demo" }}
+          cta={{ href: "/early-access", label: "Try Broll — get early access" }}
           secondary={{ href: "/#film", label: "Watch the teaser" }}
         />
       </main>

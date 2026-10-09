@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
-import { SITE_URL } from "@/lib/site";
+import { EARLY_ACCESS_LABEL, LAUNCH_LABEL } from "@/lib/launch";
 
-/** The addresses that get notified whenever someone submits the demo-request
+/** The addresses that get notified whenever someone submits the early-access
  *  form — replaces what Formspree used to do (email a collaborator on every
  *  new submission). */
 export const LEAD_NOTIFICATION_EMAIL = "solankishaab17@gmail.com, sagar1teotia@gmail.com";
@@ -28,23 +28,18 @@ export type DemoRequestFields = {
   referral_source: string;
 };
 
-export function confirmationEmailHtml(firstName: string, productionHouse: string, scheduleLink: string) {
+export function confirmationEmailHtml(firstName: string, productionHouse: string) {
   return `
   <div style="font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; max-width: 480px; margin: 0 auto; color: #1a1a1a;">
-    <p style="font-size: 15px; line-height: 1.6;">Hi ${firstName},</p>
+    <p style="font-size: 15px; line-height: 1.6;">Hi ${escapeHtml(firstName)},</p>
     <p style="font-size: 15px; line-height: 1.6;">
-      Thanks for showing interest in Broll${productionHouse ? ` for <strong>${productionHouse}</strong>` : ""}!
-      We're excited to show you the AI editor that finishes videos before you do.
+      You're on the early-access list for Broll${productionHouse ? ` &mdash; <strong>${escapeHtml(productionHouse)}</strong>` : ""}!
+      We're excited to put the AI editor that finishes videos before you do in your hands.
     </p>
     <p style="font-size: 15px; line-height: 1.6;">
-      Our team usually reaches out within 24 hours &mdash; but you can skip the wait and grab a time
-      that works for you right now:
-    </p>
-    <p style="text-align: center; margin: 28px 0;">
-      <a href="${scheduleLink}"
-         style="background: #111111; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; display: inline-block;">
-        Schedule your demo
-      </a>
+      <strong>Your early-access link will be sent to this email starting ${EARLY_ACCESS_LABEL}.</strong>
+      Broll launches publicly on ${LAUNCH_LABEL}, and you'll be in before everyone else.
+      Nothing more to do for now &mdash; just keep an eye on your inbox.
     </p>
     <p style="font-size: 15px; line-height: 1.6;">
       Talk soon,<br />
@@ -74,7 +69,7 @@ export function notificationEmailHtml(fields: DemoRequestFields) {
 
   return `
   <div style="font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; max-width: 560px; margin: 0 auto; color: #1a1a1a;">
-    <p style="font-size: 16px; font-weight: 600;">New demo request on trybroll.com</p>
+    <p style="font-size: 16px; font-weight: 600;">New early-access request on trybroll.com</p>
     <table style="border-collapse: collapse; width: 100%; margin-top: 8px;">
       ${row("Name", fields.name)}
       ${row("Email", fields.email)}
@@ -89,8 +84,4 @@ export function notificationEmailHtml(fields: DemoRequestFields) {
 
 export function firstNameOf(name: string) {
   return name.trim().split(/\s+/)[0] || "there";
-}
-
-export function scheduleLink() {
-  return `${SITE_URL}/schedule-demo`;
 }

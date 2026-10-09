@@ -38,7 +38,7 @@ export default function TermsPage() {
       <LegalSection title="Agreement">
         <p>
           These terms govern your use of the Broll website and the Broll video
-          editing service. By using the website, requesting a demo, or working
+          editing service. By using the website, requesting early access, or working
           with us on your footage, you agree to these terms. If you are
           accepting on behalf of a studio or company, you confirm you have the
           authority to do so.
@@ -49,7 +49,7 @@ export default function TermsPage() {
         <p>
           Broll turns your raw footage into finished videos. The specifics of
           what we deliver — formats, volume, turnaround, and pricing — are
-          agreed with your team when we set you up after your demo request.
+          agreed with your team when we set you up after your early-access request.
           Details described on this website are illustrative and may evolve as
           the product does.
         </p>
@@ -123,7 +123,7 @@ export default function TermsPage() {
           updated&rdquo; date above reflects the current version, and material
           changes will be communicated to active customers. Questions about
           these terms? Reach us through the{" "}
-          <Link href="/demo" className="link-red">
+          <Link href="/early-access" className="link-red">
             contact form
           </Link>
           .
