@@ -12,6 +12,7 @@ import BrollLogo from "@/components/site/BrollLogo";
 const links = [
   { href: "/product", label: "Product" },
   { href: "/pricing", label: "Pricing" },
+  { href: "/download", label: "Download" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
 ];
@@ -85,8 +86,8 @@ export default function Navbar() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <CtaLink href="/early-access" size="sm" className="max-sm:hidden">
-              Get early access
+            <CtaLink href="/download" size="sm" className="max-sm:hidden">
+              Download plugin
             </CtaLink>
             <button
               type="button"
@@ -126,7 +127,7 @@ export default function Navbar() {
           >
             <div aria-hidden className="hero-glow absolute inset-0" />
             <nav aria-label="Mobile" className="relative flex flex-col">
-              {[...links, { href: "/early-access", label: "Get early access" }].map((l, i) => (
+              {[...links, { href: "/download", label: "Download plugin" }].map((l, i) => (
                 <motion.div
                   key={l.href}
                   initial={{ y: 40, opacity: 0 }}

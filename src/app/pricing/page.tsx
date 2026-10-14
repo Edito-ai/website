@@ -12,7 +12,7 @@ import type { Faq } from "@/lib/faqs";
 
 const TITLE = "Pricing — Broll AI Video Editor";
 const DESCRIPTION =
-  "Broll doesn't have public self-serve pricing. Production houses and creator teams have very different footage volumes, so we set up pricing per team once you're in early access — no card required.";
+  "Broll doesn't have public self-serve pricing. Production houses and creator teams have very different footage volumes, so we set up pricing per team once you get in touch.";
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 const PRICING_FAQS: Faq[] = [
   {
     q: "How much does Broll cost?",
-    a: "Broll doesn't have public self-serve pricing yet. Get early access and we'll set up a plan for your team — no card required.",
+    a: "Broll doesn't have public self-serve pricing yet. Write to hello@trybroll.com and we'll set up a plan for your team.",
   },
   {
     q: "Why doesn't Broll publish a pricing table?",
@@ -36,19 +36,19 @@ const PRICING_FAQS: Faq[] = [
   },
   {
     q: "Is Broll subscription-based or usage-based?",
-    a: "We don't have a public answer to that yet — it's part of what gets set up with your team, based on your team's footage volume and workflow. Get early access and we'll walk through what makes sense for you.",
+    a: "We don't have a public answer to that yet — it's part of what gets set up with your team, based on your team's footage volume and workflow. Write to hello@trybroll.com and we'll walk through what makes sense for you.",
   },
   {
     q: "Is there a free trial?",
-    a: "There's no public self-serve free trial right now. Join early access (links are emailed before launch) — no card required — so you can see Broll work on your own footage before committing to anything.",
+    a: "There's no public self-serve free trial right now. Download the plugin and sign up — your free credit lets you see Broll work on your own footage before committing to anything.",
   },
   {
     q: "How is Broll's pricing determined?",
     a: "Once you're in, we look at your footage volume, team size, and how you work — production house or creator team — and set up a plan around that, rather than forcing everyone into the same tier.",
   },
   {
-    q: "Do I need a credit card to get early access?",
-    a: "No. Early access requires no card — you tell us about your team and we email your access link.",
+    q: "Do I need a credit card to try Broll?",
+    a: "No. Sign up in the plugin and your free credit is added straight away — no card required.",
   },
   {
     q: "Is pricing different for production houses vs. creator teams?",
@@ -84,10 +84,10 @@ export default function PricingPage() {
           }
           lede={
             <>
-              Broll doesn&apos;t have a public self-serve pricing page. A production house shooting multiple cameras across a long shoot and a creator team turning around shorter videos every week don&apos;t fit the same tier — so we set up pricing per team, once you're in early access.
+              Broll doesn&apos;t have a public self-serve pricing page. A production house shooting multiple cameras across a long shoot and a creator team turning around shorter videos every week don&apos;t fit the same tier — so we set up pricing per team, once you get in touch.
             </>
           }
-          cta={{ href: "/early-access", label: "Get early access — no card required" }}
+          cta={{ href: "/download", label: "Download plugin — free credit included" }}
           secondary={{ href: "/#film", label: "Watch the teaser" }}
         />
         <PricingPlans />
@@ -112,9 +112,9 @@ export default function PricingPage() {
 
           <ContentSection title="How to get pricing for your team">
             <p>
-              Get early access and tell us about your team. We&apos;ll
-              email your link before launch — no card required — and
-              talk through a plan that fits your footage volume, whether
+              Download the plugin to try it, then write to{" "}
+              <a href="mailto:hello@trybroll.com" className="link-red">hello@trybroll.com</a>{" "}
+              about your team. We&apos;ll talk through a plan that fits your footage volume, whether
               you&apos;re a{" "}
               <Link
                 href="/ai-video-editor-for-production-houses"

@@ -79,7 +79,7 @@ export default function PricingPlans() {
 
               <div className="mt-auto pt-10">
                 <CtaLink
-                  href="/early-access"
+                  href="mailto:hello@trybroll.com"
                   variant={plan.featured ? "primary" : "ghost"}
                   className="w-full"
                 >
