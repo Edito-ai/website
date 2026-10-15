@@ -55,7 +55,7 @@ export default function AboutPage() {
               trybroll.com is the official website of Broll — AI video editing software that turns raw footage into finished, publish-ready videos for production houses and creator teams.
             </>
           }
-          cta={{ href: "/download", label: "Download plugin" }}
+          cta={{ href: "/early-access", label: "Get early access" }}
           secondary={{ href: "/#film", label: "Watch the teaser" }}
         />
         <PageBody>
@@ -118,7 +118,7 @@ export default function AboutPage() {
           <ContentSection title="Broll and trybroll.com">
             <p>
               Broll is the product. trybroll.com is Broll&apos;s official
-              website — the place to learn what Broll does and download the DaVinci Resolve plugin. There is no other official Broll site.
+              website — the place to learn what Broll does and join early access. There is no other official Broll site.
             </p>
           </ContentSection>
 

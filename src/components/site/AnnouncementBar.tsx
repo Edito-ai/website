@@ -13,11 +13,11 @@ function Message() {
       <span className="rounded-full bg-red/15 px-2 py-0.5 text-[10px] font-semibold tracking-wide text-red uppercase">
         New
       </span>
-      The <strong className="font-semibold text-ink">DaVinci Resolve plugin</strong> is ready
-      <span className="hidden sm:inline">· download for Windows</span>
+      Broll is <strong className="font-semibold text-ink">launching soon</strong>
+      <span className="hidden sm:inline">· join early access</span>
       <span aria-hidden className="h-3 w-px bg-line-strong max-sm:hidden" />
       <span className="flex items-center gap-1 text-ink transition-colors duration-300 group-hover:text-red max-sm:hidden">
-        Get the plugin <ArrowRight className="size-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+        Watch the teaser <ArrowRight className="size-3 transition-transform duration-300 group-hover:translate-x-0.5" />
       </span>
     </span>
   );
@@ -26,7 +26,7 @@ function Message() {
 /**
  * 40px announcement bar above the navbar — a single static statement.
  * Slides in from the top, hides on scroll down and returns on scroll up.
- * Clicking it rides Lenis down to the plugin section.
+ * Clicking it rides Lenis down to the film.
  */
 export default function AnnouncementBar() {
   const ref = useRef<HTMLButtonElement>(null);
@@ -72,22 +72,22 @@ export default function AnnouncementBar() {
     };
   }, []);
 
-  function toPlugin() {
+  function toFilm() {
     const lenis = (
       window as unknown as {
         __lenis?: { scrollTo: (target: string, opts?: object) => void };
       }
     ).__lenis;
-    if (lenis) lenis.scrollTo("#resolve", { duration: 1.6 });
+    if (lenis) lenis.scrollTo("#film", { duration: 1.6 });
     else
-      document.getElementById("resolve")?.scrollIntoView({ behavior: "smooth" });
+      document.getElementById("film")?.scrollIntoView({ behavior: "smooth" });
   }
 
   return (
     <button
       ref={ref}
-      onClick={toPlugin}
-      aria-label="The Broll DaVinci Resolve plugin is ready — get it"
+      onClick={toFilm}
+      aria-label="Broll is launching soon — watch the teaser"
       className="group fixed inset-x-0 top-0 z-[60] flex h-10 w-full cursor-pointer items-center justify-center overflow-hidden border-b border-line bg-[#06070c] px-4"
     >
       <Message />

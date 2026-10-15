@@ -9,7 +9,6 @@ const COLUMNS = [
       { label: "AI Video Editor", href: "/ai-video-editor" },
       { label: "For Production Houses", href: "/ai-video-editor-for-production-houses" },
       { label: "Pricing", href: "/pricing" },
-      { label: "Download", href: "/download" },
       { label: "FAQ", href: "/#faq" },
     ],
   },
@@ -25,7 +24,7 @@ const COLUMNS = [
     title: "Company",
     links: [
       { label: "About", href: "/about" },
-      { label: "Download plugin", href: "/download" },
+      { label: "Get early access", href: "/early-access" },
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Service", href: "/terms" },
     ],

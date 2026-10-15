@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import AnnouncementBar from "@/components/site/AnnouncementBar";
 import Navbar from "@/components/site/Navbar";
 import HomeHero from "@/components/home/HomeHero";
 import ProductStats from "@/components/site/ProductStats";
 import HowItWorks from "@/components/home/HowItWorks";
 import Capabilities from "@/components/home/Capabilities";
 import Comparison from "@/components/home/Comparison";
-import ResolvePlugin from "@/components/home/ResolvePlugin";
 import BrollFilm from "@/components/site/BrollFilm";
 import UseCases from "@/components/home/UseCases";
 import Workflow from "@/components/home/Workflow";
@@ -75,11 +75,11 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
+      <AnnouncementBar />
       <Navbar />
       <main>
         <HomeHero />
         <BrollFilm />
-        <ResolvePlugin />
         <ProductStats />
         <HowItWorks />
         <Capabilities />

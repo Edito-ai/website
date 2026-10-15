@@ -13,7 +13,7 @@ export default function PageHero({
   eyebrow,
   title,
   lede,
-  cta = { href: "/download", label: "Download plugin" },
+  cta = { href: "/early-access", label: "Get early access" },
   secondary,
   meta,
   children,
