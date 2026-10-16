@@ -8,7 +8,7 @@ export const SITE_NAME = "Broll";
 /** The Windows installer for the DaVinci Resolve plugin (hosted on R2). Bump with each installer release. */
 export const INSTALLER = {
   url: "https://shubhamsolanki.in/BrollAI-Setup-0.2.4.exe",
-  version: "0.2.0",
+  version: "0.2.4",
   sizeLabel: "90 MB",
 } as const;
 
