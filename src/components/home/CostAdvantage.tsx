@@ -13,12 +13,10 @@ import { cn } from "@/lib/utils";
  * file is there the mark falls back to a letter badge, so nothing breaks.
  */
 const MODELS = [
-  { id: "broll", name: "Broll", logo: null, mult: 1, brand: true },
-  { id: "sonnet", name: "Sonnet 5.5", logo: "claude", mult: 17 },
-  { id: "gpt61", name: "GPT 6.1", logo: "openai", mult: 17 },
-  { id: "opus", name: "Opus 5.5", logo: "claude", mult: 32 },
-  { id: "astra", name: "GPT Astra", logo: "openai", mult: 32 },
-  { id: "fable", name: "Fable 5.1", logo: "claude", mult: 81 },
+  { id: "broll", name: "Broll", logos: [null], mult: 1, brand: true },
+  { id: "mid", name: "Sonnet 5.5 · GPT 6.1", logos: ["claude", "openai"], mult: 17 },
+  { id: "top", name: "Opus 5.5 · GPT Astra", logos: ["claude", "openai"], mult: 32 },
+  { id: "fable", name: "Fable 5.1", logos: ["claude"], mult: 81 },
 ] as const;
 
 const MAX = 81;
@@ -80,7 +78,11 @@ function Chart({
             >
               <div className="flex items-center justify-between gap-3">
                 <div className="flex min-w-0 items-center gap-2.5">
-                  <Mark logo={m.logo} name={m.name} />
+                  <span className="flex shrink-0 items-center gap-1">
+                    {m.logos.map((l) => (
+                      <Mark key={l ?? "broll"} logo={l} name={m.name} />
+                    ))}
+                  </span>
                   <p className={cn("truncate text-sm", brand || worst ? "font-display text-ink" : "text-ink-2")}>{m.name}</p>
                   {brand && badge && (
                     <span className="shrink-0 rounded-full bg-emerald-500 px-2 py-0.5 text-[0.65rem] font-semibold tracking-wide text-white uppercase">
