@@ -52,9 +52,14 @@ function Counter({ value }: { value: number }) {
 }
 
 /** One big "N× more affordable than X" card. */
-function Stat({ mult, label, tag }: { mult: number; label: string; tag: string }) {
+function Stat({ mult, label, tag, wide }: { mult: number; label: string; tag: string; wide?: boolean }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] p-6 text-center sm:p-8">
+    <div
+      className={cn(
+        "relative overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] p-6 text-center sm:p-8",
+        wide && "md:col-span-2 md:mx-auto md:w-full md:max-w-md",
+      )}
+    >
       <p className="text-xs tracking-[0.18em] text-muted uppercase">vs {tag}</p>
       <p className="font-display mt-3 leading-none tracking-tight" style={{ fontSize: "clamp(4rem, 9vw, 6.5rem)" }}>
         <span className="serif-voice text-brand">
@@ -173,9 +178,9 @@ export default function CostAdvantage() {
             />
 
             {/* Both comparisons at once */}
-            <div className="relative grid gap-4 md:grid-cols-3">
+            <div className="relative grid gap-4 md:grid-cols-2">
               {RIVALS.map((r) => (
-                <Stat key={r.id} mult={r.mult} label={r.label} tag={r.tag} />
+                <Stat key={r.id} mult={r.mult} label={r.label} tag={r.tag} wide={r.id === "max"} />
               ))}
             </div>
 
