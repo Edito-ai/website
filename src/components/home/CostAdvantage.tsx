@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Check } from "lucide-react";
 import Reveal from "@/components/fx/Reveal";
@@ -8,34 +7,16 @@ import SectionHeader from "@/components/site/SectionHeader";
 import BrollLogo from "@/components/site/BrollLogo";
 import { cn } from "@/lib/utils";
 
-/**
- * Models in the charts, lowest price first. Logo files are expected at /public/logos/<logo>.png; until a
- * file is there the mark falls back to a letter badge, so nothing breaks.
- */
+/** Models in the chart, lowest price first. */
 const MODELS = [
-  { id: "broll", name: "Broll", logos: [null], mult: 1, brand: true },
-  { id: "mid", name: "Sonnet 5.5 · GPT 6.1", logos: ["claude", "openai"], mult: 17 },
-  { id: "top", name: "Opus 5.5 · GPT Astra", logos: ["claude", "openai"], mult: 32 },
-  { id: "fable", name: "Fable 5.1", logos: ["claude"], mult: 81 },
+  { id: "broll", name: "Broll", mult: 1, brand: true },
+  { id: "mid", name: "Sonnet 5.5 · GPT 6.1", mult: 17 },
+  { id: "top", name: "Opus 5.5 · GPT Astra", mult: 32 },
+  { id: "fable", name: "Fable 5.1", mult: 81 },
 ] as const;
 
 const MAX = 81;
 const SAME = ["Story", "Captions", "Color grade", "Timeline export"];
-
-function Mark({ logo, name }: { logo: string | null; name: string }) {
-  const [failed, setFailed] = useState(false);
-  if (logo === null) return <BrollLogo className="size-7 text-emerald-400" />;
-  if (failed)
-    return (
-      <span className="font-display grid size-7 place-items-center rounded-full bg-white/10 text-xs text-ink-2">
-        {name[0]}
-      </span>
-    );
-  return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={`/logos/${logo}.png`} alt="" className="size-7 object-contain" onError={() => setFailed(true)} />
-  );
-}
 
 /** Horizontal bar chart, one row per model with Broll on top. `value` is a 0–1 bar length. */
 function Chart({
@@ -78,11 +59,7 @@ function Chart({
             >
               <div className="flex items-center justify-between gap-3">
                 <div className="flex min-w-0 items-center gap-2.5">
-                  <span className="flex shrink-0 items-center gap-1">
-                    {m.logos.map((l) => (
-                      <Mark key={l ?? "broll"} logo={l} name={m.name} />
-                    ))}
-                  </span>
+                  {"brand" in m && m.brand && <BrollLogo className="size-7 text-emerald-400" />}
                   <p className={cn("truncate text-sm", brand || worst ? "font-display text-ink" : "text-ink-2")}>{m.name}</p>
                   {brand && badge && (
                     <span className="shrink-0 rounded-full bg-emerald-500 px-2 py-0.5 text-[0.65rem] font-semibold tracking-wide text-white uppercase">
@@ -159,7 +136,7 @@ export default function CostAdvantage() {
               </p>
               <p className="mx-auto mt-3 max-w-2xl text-center text-xs text-muted">
                 Illustrative estimates based on Broll&apos;s own internal comparison of typical edit workloads at
-                publicly listed API rates. Actual costs vary by usage and pricing changes. Model names and logos are
+                publicly listed API rates. Actual costs vary by usage and pricing changes. Model names are
                 trademarks of their respective owners; Broll is not affiliated with or endorsed by them.
               </p>
             </div>
