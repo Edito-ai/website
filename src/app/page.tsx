@@ -3,6 +3,7 @@ import AnnouncementBar from "@/components/site/AnnouncementBar";
 import Navbar from "@/components/site/Navbar";
 import HomeHero from "@/components/home/HomeHero";
 import ProductStats from "@/components/site/ProductStats";
+import CostAdvantage from "@/components/home/CostAdvantage";
 import HowItWorks from "@/components/home/HowItWorks";
 import Capabilities from "@/components/home/Capabilities";
 import Comparison from "@/components/home/Comparison";
@@ -81,6 +82,7 @@ export default function Home() {
         <HomeHero />
         <BrollFilm />
         <ProductStats />
+        <CostAdvantage />
         <HowItWorks />
         <Capabilities />
         <Comparison />

@@ -53,6 +53,14 @@ export default function HomeHero() {
           Premiere, Resolve or Final Cut.
         </motion.p>
 
+        <motion.p
+          {...rise(0.33)}
+          className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-ink-2/75 md:text-lg"
+        >
+          <strong className="font-semibold text-ink">17× cheaper</strong> than Sonnet 5.5 and GPT 6.1,{" "}
+          <strong className="font-semibold text-ink">32× cheaper</strong> than Opus 5.5 and GPT Astra.
+        </motion.p>
+
         <motion.div {...rise(0.36)} className="mt-10">
           <p className="mb-4 text-xs font-medium tracking-[0.2em] text-red uppercase">
             Launching soon
