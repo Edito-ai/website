@@ -75,7 +75,7 @@ function Stat({ mult, label, tag, wide }: { mult: number; label: string; tag: st
 
 function Mark({ logo, name }: { logo: string | null; name: string }) {
   const [failed, setFailed] = useState(false);
-  if (logo === null) return <BrollLogo className="size-7 text-red" />;
+  if (logo === null) return <BrollLogo className="size-7 text-emerald-400" />;
   if (failed)
     return (
       <span className="font-display grid size-7 place-items-center rounded-full bg-white/10 text-xs text-ink-2">
@@ -119,7 +119,7 @@ function Chart({
               key={m.id}
               className={cn(
                 "rounded-xl border px-3 py-2.5",
-                brand ? "border-red/40 bg-red/[0.07]" : "border-transparent",
+                brand ? "border-emerald-400/40 bg-emerald-400/[0.07]" : "border-transparent",
               )}
             >
               <div className="flex items-center justify-between gap-3">
@@ -127,12 +127,12 @@ function Chart({
                   <Mark logo={m.logo} name={m.name} />
                   <p className={cn("truncate text-sm", brand ? "font-display text-ink" : "text-ink-2")}>{m.name}</p>
                   {brand && badge && (
-                    <span className="shrink-0 rounded-full bg-red px-2 py-0.5 text-[0.65rem] font-semibold tracking-wide text-white uppercase">
+                    <span className="shrink-0 rounded-full bg-emerald-500 px-2 py-0.5 text-[0.65rem] font-semibold tracking-wide text-white uppercase">
                       {badge}
                     </span>
                   )}
                 </div>
-                <p className={cn("font-display shrink-0 text-xl", brand ? "text-red" : "text-ink")}>{label(m)}</p>
+                <p className={cn("font-display shrink-0 text-xl", brand ? "text-emerald-400" : "text-ink")}>{label(m)}</p>
               </div>
               <div className="mt-2 h-4 overflow-hidden rounded-full bg-white/[0.06]">
                 <motion.div
@@ -145,7 +145,7 @@ function Chart({
                     tone === "quality"
                       ? "bg-emerald-400/80"
                       : brand
-                        ? "bg-gradient-to-r from-crimson to-red shadow-[0_0_14px_rgba(236,75,82,0.7)]"
+                        ? "bg-gradient-to-r from-emerald-600 to-emerald-400 shadow-[0_0_14px_rgba(52,211,153,0.6)]"
                         : "bg-ink-2/45",
                   )}
                 />
