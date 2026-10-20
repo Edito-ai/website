@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 import path from "path";
 
 const nextConfig: NextConfig = {
+  // Lets a phone on the same Wi-Fi load the dev server by LAN IP.
+  allowedDevOrigins: ["192.168.1.4"],
   // The demo flow was replaced by early access for the 16 Oct launch.
   async redirects() {
     return [
