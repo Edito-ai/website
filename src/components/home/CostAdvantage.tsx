@@ -1,19 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { animate, motion, useInView, useReducedMotion } from "framer-motion";
+import { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { Check } from "lucide-react";
 import Reveal from "@/components/fx/Reveal";
 import SectionHeader from "@/components/site/SectionHeader";
 import BrollLogo from "@/components/site/BrollLogo";
 import { cn } from "@/lib/utils";
-
-/** Relative cost of the same edit. Broll is the 1× baseline. */
-const RIVALS = [
-  { id: "max", label: "Fable 5.1", tag: "Flagship frontier", mult: 81 },
-  { id: "top", label: "Opus 5.5 · GPT Astra", tag: "Top-tier frontier", mult: 32 },
-  { id: "mid", label: "Sonnet 5.5 · GPT 6.1", tag: "Mid-tier frontier", mult: 17 },
-] as const;
 
 /**
  * Models in the charts, lowest price first. Logo files are expected at /public/logos/<logo>.png; until a
@@ -30,48 +23,6 @@ const MODELS = [
 
 const MAX = 81;
 const SAME = ["Story", "Captions", "Color grade", "Timeline export"];
-
-/** Counts up to `value` when first scrolled into view. */
-function Counter({ value }: { value: number }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const seen = useInView(ref, { once: true, margin: "-80px" });
-  const reduced = useReducedMotion();
-  const [shown, setShown] = useState(reduced ? value : 1);
-
-  useEffect(() => {
-    if (!seen || reduced) return;
-    const c = animate(1, value, {
-      duration: 1.1,
-      ease: [0.22, 1, 0.36, 1],
-      onUpdate: (v) => setShown(Math.round(v)),
-    });
-    return () => c.stop();
-  }, [value, seen, reduced]);
-
-  return <span ref={ref}>{reduced ? value : shown}</span>;
-}
-
-/** One big "N× more affordable than X" card. */
-function Stat({ mult, label, tag, wide }: { mult: number; label: string; tag: string; wide?: boolean }) {
-  return (
-    <div
-      className={cn(
-        "relative overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] p-6 text-center sm:p-8",
-        wide && "md:col-span-2 md:mx-auto md:w-full md:max-w-md",
-      )}
-    >
-      <p className="text-xs tracking-[0.18em] text-muted uppercase">vs {tag}</p>
-      <p className="font-display mt-3 leading-none tracking-tight" style={{ fontSize: "clamp(4rem, 9vw, 6.5rem)" }}>
-        <span className="serif-voice text-brand">
-          <Counter value={mult} />×
-        </span>
-      </p>
-      <p className="font-display mt-2 text-xl sm:text-2xl">more affordable</p>
-      <p className="mt-1 text-sm text-ink-2">than {label}</p>
-    </div>
-  );
-}
-
 
 function Mark({ logo, name }: { logo: string | null; name: string }) {
   const [failed, setFailed] = useState(false);
@@ -113,26 +64,38 @@ function Chart({
       <div className="mt-5 grid gap-2.5">
         {MODELS.map((m, i) => {
           const brand = "brand" in m && m.brand;
+          const worst = m.mult === MAX;
           const w = Math.max(value(m) * 100, 2.5);
           return (
             <div
               key={m.id}
               className={cn(
                 "rounded-xl border px-3 py-2.5",
-                brand ? "border-emerald-400/40 bg-emerald-400/[0.07]" : "border-transparent",
+                brand
+                  ? "border-emerald-400/40 bg-emerald-400/[0.07]"
+                  : worst
+                    ? "border-red/40 bg-red/[0.07]"
+                    : "border-transparent",
               )}
             >
               <div className="flex items-center justify-between gap-3">
                 <div className="flex min-w-0 items-center gap-2.5">
                   <Mark logo={m.logo} name={m.name} />
-                  <p className={cn("truncate text-sm", brand ? "font-display text-ink" : "text-ink-2")}>{m.name}</p>
+                  <p className={cn("truncate text-sm", brand || worst ? "font-display text-ink" : "text-ink-2")}>{m.name}</p>
                   {brand && badge && (
                     <span className="shrink-0 rounded-full bg-emerald-500 px-2 py-0.5 text-[0.65rem] font-semibold tracking-wide text-white uppercase">
                       {badge}
                     </span>
                   )}
                 </div>
-                <p className={cn("font-display shrink-0 text-xl", brand ? "text-emerald-400" : "text-ink")}>{label(m)}</p>
+                <p
+                  className={cn(
+                    "font-display shrink-0 text-xl",
+                    brand ? "text-emerald-400" : worst ? "text-red" : "text-ink",
+                  )}
+                >
+                  {label(m)}
+                </p>
               </div>
               <div className="mt-2 h-4 overflow-hidden rounded-full bg-white/[0.06]">
                 <motion.div
@@ -146,7 +109,9 @@ function Chart({
                       ? "bg-emerald-400/80"
                       : brand
                         ? "bg-gradient-to-r from-emerald-600 to-emerald-400 shadow-[0_0_14px_rgba(52,211,153,0.6)]"
-                        : "bg-ink-2/45",
+                        : worst
+                          ? "bg-red shadow-[0_0_14px_rgba(239,68,68,0.55)]"
+                          : "bg-ink-2/45",
                   )}
                 />
               </div>
@@ -167,7 +132,7 @@ export default function CostAdvantage() {
           eyebrow="Why Broll"
           title="The same quality of edit."
           voice="At a fraction of the price."
-          lede="Same story, same captions, same grade — from a model built for editing, not rented from a general-purpose one."
+          lede="Our goal: the same story, captions and grade — from a model built specifically for editing."
         />
 
         <Reveal delay={0.1} className="mt-12 md:mt-14">
@@ -177,25 +142,23 @@ export default function CostAdvantage() {
               className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[36rem] max-w-full -translate-x-1/2 rounded-full bg-red/15 blur-3xl"
             />
 
-            {/* Both comparisons at once */}
-            <div className="relative grid gap-4 md:grid-cols-2">
-              {RIVALS.map((r) => (
-                <Stat key={r.id} mult={r.mult} label={r.label} tag={r.tag} wide={r.id === "max"} />
-              ))}
-            </div>
-
             {/* One clear chart: Broll on top, everyone else far longer */}
             <div className="relative mt-10 md:mt-12">
               <Chart
-                title="What the same edit costs"
-                caption="Shorter bar = lower price"
+                title="Estimated cost of the same edit"
+                caption="Relative to Broll (1×) · shorter bar = lower estimated cost"
                 tone="price"
-                badge="Lowest price"
+                badge="Broll"
                 value={(m) => m.mult / MAX}
-                label={(m) => ("brand" in m && m.brand ? "1×" : `${m.mult}× more`)}
+                label={(m) => ("brand" in m && m.brand ? "1×" : `~${m.mult}×`)}
               />
               <p className="mt-4 flex items-center justify-center gap-2 text-center text-sm text-emerald-300">
-                <Check className="size-4" strokeWidth={3} /> Editing power: Broll is +1 over every model above
+                <Check className="size-4" strokeWidth={3} /> Built specifically for video editing
+              </p>
+              <p className="mx-auto mt-3 max-w-2xl text-center text-xs text-muted">
+                Illustrative estimates based on Broll&apos;s own internal comparison of typical edit workloads at
+                publicly listed API rates. Actual costs vary by usage and pricing changes. Model names and logos are
+                trademarks of their respective owners; Broll is not affiliated with or endorsed by them.
               </p>
             </div>
 
