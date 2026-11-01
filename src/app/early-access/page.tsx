@@ -3,7 +3,6 @@ import type { CSSProperties } from "react";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import EarlyAccessForm from "@/components/site/EarlyAccessForm";
-import Countdown from "@/components/site/Countdown";
 import Reveal from "@/components/fx/Reveal";
 import { breadcrumbJsonLd } from "@/lib/site";
 
@@ -59,9 +58,6 @@ export default function EarlyAccessPage() {
                 Join the list and your early-access link lands in your
                 inbox before launch.
               </p>
-            </Reveal>
-            <Reveal delay={0.22}>
-              <Countdown className="mt-10 max-w-md !justify-start" />
             </Reveal>
 
             <ol className="mt-14 max-w-md border-t border-line">
