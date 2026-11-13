@@ -85,8 +85,8 @@ export default function Navbar() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <CtaLink href="/early-access" size="sm" className="max-sm:hidden">
-              Get early access
+            <CtaLink href="https://chat.trybroll.com" size="sm" className="max-sm:hidden">
+              Chat
             </CtaLink>
             <button
               type="button"
@@ -126,7 +126,7 @@ export default function Navbar() {
           >
             <div aria-hidden className="hero-glow absolute inset-0" />
             <nav aria-label="Mobile" className="relative flex flex-col">
-              {[...links, { href: "/early-access", label: "Get early access" }].map((l, i) => (
+              {[...links, { href: "https://chat.trybroll.com", label: "Chat" }].map((l, i) => (
                 <motion.div
                   key={l.href}
                   initial={{ y: 40, opacity: 0 }}

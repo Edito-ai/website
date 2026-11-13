@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import AnnouncementBar from "@/components/site/AnnouncementBar";
 import Navbar from "@/components/site/Navbar";
 import HomeHero from "@/components/home/HomeHero";
 import ProductStats from "@/components/site/ProductStats";
@@ -76,7 +75,6 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <AnnouncementBar />
       <Navbar />
       <main>
         <HomeHero />

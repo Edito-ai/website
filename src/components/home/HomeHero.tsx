@@ -43,15 +43,9 @@ export default function HomeHero() {
           <span className="serif-voice text-brand pr-1">before</span> you do.
         </motion.h1>
 
-        <motion.div {...rise(0.36)} className="mt-10">
-          <p className="text-xs font-medium tracking-[0.2em] text-red uppercase">
-            Launching soon
-          </p>
-        </motion.div>
-
-        <motion.div {...rise(0.44)} className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <CtaLink href="/early-access" size="lg">
-            Get early access
+        <motion.div {...rise(0.36)} className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <CtaLink href="https://chat.trybroll.com" size="lg">
+            Chat
           </CtaLink>
           <Link
             href="/#film"
