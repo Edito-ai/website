@@ -28,11 +28,8 @@ export default function TermsPage() {
       />
       <LegalPage
       eyebrow="Legal"
-      title={
-        <>
-          Terms of <span className="serif-voice text-brand">Service</span>
-        </>
-      }
+      title="Terms of Service"
+      kind="terms"
       updated="18 July 2026"
     >
       <LegalSection title="Agreement">
