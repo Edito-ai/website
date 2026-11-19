@@ -1,11 +1,17 @@
+import Image from "next/image";
 import Link from "next/link";
-import BrollLogo from "@/components/site/BrollLogo";
+import BrandLockup from "@/components/v2/BrandLockup";
+import { CHAT_URL } from "@/components/v2/ui";
 
 const COLUMNS = [
   {
-    title: "Product",
+    title: "PRODUCT",
     links: [
       { label: "Overview", href: "/product" },
+      { label: "Broll Chat · Live", href: CHAT_URL },
+      { label: "Windows app · Soon", href: "/product#windows" },
+      { label: "Mac app · Soon", href: "/product#mac" },
+      { label: "Resolve plugin · Soon", href: "/product#resolve" },
       { label: "AI Video Editor", href: "/ai-video-editor" },
       { label: "For Production Houses", href: "/ai-video-editor-for-production-houses" },
       { label: "Pricing", href: "/pricing" },
@@ -13,7 +19,7 @@ const COLUMNS = [
     ],
   },
   {
-    title: "Compare",
+    title: "COMPARE",
     links: [
       { label: "Broll vs. B-Roll Generators", href: "/broll-vs-b-roll-generators" },
       { label: "AI vs. Manual Editing", href: "/ai-editing-vs-manual-editing" },
@@ -21,52 +27,62 @@ const COLUMNS = [
     ],
   },
   {
-    title: "Company",
+    title: "COMPANY",
     links: [
       { label: "About", href: "/about" },
-      { label: "Get early access", href: "/early-access" },
+      { label: "Chat", href: CHAT_URL },
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Service", href: "/terms" },
     ],
   },
 ];
 
+const linkCls = "flex min-h-9 items-center text-[15px] text-ink-2 transition-colors hover:text-red";
+
 export default function Footer() {
   return (
-    <footer id="contact" className="border-t border-line bg-dark-bg">
-      <div className="mx-auto max-w-6xl px-5 pt-16 pb-10 sm:px-8 md:pt-20">
-        <div className="grid gap-12 md:grid-cols-[1.2fr_2fr]">
-          <div>
-            <Link href="/" aria-label="Broll home" className="group inline-flex items-center gap-2.5">
-              <BrollLogo className="size-8 text-ink transition-colors duration-500 group-hover:text-red" />
-              <span className="font-wordmark text-lg uppercase">Broll</span>
+    <footer id="contact" className="w-full overflow-hidden border-t border-line-2 bg-bg">
+      <div className="mx-auto box-border flex max-w-[1440px] flex-col gap-12 px-6 lg:px-10 pt-16 pb-8">
+        <div className="flex flex-wrap gap-12">
+          <div className="flex flex-[2_1_280px] flex-col gap-4">
+            <Link href="/" aria-label="Broll home" className="flex min-h-11 items-center">
+              <BrandLockup />
             </Link>
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted">
+            <p className="m-0 max-w-[300px] text-[15px] leading-relaxed text-soft">
               The agentic AI video editor. Raw footage in, a finished first cut out.
             </p>
+            <span className="self-start rounded-full border border-line px-3 py-1.5 font-mono text-xs text-soft">
+              Chat live · Apps coming soon
+            </span>
           </div>
-
-          <div className="grid grid-cols-2 gap-10 sm:grid-cols-3">
-            {COLUMNS.map((col) => (
-              <div key={col.title}>
-                <p className="text-sm font-medium text-ink">{col.title}</p>
-                <ul className="mt-4 space-y-3">
-                  {col.links.map((link) => (
-                    <li key={link.label}>
-                      <Link href={link.href} className="text-sm text-muted transition-colors duration-300 hover:text-red">
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          {COLUMNS.map((c) => (
+            <div key={c.title} className="flex flex-[1_1_160px] flex-col gap-1">
+              <h2 className="mt-0 mb-2 font-mono text-xs font-medium tracking-[0.04em] text-muted">{c.title}</h2>
+              {c.links.map((l) =>
+                l.href.startsWith("http") ? (
+                  <a key={l.label} href={l.href} className={linkCls}>
+                    {l.label}
+                  </a>
+                ) : (
+                  <Link key={l.label} href={l.href} className={linkCls}>
+                    {l.label}
+                  </Link>
+                ),
+              )}
+            </div>
+          ))}
         </div>
-
-        <div className="mt-16 flex flex-col justify-between gap-3 border-t border-line pt-8 text-sm text-muted sm:flex-row">
-          <p>© {new Date().getFullYear()} Broll. All rights reserved.</p>
-          <p>Backed by Google for Startups</p>
+        <Image
+          src="/brand/broll-wordmark.png"
+          alt=""
+          aria-hidden
+          width={1473}
+          height={406}
+          className="block h-auto w-full opacity-[0.07]"
+        />
+        <div className="flex flex-wrap justify-between gap-3 border-t border-line-2 pt-5 text-[13px] text-muted">
+          <span>© {new Date().getFullYear()} Broll. All rights reserved.</span>
+          <span className="font-mono">trybroll.com</span>
         </div>
       </div>
     </footer>

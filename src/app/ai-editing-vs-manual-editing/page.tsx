@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
-import type { CSSProperties } from "react";
-import Link from "next/link";
-import Navbar from "@/components/site/Navbar";
-import Footer from "@/components/site/Footer";
-import PageHero, { PageBody } from "@/components/site/PageHero";
-import ContentSection from "@/components/site/ContentSection";
-import FaqSection from "@/components/site/FaqSection";
+import PageShell from "@/components/v2/PageShell";
+import Faq from "@/components/v2/Faq";
+import CtaBand from "@/components/v2/CtaBand";
+import { ArrowLink, Band, PageIntro, SectionHead, Wrap } from "@/components/v2/ui";
 import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/site";
-import type { Faq } from "@/lib/faqs";
+import { AI_VS_MANUAL_FAQS } from "@/lib/faqs";
 
 const TITLE = "AI Editing vs. Manual Editing: An Honest Comparison — Broll";
 const DESCRIPTION =
@@ -24,176 +21,153 @@ export const metadata: Metadata = {
   },
 };
 
-const AI_VS_MANUAL_FAQS: Faq[] = [
-  {
-    q: "Is AI video editing better than manual editing?",
-    a: "It depends what you mean by \"better.\" AI, like Broll, is dramatically faster at the upstream work — watching footage, logging it, finding the right moments and assembling a first cut. Manual editing is still where final creative judgment, brand voice and sign-off happen. Most teams get the best result by combining both, not by picking one over the other.",
-  },
-  {
-    q: "What does AI video editing actually save time on?",
-    a: "The hours spent watching raw footage, logging takes, and searching for the right moment to use. Broll indexes every frame so it can find and assemble those moments automatically, which is how an edit that took about eight hours by hand can take around twelve minutes before human review.",
-  },
-  {
-    q: "Does AI replace human editors?",
-    a: "No. Broll removes the hours of watching, logging and assembling raw footage, and hands editors a built story to review and finish. Creative tone, brand voice and the final call on what ships still sit with a person.",
-  },
-  {
-    q: "Can I still edit an AI-generated cut by hand afterward?",
-    a: "Yes. Broll exports a standard timeline XML that opens in Premiere Pro, DaVinci Resolve or Final Cut Pro, so a human editor can pick up exactly where the agent left off instead of starting from raw footage.",
-  },
-  {
-    q: "What is agentic AI video editing?",
-    a: "Agentic AI video editing means the AI makes editorial decisions itself — finding moments, building a story, cutting a timeline — rather than just applying one automated step, like captioning, to footage you've already chosen by hand. Broll is built this way, working from raw footage to a publish-ready video.",
-  },
-  {
-    q: "Who is already using AI-assisted editing like this?",
-    a: "Production houses and creator teams, including teams behind 200M+ monthly views and a 15M+ follower production house, use Broll for the upstream editing work, with human review and finishing still part of the process.",
-  },
-];
-
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
-    webPageJsonLd({
-      path: "/ai-editing-vs-manual-editing",
-      name: TITLE,
-      description: DESCRIPTION,
-    }),
+    webPageJsonLd({ path: "/ai-editing-vs-manual-editing", name: TITLE, description: DESCRIPTION }),
     breadcrumbJsonLd("AI Editing vs. Manual Editing", "/ai-editing-vs-manual-editing"),
     faqPageJsonLd(AI_VS_MANUAL_FAQS, "/ai-editing-vs-manual-editing"),
   ],
 };
 
-export default function AiEditingVsManualEditingPage() {
+const AI_LIST = [
+  "Watching all the footage",
+  "Logging takes",
+  "Finding the right moment",
+  "Assembling a first cut with captions and a color grade",
+  "Rebuilding a house style for every video",
+  "Clipping highlights from long videos and streams",
+];
+const HUMAN_LIST = ["Creative tone", "Brand voice", "Final sign-off"];
+const MANUAL_BAR: [string, string, string][] = [
+  ["34%", "#434860", "watch"],
+  ["20%", "#3D4259", "log"],
+  ["22%", "#373C53", "find"],
+  ["1", "#32374D", "assemble"],
+];
+const FLOW = [
+  { k: "BROLL", t: "Builds the story", d: "Moments, cut, captions, grade.", hot: true },
+  { k: "TIMELINE XML", t: "Hands off", d: "Premiere Pro, Resolve, Final Cut Pro." },
+  { k: "YOUR EDITOR", t: "Reviews and signs off", d: "Tone, brand voice, final call." },
+];
+
+export default function AiVsManualPage() {
   return (
-    // No announcement bar on this page, so the navbar sits flush at the top.
-    <div style={{ "--annbar-offset": "0px" } as CSSProperties}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-      <Navbar />
-      <main>
-        <PageHero
-          eyebrow="AI Editing vs. Manual Editing"
-          title={
-            <>
-              AI editing doesn&apos;t replace{" "} <span className="serif-voice text-brand">human judgment</span>. It removes the hours before it.
-            </>
-          }
-          lede={
-            <>
-              An honest look at where agentic AI video editing actually saves time, where a person still needs to make the call, and how the two work together in a real production workflow.
-            </>
-          }
-          cta={{ href: "/early-access", label: "Try Broll — get early access" }}
-          secondary={{ href: "/#film", label: "Watch the teaser" }}
-        />
-        <PageBody>
-          <ContentSection title="The short version">
-            <p>
-              Manual editing means a person watches every clip, logs the
-              good takes, finds the right moment, and assembles the story
-              by hand in a timeline. That upstream work — not the creative
-              decisions — is where most of the hours go.
-            </p>
-            <p>
-              <strong>Agentic AI editing</strong>, the way Broll does it,
-              takes raw footage and does that upstream work automatically:
-              watching, indexing, finding moments, building a first cut,
-              writing captions, grading color. What&apos;s left for a
-              person is the part AI can&apos;t judge — tone, brand voice
-              and the final sign-off.
-            </p>
-          </ContentSection>
-
-          <ContentSection title="Where AI saves real time">
-            <ul>
-              <li>
-                <strong>Watching footage</strong> — reviewing hours of raw,
-                unorganized clips to know what you actually have.
-              </li>
-              <li>
-                <strong>Logging takes</strong> — noting which clips are
-                usable, which moments matter, which audio is clean.
-              </li>
-              <li>
-                <strong>Finding the right moment</strong> — searching
-                through footage for the specific shot or line that fits
-                the story, instead of scrubbing manually.
-              </li>
-              <li>
-                <strong>Assembling a first cut</strong> — turning found
-                moments into a structured timeline, with captions and a
-                color grade already applied.
-              </li>
-            </ul>
-            <p>
-              This is the difference between an eight-hour manual edit and
-              a first pass that takes about twelve minutes — the time is
-              saved upstream, before anyone reviews a frame.
-            </p>
-          </ContentSection>
-
-          <ContentSection title="Where human judgment still matters">
-            <ul>
-              <li>
-                <strong>Creative tone</strong> — whether a cut feels right
-                for the moment, the audience and the platform.
-              </li>
-              <li>
-                <strong>Brand voice</strong> — the specific style, pacing
-                and language a team or client expects, built up over many
-                projects.
-              </li>
-              <li>
-                <strong>Final sign-off</strong> — the decision that a video
-                is actually ready to publish, which stays with a person.
-              </li>
-            </ul>
-            <p>
-              An AI editor can build a strong first pass. It shouldn&apos;t
-              be the last set of eyes on anything that ships.
-            </p>
-          </ContentSection>
-
-          <ContentSection title="How they combine in practice">
-            <p>
-              In practice, this isn&apos;t AI or a human editor — it&apos;s
-              AI first, human second. Broll takes raw footage and produces
-              a built story: cut, captions, color grade and lip sync
-              included. An editor then reviews that first pass, adjusts
-              tone and brand voice, and makes the final call.
-            </p>
-            <p>
-              Because Broll exports a standard timeline XML, that review
-              can happen in Premiere Pro, DaVinci Resolve or Final Cut Pro
-              — the same tools a manual edit would have used, just starting
-              from a finished first cut instead of raw footage. Production
-              teams, including{" "}
-              <Link href="/ai-video-editor-for-production-houses" className="link-red">
-                15M+ follower production houses
-              </Link>{" "}
-              and creators behind 200M+ monthly views, use this workflow to keep creative
-              control while cutting out the hours of manual assembly. See
-              how the underlying{" "}
-              <Link href="/ai-video-editor" className="link-red">
-                AI video editor
-              </Link>{" "}
-              works.
-            </p>
-          </ContentSection>
-        </PageBody>
-      </main>
-
-      <FaqSection
-        id="faq"
-        eyebrow="FAQ"
-        heading="AI editing vs. manual editing, answered."
-        faqs={AI_VS_MANUAL_FAQS}
+    <PageShell jsonLd={structuredData}>
+      <PageIntro
+        eyebrow="COMPARE · AI VS. MANUAL"
+        title={
+          <>
+            AI editing doesn&apos;t replace human judgment.{" "}
+            <span className="text-red">It removes the hours before it.</span>
+          </>
+        }
+        lede="An honest look at where agentic AI editing saves time, where people still decide, and how the two work together."
       />
 
-      <Footer />
-    </div>
+      <section className="mx-auto box-border max-w-[1440px] px-6 lg:px-10 pb-24 md:pb-[104px]">
+        <div className="flex flex-col gap-7 rounded-3xl border border-line bg-surface" style={{ padding: "clamp(24px, 4vw, 48px)" }}>
+          <div className="flex flex-col gap-2.5">
+            <span className="eyebrow">TC 00:01 — THE SHORT VERSION</span>
+            <p className="m-0 max-w-[880px] text-[clamp(20px,2.2vw,28px)] leading-[1.4] tracking-[-0.02em]">
+              Most manual editing hours go to upstream work: watching, logging, finding moments. Agentic AI handles that, and
+              leaves tone, brand voice and sign-off to a person.
+            </p>
+          </div>
+          <div className="flex flex-col gap-4" aria-label="Manual first cut takes about 8 hours; Broll's first pass about 12 minutes">
+            <div className="flex flex-col gap-2">
+              <div className="flex justify-between font-mono text-[13px] text-soft">
+                <span>MANUAL FIRST CUT</span>
+                <span>~8h</span>
+              </div>
+              <div className="flex h-9 gap-[3px]">
+                {MANUAL_BAR.map(([w, bg, l]) => (
+                  <div
+                    key={l}
+                    className="flex items-center overflow-hidden rounded pl-2.5 font-mono text-[11px] text-ink-2"
+                    style={{ flex: w === "1" ? "1" : `0 0 ${w}`, background: bg }}
+                  >
+                    {l}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="flex justify-between font-mono text-[13px] text-red">
+                <span>BROLL FIRST PASS</span>
+                <span>~12m</span>
+              </div>
+              <div className="flex h-9">
+                <div className="min-w-3 flex-[0_0_2.5%] rounded bg-crimson" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Band>
+        <Wrap className="grid grid-cols-1 gap-5 py-24 md:grid-cols-2 md:py-[104px]">
+          <div className="flex flex-col gap-[18px] rounded-3xl border border-line bg-surface p-9">
+            <span className="eyebrow">TC 00:02 — AI</span>
+            <h2 className="m-0 text-[32px] font-semibold tracking-[-0.03em]">Where AI saves real time</h2>
+            <ul className="m-0 flex list-none flex-col gap-3 p-0">
+              {AI_LIST.map((i) => (
+                <li key={i} className="flex gap-3 text-base leading-normal text-ink-2">
+                  <span className="mt-2 size-2 shrink-0 rounded-[2px] bg-crimson" />
+                  {i}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex flex-col gap-[18px] rounded-3xl border border-line bg-surface p-9">
+            <span className="font-mono text-[13px] text-soft">TC 00:03 — HUMAN</span>
+            <h2 className="m-0 text-[32px] font-semibold tracking-[-0.03em]">Where human judgment still matters</h2>
+            <ul className="m-0 flex list-none flex-col gap-3 p-0">
+              {HUMAN_LIST.map((i) => (
+                <li key={i} className="flex gap-3 text-base leading-normal text-ink-2">
+                  <span className="mt-2 box-border size-2 shrink-0 rounded-full border-2 border-soft" />
+                  {i}
+                </li>
+              ))}
+            </ul>
+            <p className="m-0 text-[15px] leading-relaxed text-soft">
+              An AI editor can build a strong first pass. It shouldn&apos;t be the last check before anything ships.
+            </p>
+          </div>
+        </Wrap>
+      </Band>
+
+      <section className="mx-auto box-border flex max-w-[1440px] flex-col gap-10 px-6 lg:px-10 pt-24 md:pt-[104px]">
+        <SectionHead eyebrow="TC 00:04 — IN PRACTICE" title="AI first, human second." />
+        <div className="flex flex-wrap items-stretch gap-3">
+          {FLOW.map((f, i) => (
+            <div key={f.k} className="contents">
+              {i > 0 && (
+                <div aria-hidden className="flex items-center text-2xl text-muted max-md:hidden">
+                  →
+                </div>
+              )}
+              <div
+                className={
+                  "flex flex-[1_1_220px] flex-col gap-2 rounded-[18px] bg-surface p-6 " +
+                  (f.hot ? "border-[1.5px] border-red" : "border border-line")
+                }
+              >
+                <span className={"font-mono text-xs " + (f.hot ? "text-red" : "text-muted")}>{f.k}</span>
+                <span className="text-[19px] font-semibold">{f.t}</span>
+                <span className="text-sm text-soft">{f.d}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-5">
+          <ArrowLink href="/ai-video-editor-for-production-houses">Broll for production houses</ArrowLink>
+          <ArrowLink href="/ai-video-editor">The AI video editor</ArrowLink>
+        </div>
+      </section>
+
+      <Faq eyebrow="TC 00:05 — FAQ" heading="AI editing vs. manual editing, answered." items={AI_VS_MANUAL_FAQS} />
+      <CtaBand heading="Keep the judgment. Lose the hours." secondaryLabel="Broll vs. B-roll generators" secondaryHref="/broll-vs-b-roll-generators" />
+    </PageShell>
   );
 }

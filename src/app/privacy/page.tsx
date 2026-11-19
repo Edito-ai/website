@@ -27,11 +27,8 @@ export default function PrivacyPage() {
       />
       <LegalPage
       eyebrow="Legal"
-      title={
-        <>
-          Privacy <span className="serif-voice text-brand">Policy</span>
-        </>
-      }
+      title="Privacy Policy"
+      kind="privacy"
       updated="18 July 2026"
     >
       <LegalSection title="Overview">
