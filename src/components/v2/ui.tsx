@@ -32,7 +32,7 @@ export function SectionHead({
       <h2 id={id} className="h-section">
         {title}
       </h2>
-      {lede && <p className="m-0 text-[17px] leading-relaxed text-soft md:text-lg">{lede}</p>}
+      {lede && <p className="m-hide m-0 text-[17px] leading-relaxed text-soft md:text-lg">{lede}</p>}
     </div>
   );
 }

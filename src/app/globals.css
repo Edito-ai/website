@@ -386,3 +386,27 @@ body {
 .prompt-swap {
   animation: prompt-swap 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+/* --- Phone layout ---------------------------------------------------------
+   Card grids become swipeable rails and long supporting copy steps back, so
+   the home page reads like a product site on a phone, not an article. */
+@media (max-width: 639px) {
+  .m-rail {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 12px !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin-inline: -24px;
+    padding: 2px 24px 10px;
+    scroll-padding-inline: 24px;
+    scrollbar-width: none;
+  }
+  .m-rail::-webkit-scrollbar { display: none; }
+  .m-rail > * {
+    flex: 0 0 80% !important;
+    min-height: 0 !important;
+    scroll-snap-align: start;
+  }
+  .m-hide { display: none !important; }
+}

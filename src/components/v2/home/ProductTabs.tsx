@@ -15,7 +15,7 @@ export default function ProductTabs() {
       <div
         role="tablist"
         aria-label="Broll products"
-        className="flex flex-wrap justify-center gap-1.5 rounded-[20px] border border-line bg-surface p-1.5"
+        className="flex max-w-full flex-nowrap justify-start gap-1.5 overflow-x-auto rounded-[20px] border border-line bg-surface p-1.5 [scrollbar-width:none] sm:flex-wrap sm:justify-center"
       >
         {PRODUCTS.map((p) => {
           const on = p.kind === tab;
@@ -29,7 +29,7 @@ export default function ProductTabs() {
               aria-selected={on}
               onClick={() => setTab(p.kind)}
               className={
-                "inline-flex min-h-14 cursor-pointer items-center rounded-[14px] border-0 px-[22px] text-left transition-colors " +
+                "inline-flex min-h-11 shrink-0 cursor-pointer items-center rounded-[14px] border-0 px-4 text-left transition-colors sm:min-h-14 sm:px-[22px] " +
                 (on ? "bg-ink text-bg" : "bg-transparent text-ink-2 hover:bg-[#181A27]")
               }
             >
@@ -45,7 +45,7 @@ export default function ProductTabs() {
                     {p.live ? "Live" : "Soon"}
                   </span>
                 </span>
-                <span className="font-mono text-[11px] opacity-75">{p.platform}</span>
+                <span className="hidden font-mono text-[11px] opacity-75 sm:inline">{p.platform}</span>
               </span>
             </button>
           );
@@ -64,7 +64,9 @@ export default function ProductTabs() {
           </span>
           <h3 className="m-0 text-[clamp(28px,3vw,40px)] leading-[1.08] font-semibold tracking-[-0.035em]">{active.name}</h3>
           <p className="m-0 text-base leading-[1.65] text-soft">{active.desc}</p>
-          <CheckList items={active.bullets} />
+          <div className="m-hide">
+            <CheckList items={active.bullets} />
+          </div>
           <div className="mt-1 flex flex-wrap gap-2.5">
             {active.live ? (
               <a href={CHAT_URL} className="btn btn-primary min-h-12 px-[22px] text-[15px]">

@@ -170,7 +170,7 @@ export default function Home() {
 
         {/* PRODUCTS */}
         <section id="products" aria-labelledby="products-title" className="border-t border-line-2 bg-bg-2">
-          <Wrap className="flex flex-col items-center gap-10 pt-24 pb-28 md:pt-28 md:pb-[120px]">
+          <Wrap className="flex flex-col items-center gap-10 pt-16 pb-20 sm:pt-24 sm:pb-28 md:pt-28 md:pb-[120px]">
             <SectionHead
               center
               id="products-title"
@@ -187,11 +187,11 @@ export default function Home() {
         <Film />
 
         {/* COST */}
-        <section className="mx-auto box-border flex max-w-[1440px] flex-wrap items-center gap-14 px-6 lg:px-10 py-24 md:py-[120px]">
+        <section className="mx-auto box-border flex max-w-[1440px] flex-wrap items-center gap-8 px-6 sm:gap-14 lg:px-10 py-16 sm:py-24 md:py-[120px]">
           <div className="flex flex-[1_1_360px] flex-col gap-[18px]">
             <span className="eyebrow">TC 00:04 — WHY BROLL</span>
             <h2 className="h-section">The same quality of edit. At a fraction of the price.</h2>
-            <p className="m-0 text-[17px] leading-relaxed text-soft">
+            <p className="m-hide m-0 text-[17px] leading-relaxed text-soft">
               One agent does the watching, logging, cutting and finishing in a single pass, so the cost of a first cut
               drops with it.
             </p>
@@ -220,9 +220,9 @@ export default function Home() {
 
         {/* HOW IT WORKS */}
         <Band>
-          <Wrap className="flex flex-col gap-12 py-24 md:py-[120px]">
+          <Wrap className="flex flex-col gap-12 py-16 sm:py-24 md:py-[120px]">
             <SectionHead eyebrow="TC 00:05 — HOW IT WORKS" title="Three steps. No timeline." />
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+            <div className="m-rail grid grid-cols-1 gap-5 md:grid-cols-3">
               <div className={card}>
                 <span className="font-mono text-[13px] text-muted">01</span>
                 <h3 className="m-0 text-[22px] font-semibold tracking-[-0.02em]">Bring your footage</h3>
@@ -269,14 +269,14 @@ export default function Home() {
         <Ruler pos="58%" tc="00:06:12:20" />
 
         {/* FEATURES */}
-        <section className="mx-auto box-border flex max-w-[1440px] flex-col gap-12 px-6 lg:px-10 py-24 md:py-[120px]">
+        <section className="mx-auto box-border flex max-w-[1440px] flex-col gap-12 px-6 lg:px-10 py-16 sm:py-24 md:py-[120px]">
           <div className="flex flex-wrap items-end justify-between gap-5">
             <SectionHead eyebrow="TC 00:06 — FEATURES" title="One agent, the whole edit." />
             <Link href="/product" className="link-arrow text-base">
               Explore the product →
             </Link>
           </div>
-          <div className="flex flex-wrap gap-5">
+          <div className="m-rail flex flex-wrap gap-5">
             <div className="box-border flex min-h-80 min-w-0 flex-[2_1_480px] flex-col gap-3.5 rounded-3xl border border-wine-line bg-[#1A0F17] p-8">
               <div className="flex items-center justify-between">
                 <svg {...featIcon}>
@@ -416,9 +416,25 @@ export default function Home() {
         </section>
 
         {/* WHY TEAMS SWITCH */}
-        <section className="mx-auto box-border flex max-w-[1440px] flex-col gap-10 px-6 lg:px-10 pt-10 pb-24 md:pb-[120px]">
+        <section className="mx-auto box-border flex max-w-[1440px] flex-col gap-10 px-6 lg:px-10 pt-4 pb-16 sm:pt-10 sm:pb-24 md:pb-[120px]">
           <SectionHead eyebrow="TC 00:07 — WHY TEAMS SWITCH" title="Manual editing vs. Broll." />
-          <div className="overflow-x-auto rounded-[20px] border border-line">
+          <ul className="m-0 flex list-none flex-col gap-2 p-0 sm:hidden">
+            {COMPARE.map((r) => (
+              <li key={r.step} className="flex flex-col gap-1 rounded-2xl border border-line bg-surface px-4 py-3.5">
+                <span className="text-[15px] font-semibold">{r.step}</span>
+                <span className="text-[13px] text-muted line-through decoration-dim">{r.manual}</span>
+                <span className="flex gap-2 text-sm text-ink-2">
+                  <span className="text-red">→</span>
+                  {r.broll}
+                </span>
+              </li>
+            ))}
+            <li className="mt-1 flex items-center justify-between rounded-2xl border border-wine-line bg-wine/60 px-4 py-4 font-mono">
+              <span className="text-sm text-soft line-through">~8 hours</span>
+              <span className="text-xl text-red">~12 min</span>
+            </li>
+          </ul>
+          <div className="hidden overflow-x-auto rounded-[20px] border border-line sm:block">
             <table className="w-full min-w-[640px] border-collapse text-[15px]">
               <thead>
                 <tr className="bg-surface">
@@ -447,9 +463,9 @@ export default function Home() {
 
         {/* USE CASES */}
         <Band>
-          <Wrap className="flex flex-col gap-8 py-24 md:py-[120px]">
+          <Wrap className="flex flex-col gap-8 py-16 sm:py-24 md:py-[120px]">
             <SectionHead eyebrow="TC 00:08 — USE CASES" title="Built for teams shipping video every week." />
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            <div className="m-rail grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
               {USE_CASES.map((u, i) => (
                 <div key={u.title} className="flex flex-col gap-2.5 rounded-2xl border border-line bg-surface p-[22px]">
                   <span className="mono-label">0{i + 1}</span>

@@ -43,7 +43,7 @@ export default function NewFeatures({ eyebrow = "NEW IN BROLL" }: { eyebrow?: st
               Two faster ways to a finished video.
             </h2>
           </div>
-          <p className="m-0 max-w-[460px] text-[17px] leading-relaxed text-soft lg:mb-2">
+          <p className="m-hide m-0 max-w-[460px] text-[17px] leading-relaxed text-soft lg:mb-2">
             Copy the style of a video that already works, or turn a long YouTube video into clips in one pass.
           </p>
         </div>
@@ -58,7 +58,7 @@ export default function NewFeatures({ eyebrow = "NEW IN BROLL" }: { eyebrow?: st
             <h3 className="m-0 text-[clamp(28px,3vw,42px)] leading-[1.08] font-semibold tracking-[-0.035em]">
               Show it a video you love. Get the same edit.
             </h3>
-            <p className="m-0 text-base leading-[1.7] text-soft">
+            <p className="m-hide m-0 text-base leading-[1.7] text-soft">
               Give Broll a reference, like your best-performing reel or a format you want to repeat. It picks up the
               pacing, caption style, layout and look, then cuts your new footage to the same template.
             </p>
@@ -72,15 +72,15 @@ export default function NewFeatures({ eyebrow = "NEW IN BROLL" }: { eyebrow?: st
                 ),
               )}
             </ol>
-            <p className="m-0 text-sm leading-relaxed text-muted">Built for series, recurring formats and client house styles.</p>
+            <p className="m-hide m-0 text-sm leading-relaxed text-muted">Built for series, recurring formats and client house styles.</p>
           </div>
-          <div aria-hidden className="flex min-w-0 flex-[999_1_520px] flex-wrap items-stretch gap-3.5">
-            <div className="flex min-w-0 flex-[1_1_200px] flex-col gap-2.5">
+          <div aria-hidden className="flex min-w-0 flex-[999_1_520px] flex-nowrap items-stretch gap-2 sm:flex-wrap sm:gap-3.5">
+            <div className="flex min-w-0 flex-1 flex-col gap-2.5 sm:flex-[1_1_200px]">
               <span className="font-mono text-[11px] text-muted">REFERENCE</span>
               <Phone file="best_reel.mp4" src={CLIPS.podcast} pos="center">
                 stop <span className="text-red">scrolling</span>
               </Phone>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="m-hide flex flex-wrap gap-1.5">
                 {["3s hook", "fast cuts", "bold captions", "warm grade"].map((t) => (
                   <span key={t} className={`${tag} bg-[#1D2030] text-ink-2`}>
                     {t}
@@ -88,7 +88,7 @@ export default function NewFeatures({ eyebrow = "NEW IN BROLL" }: { eyebrow?: st
                 ))}
               </div>
             </div>
-            <div className="flex flex-[0_0_56px] flex-col items-center justify-center gap-2">
+            <div className="flex flex-[0_0_40px] flex-col items-center justify-center gap-2 sm:flex-[0_0_56px]">
               <span className="flex size-11 items-center justify-center rounded-full bg-crimson">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M13 6l6 6-6 6" />
@@ -100,12 +100,12 @@ export default function NewFeatures({ eyebrow = "NEW IN BROLL" }: { eyebrow?: st
                 template
               </span>
             </div>
-            <div className="flex min-w-0 flex-[1_1_200px] flex-col gap-2.5">
+            <div className="flex min-w-0 flex-1 flex-col gap-2.5 sm:flex-[1_1_200px]">
               <span className="font-mono text-[11px] text-red">YOUR NEW CUT</span>
               <Phone file="ep43_reel.mp4" src={CLIPS.creator} pos="center" hot>
                 this is <span className="text-red">huge</span>
               </Phone>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="m-hide flex flex-wrap gap-1.5">
                 {["✓ hook", "✓ pacing", "✓ captions", "✓ grade"].map((t) => (
                   <span key={t} className={`${tag} bg-wine text-red`}>
                     {t}
@@ -164,7 +164,7 @@ export default function NewFeatures({ eyebrow = "NEW IN BROLL" }: { eyebrow?: st
             <h3 className="m-0 text-[clamp(28px,3vw,42px)] leading-[1.08] font-semibold tracking-[-0.035em]">
               Paste a link. Get the clips.
             </h3>
-            <p className="m-0 text-base leading-[1.7] text-soft">
+            <p className="m-hide m-0 text-base leading-[1.7] text-soft">
               Drop in a YouTube video or a long stream. Broll watches the whole thing, finds the moments worth posting,
               and cuts them into captioned short clips for Shorts, Reels and TikTok.
             </p>
