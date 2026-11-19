@@ -1,21 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, CHAT_URL } from "@/components/v2/ui";
 
 const EXAMPLES = [
-  { label: "Reel in my style", text: "Cut a 60s reel in the style of my last video" },
-  { label: "Clip a stream", text: "Find the 5 best moments in this YouTube stream and make captioned clips" },
-  { label: "Podcast trailer", text: "Turn this 3-hour podcast into a 90s trailer with captions" },
-  { label: "Vertical + captions", text: "Make a 9:16 version with bold captions and a warm grade" },
+  "Cut a 60s reel in the style of my last video",
+  "Find the 5 best moments in this stream and make captioned clips",
+  "Turn this 3-hour podcast into a 90s trailer with captions",
+  "Make a 9:16 version with bold captions and a warm grade",
 ];
 
+/**
+ * Hero prompt box. Until the visitor touches it, the example prompt rotates
+ * every 3s inside the field; once they focus it, rotation stops and the
+ * field is theirs to edit.
+ */
 export default function HeroPrompt() {
-  const [prompt, setPrompt] = useState(EXAMPLES[0].text);
-  const [ex, setEx] = useState(0);
+  const [i, setI] = useState(0);
+  const [touched, setTouched] = useState(false);
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    if (touched || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setInterval(() => setI((n) => (n + 1) % EXAMPLES.length), 3000);
+    return () => window.clearInterval(id);
+  }, [touched]);
 
   return (
-    <div className="mt-1 flex w-full max-w-[760px] flex-col gap-3 sm:mt-2 sm:gap-3.5">
+    <div className="mt-1 flex w-full max-w-[760px] flex-col gap-3 sm:mt-2">
       <form
         action={CHAT_URL}
         method="get"
@@ -28,47 +40,50 @@ export default function HeroPrompt() {
           <path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z" />
           <path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z" />
         </svg>
-        <input
-          id="hero-prompt"
-          type="text"
-          value={prompt}
-          onChange={(e) => {
-            setPrompt(e.target.value);
-            setEx(-1);
-          }}
-          placeholder="Describe the video you want…"
-          className="min-h-11 min-w-0 flex-1 border-0 bg-transparent text-[15px] sm:min-h-[52px] sm:text-[17px] text-ink outline-none placeholder:text-muted"
-        />
+        <div className="relative min-w-0 flex-1">
+          <input
+            id="hero-prompt"
+            type="text"
+            value={value}
+            onFocus={() => {
+              if (!touched) {
+                setTouched(true);
+                setValue(EXAMPLES[i]);
+              }
+            }}
+            onChange={(e) => setValue(e.target.value)}
+            placeholder={touched ? "Describe the video you want…" : ""}
+            className="min-h-11 w-full border-0 bg-transparent text-[15px] text-ink outline-none placeholder:text-muted sm:min-h-[52px] sm:text-[17px]"
+          />
+          {!touched && (
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-0 flex items-center overflow-hidden text-[15px] text-ink sm:text-[17px]"
+            >
+              <span key={i} className="prompt-swap truncate">
+                {EXAMPLES[i]}
+              </span>
+            </span>
+          )}
+        </div>
         <a
           href={CHAT_URL}
-          className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-xl bg-crimson px-[22px] text-[15px] font-semibold sm:min-h-[52px] sm:rounded-[14px] sm:text-base text-white transition-colors hover:bg-[#d22640] max-sm:w-full max-sm:justify-center"
+          className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-xl bg-crimson px-[22px] text-[15px] font-semibold text-white transition-colors hover:bg-[#d22640] max-sm:w-full max-sm:justify-center sm:min-h-[52px] sm:rounded-[14px] sm:text-base"
         >
           Start in Chat
           <ArrowRight />
         </a>
       </form>
-      <div role="group" aria-label="Example prompts" className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
-        {EXAMPLES.map((x, i) => {
-          const on = ex === i;
-          return (
-            <button
-              key={x.label}
-              type="button"
-              aria-pressed={on}
-              onClick={() => {
-                setPrompt(x.text);
-                setEx(i);
-              }}
-              className={
-                "min-h-9 cursor-pointer rounded-full border px-3 text-[13px] transition-colors sm:min-h-10 sm:px-3.5 sm:text-sm " +
-                (on ? "border-crimson bg-wine text-red" : "border-line bg-[rgba(20,17,17,0.8)] text-ink-2 hover:border-line-3")
-              }
-            >
-              {x.label}
-            </button>
-          );
-        })}
-      </div>
+      {!touched && (
+        <div aria-hidden className="flex justify-center gap-1.5">
+          {EXAMPLES.map((_, n) => (
+            <span
+              key={n}
+              className={"h-1 rounded-full transition-all duration-500 " + (n === i ? "w-5 bg-red" : "w-1.5 bg-line-3")}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
