@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import LegalPage, { LegalSection } from "@/components/site/LegalPage";
 import { breadcrumbJsonLd } from "@/lib/site";
 
@@ -43,11 +42,8 @@ export default function PrivacyPage() {
 
       <LegalSection title="Information we collect">
         <p>
-          <strong>Early-access requests.</strong> When you request early access through our{" "}
-          <Link href="/early-access" className="link-red">
-            contact form
-          </Link>
-          , we collect the details you submit: your name, work email, the name
+          <strong>Early-access requests.</strong> When you requested early access through our
+          early-access form, we collected the details you submit: your name, work email, the name
           of your studio or channel, links you share, what you publish, and how
           you heard about us.
         </p>
@@ -100,10 +96,10 @@ export default function PrivacyPage() {
         <p>
           You can ask us at any time to access, correct, or delete the personal
           information we hold about you, or to stop contacting you. Reach us
-          through the{" "}
-          <Link href="/early-access" className="link-red">
-            contact form
-          </Link>{" "}
+          in{" "}
+          <a href="https://chat.trybroll.com" className="link-red">
+            Chat
+          </a>{" "}
           and we will respond promptly.
         </p>
       </LegalSection>

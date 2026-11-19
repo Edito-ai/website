@@ -1,5 +1,4 @@
 import { neon } from "@neondatabase/serverless";
-import type { DemoRequestFields } from "@/lib/email";
 
 /** HTTP-based Neon client — no connection pooling to manage, safe to call
  *  from a serverless/edge function per request (unlike a plain TCP `pg`
@@ -144,23 +143,4 @@ export async function listAllLeads(): Promise<LeadRow[]> {
     if (e) seen.add(e);
   }
   return rows.reverse();
-}
-
-/** Saves one form submission. Throws on failure — the caller decides
- *  whether a DB failure should fail the whole request. */
-export async function saveDemoRequest(fields: DemoRequestFields): Promise<void> {
-  await ensureSchema();
-  await getSql()`
-    INSERT INTO demo_requests
-      (name, email, phone, production_house, channel_link, details, referral_source)
-    VALUES (
-      ${fields.name},
-      ${fields.email},
-      ${fields.phone},
-      ${fields.production_house},
-      ${fields.channel_link || null},
-      ${fields.details || null},
-      ${fields.referral_source}
-    )
-  `;
 }

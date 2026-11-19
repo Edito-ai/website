@@ -4,12 +4,12 @@ import path from "path";
 const nextConfig: NextConfig = {
   // Lets a phone on the same Wi-Fi load the dev server by LAN IP.
   allowedDevOrigins: ["192.168.1.4"],
-  // The demo flow was replaced by early access for the 16 Oct launch.
+  // Demo and early-access flows are retired: Chat is live, so old links land on home.
   async redirects() {
     return [
-      { source: "/demo", destination: "/early-access", permanent: true },
-      { source: "/schedule-demo", destination: "/early-access", permanent: true },
-      { source: "/api/submit-demo", destination: "/api/early-access", permanent: false },
+      { source: "/demo", destination: "/", permanent: true },
+      { source: "/schedule-demo", destination: "/", permanent: true },
+      { source: "/early-access", destination: "/", permanent: true },
     ];
   },
   turbopack: {

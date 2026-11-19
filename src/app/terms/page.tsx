@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import LegalPage, { LegalSection } from "@/components/site/LegalPage";
 import { breadcrumbJsonLd } from "@/lib/site";
 
@@ -119,10 +118,10 @@ export default function TermsPage() {
           We may update these terms as the service evolves; the &ldquo;Last
           updated&rdquo; date above reflects the current version, and material
           changes will be communicated to active customers. Questions about
-          these terms? Reach us through the{" "}
-          <Link href="/early-access" className="link-red">
-            contact form
-          </Link>
+          these terms? Reach us in{" "}
+          <a href="https://chat.trybroll.com" className="link-red">
+            Chat
+          </a>
           .
         </p>
       </LegalSection>
