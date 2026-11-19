@@ -122,22 +122,24 @@ export default function Home() {
             style={{ background: "radial-gradient(closest-side, rgba(190,30,52,0.26), rgba(190,30,52,0) 72%)" }}
           />
           <div aria-hidden className="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-b from-transparent to-bg" />
-          <section className="relative mx-auto box-border flex max-w-[1440px] flex-col items-center gap-7 px-6 lg:px-10 pt-20 pb-[72px] text-center md:pt-[104px]">
+          <section className="relative mx-auto box-border flex max-w-[1440px] flex-col items-center gap-5 px-5 pt-10 pb-12 text-center sm:gap-7 sm:px-6 sm:pt-16 sm:pb-[72px] md:pt-[104px] lg:px-10">
             <a
               href="#new"
-              className="inline-flex items-center gap-2.5 rounded-full border border-line-strong bg-surface py-1.5 pr-3.5 pl-1.5 text-sm text-ink-2 transition-colors hover:border-red"
+              className="inline-flex max-w-full items-center gap-2 rounded-full border border-line-strong bg-surface py-1 pr-3 pl-1 text-[13px] whitespace-nowrap text-ink-2 transition-colors hover:border-red sm:gap-2.5 sm:py-1.5 sm:pr-3.5 sm:pl-1.5 sm:text-sm"
             >
-              <span className="rounded-full bg-crimson px-[9px] py-1 text-xs font-semibold text-white">New</span>
-              <span>Reference-style editing and YouTube clipping</span>
+              <span className="rounded-full bg-crimson px-2 py-0.5 text-[11px] font-semibold text-white sm:px-[9px] sm:py-1 sm:text-xs">New</span>
+              <span className="truncate">
+                Reference-style editing<span className="hidden sm:inline"> and YouTube clipping</span>
+              </span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
                 <path d="M9 6l6 6-6 6" />
               </svg>
             </a>
-            <h1 className="m-0 max-w-[1100px] text-[clamp(46px,7.4vw,112px)] leading-[0.96] font-semibold tracking-[-0.055em] text-balance">
+            <h1 className="m-0 max-w-[1100px] text-[clamp(40px,7.4vw,112px)] leading-[0.96] font-semibold tracking-[-0.055em] text-balance">
               The AI editor that finishes videos <span className="text-grad">before you do.</span>
             </h1>
             <HeroPrompt />
-            <p className="m-0 inline-flex flex-wrap items-center justify-center gap-x-3.5 gap-y-2 text-sm text-muted">
+            <p className="m-0 inline-flex flex-wrap items-center justify-center gap-x-3.5 gap-y-1 text-[13px] text-muted sm:text-sm">
               <span className="inline-flex items-center gap-1.5 text-ink-2">
                 <span className="size-[7px] rounded-full bg-red" />
                 Chat is live

@@ -73,9 +73,10 @@ export default function Navbar() {
         </div>
 
         <div className="ml-auto flex items-center gap-2 justify-self-end md:ml-0">
-          <a href={CHAT_URL} className="btn btn-primary btn-sm gap-2 max-[420px]:hidden">
+          <a href={CHAT_URL} className="btn btn-primary btn-sm min-h-10 gap-2 px-4 text-sm sm:min-h-11 sm:px-[18px] sm:text-[15px]">
             <ChatIcon />
-            Chat with Broll
+            <span className="sm:hidden">Chat</span>
+            <span className="hidden sm:inline">Chat with Broll</span>
           </a>
           <button
             type="button"
@@ -83,7 +84,7 @@ export default function Navbar() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen((v) => !v)}
-            className="relative flex size-11 cursor-pointer items-center justify-center rounded-full border border-line-strong md:hidden"
+            className="relative flex size-10 cursor-pointer items-center justify-center rounded-full border border-line-strong md:hidden"
           >
             <span
               className={cn(

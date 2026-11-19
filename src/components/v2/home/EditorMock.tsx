@@ -72,9 +72,9 @@ const pos = (s: Span): CSSProperties => ({ left: `${s.at}%`, width: `${s.w}%` })
 function Track({ label, icon, children, tall }: { label: string; icon: ReactNode; children: ReactNode; tall?: boolean }) {
   return (
     <div className="flex items-stretch gap-2">
-      <div className="flex w-[52px] shrink-0 items-center justify-between rounded-[5px] bg-[#141623] px-1.5 text-muted">
+      <div className="flex w-[30px] shrink-0 items-center justify-center rounded-[5px] bg-[#141623] px-1 text-muted sm:w-[52px] sm:justify-between sm:px-1.5">
         <span className="font-mono text-[10px]">{label}</span>
-        {icon}
+        <span className="hidden sm:inline">{icon}</span>
       </div>
       <div className={`relative flex-1 ${tall ? "h-[34px]" : "h-[26px]"}`}>{children}</div>
     </div>
@@ -122,7 +122,7 @@ export default function EditorMock() {
 
         <div className="flex flex-wrap" aria-hidden>
           {/* Left: agent */}
-          <div className="box-border flex min-w-0 flex-[1_1_320px] flex-col gap-4 border-r border-line-2 p-[22px]">
+          <div className="box-border flex min-w-0 flex-[1_1_320px] flex-col gap-4 border-line-2 p-4 max-md:border-t sm:p-[22px] md:border-r">
             <div className="max-w-[300px] self-end rounded-[14px_14px_4px_14px] bg-[#1E2132] px-3.5 py-3 text-sm leading-normal">
               Make a 60s reel from this episode. Punchy hook, bold captions, warm grade.
             </div>
@@ -146,7 +146,7 @@ export default function EditorMock() {
             </div>
 
             {/* Moments found */}
-            <div className="flex flex-col gap-2 rounded-xl border border-line bg-[#0C0D15] p-2.5">
+            <div className="hidden flex-col gap-2 rounded-xl border border-line bg-[#0C0D15] p-2.5 md:flex">
               <div className="flex items-center justify-between px-1 font-mono text-[10px] text-muted">
                 <span>MOMENTS · 14 FOUND</span>
                 <span className="text-red">USED 6</span>
@@ -171,7 +171,7 @@ export default function EditorMock() {
             </div>
 
             {/* Export queue */}
-            <div className="flex flex-col gap-2 rounded-xl border border-line bg-[#0C0D15] p-3 font-mono text-[11px]">
+            <div className="hidden flex-col gap-2 rounded-xl border border-line bg-[#0C0D15] p-3 font-mono text-[11px] md:flex">
               <div className="flex items-center justify-between text-[10px] text-muted">
                 <span>EXPORT QUEUE</span>
                 <span>2 / 3</span>
@@ -204,7 +204,7 @@ export default function EditorMock() {
           </div>
 
           {/* Right: viewer + timeline */}
-          <div className="box-border flex min-w-0 flex-[999_1_480px] flex-col gap-4 p-[22px]">
+          <div className="box-border flex min-w-0 flex-[999_1_480px] flex-col gap-4 p-3 max-md:order-first sm:p-[22px]">
             <div className="relative aspect-video overflow-hidden rounded-xl border border-line-2 bg-[#181A27]">
               <Image src={CLIPS.interview} alt="" fill priority sizes="(min-width: 1200px) 860px, 100vw" className="object-cover" style={{ objectPosition: "center 30%" }} />
               <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(8,9,15,0.45)_0%,rgba(8,9,15,0)_28%,rgba(8,9,15,0)_62%,rgba(8,9,15,0.5)_100%)]" />
@@ -230,7 +230,7 @@ export default function EditorMock() {
             <div className="relative flex flex-col gap-1.5 rounded-xl border border-line-2 bg-[#0C0D15] p-2.5">
               {/* Ruler */}
               <div className="flex items-end gap-2">
-                <div className="w-[52px] shrink-0" />
+                <div className="w-[30px] shrink-0 sm:w-[52px]" />
                 <div className="relative h-5 flex-1">
                   <div
                     className="absolute inset-x-0 bottom-0 h-2"
@@ -253,7 +253,7 @@ export default function EditorMock() {
                   <div key={c.at} className="absolute inset-y-0 overflow-hidden rounded-[4px] border border-[#8A2238]" style={pos(c)}>
                     <div className="absolute inset-0" style={{ backgroundImage: `url(${c.src})`, backgroundSize: "auto 100%", backgroundRepeat: "repeat-x" }} />
                     <div className="absolute inset-0 bg-[#5A1E30]/55" />
-                    <span className="absolute top-1/2 left-1.5 -translate-y-1/2 truncate font-mono text-[9px] text-white/90">{c.name}</span>
+                    <span className="absolute top-1/2 left-1.5 hidden -translate-y-1/2 truncate font-mono text-[9px] text-white/90 sm:block">{c.name}</span>
                   </div>
                 ))}
               </Track>
@@ -265,8 +265,8 @@ export default function EditorMock() {
                       className="absolute inset-0 opacity-80"
                       style={{ backgroundImage: `url(${c.src})`, backgroundSize: "auto 100%", backgroundRepeat: "repeat-x", backgroundPosition: c.pos }}
                     />
-                    <div className="absolute inset-x-0 top-0 bg-[#08090F]/70 px-1.5 py-[1px]">
-                      <span className="block truncate font-mono text-[9px] text-ink-2">{c.name}</span>
+                    <div className="absolute inset-x-0 top-0 hidden bg-[#08090F]/70 px-1.5 py-[1px] sm:block">
+                      <span className="hidden truncate font-mono text-[9px] text-ink-2 sm:block">{c.name}</span>
                     </div>
                   </div>
                 ))}
@@ -292,13 +292,13 @@ export default function EditorMock() {
                     }
                     style={pos(c)}
                   >
-                    <span className="truncate text-[10px] font-semibold text-white">{c.text}</span>
+                    <span className="hidden truncate text-[10px] font-semibold text-white sm:block">{c.text}</span>
                   </div>
                 ))}
               </Track>
 
               {/* Playhead */}
-              <div className="pointer-events-none absolute top-1 bottom-1.5 left-[calc(10px+52px+8px)] right-2.5">
+              <div className="pointer-events-none absolute top-1 bottom-1.5 left-[calc(10px+30px+8px)] sm:left-[calc(10px+52px+8px)] right-2.5">
                 <div className="absolute inset-y-0 w-px bg-red shadow-[0_0_8px_rgba(255,92,112,0.8)]" style={{ left: `${PLAYHEAD}%` }}>
                   <span className="absolute -top-0.5 left-1/2 h-2.5 w-3 -translate-x-1/2 rounded-b-[3px] bg-crimson" />
                 </div>

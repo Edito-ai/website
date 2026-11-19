@@ -15,11 +15,11 @@ export default function HeroPrompt() {
   const [ex, setEx] = useState(0);
 
   return (
-    <div className="mt-2 flex w-full max-w-[760px] flex-col gap-3.5">
+    <div className="mt-1 flex w-full max-w-[760px] flex-col gap-3 sm:mt-2 sm:gap-3.5">
       <form
         action={CHAT_URL}
         method="get"
-        className="flex items-center gap-2.5 rounded-[20px] border border-line-3 bg-surface-2 py-2 pr-2 pl-5 shadow-[0_0_0_6px_rgba(190,30,52,0.08),0_24px_60px_-20px_rgba(0,0,0,0.8)] max-sm:flex-wrap max-sm:pl-4"
+        className="flex items-center gap-2.5 rounded-[20px] border border-line-3 bg-surface-2 py-2 pr-2 pl-5 shadow-[0_0_0_6px_rgba(190,30,52,0.08),0_24px_60px_-20px_rgba(0,0,0,0.8)] max-sm:flex-wrap max-sm:gap-2 max-sm:rounded-2xl max-sm:p-2 max-sm:pl-3.5"
       >
         <label htmlFor="hero-prompt" className="sr-only">
           Describe the video you want
@@ -37,17 +37,17 @@ export default function HeroPrompt() {
             setEx(-1);
           }}
           placeholder="Describe the video you want…"
-          className="min-h-[52px] min-w-0 flex-1 border-0 bg-transparent text-[17px] text-ink outline-none placeholder:text-muted"
+          className="min-h-11 min-w-0 flex-1 border-0 bg-transparent text-[15px] sm:min-h-[52px] sm:text-[17px] text-ink outline-none placeholder:text-muted"
         />
         <a
           href={CHAT_URL}
-          className="inline-flex min-h-[52px] shrink-0 items-center gap-2 rounded-[14px] bg-crimson px-[22px] font-semibold text-white transition-colors hover:bg-[#d22640] max-sm:w-full max-sm:justify-center"
+          className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-xl bg-crimson px-[22px] text-[15px] font-semibold sm:min-h-[52px] sm:rounded-[14px] sm:text-base text-white transition-colors hover:bg-[#d22640] max-sm:w-full max-sm:justify-center"
         >
           Start in Chat
           <ArrowRight />
         </a>
       </form>
-      <div role="group" aria-label="Example prompts" className="flex flex-wrap justify-center gap-2">
+      <div role="group" aria-label="Example prompts" className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
         {EXAMPLES.map((x, i) => {
           const on = ex === i;
           return (
@@ -60,7 +60,7 @@ export default function HeroPrompt() {
                 setEx(i);
               }}
               className={
-                "min-h-10 cursor-pointer rounded-full border px-3.5 text-sm transition-colors " +
+                "min-h-9 cursor-pointer rounded-full border px-3 text-[13px] transition-colors sm:min-h-10 sm:px-3.5 sm:text-sm " +
                 (on ? "border-crimson bg-wine text-red" : "border-line bg-[rgba(20,17,17,0.8)] text-ink-2 hover:border-line-3")
               }
             >

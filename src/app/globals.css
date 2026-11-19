@@ -269,108 +269,110 @@ body {
    (#ff5c70) for accent text, Geist + Geist Mono. Section eyebrows are
    timecodes and a ruler with a crimson playhead runs between sections. */
 
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--red);
-}
+@layer components {
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--red);
+  }
 
-.mono-label {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--muted);
-}
+  .mono-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
 
-.h-section {
-  margin: 0;
-  font-size: clamp(32px, 4vw, 56px);
-  line-height: 1.05;
-  letter-spacing: -0.035em;
-  font-weight: 600;
-  text-wrap: balance;
-}
+  .h-section {
+    margin: 0;
+    font-size: clamp(32px, 4vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    font-weight: 600;
+    text-wrap: balance;
+  }
 
-.text-grad {
-  background: linear-gradient(100deg, var(--red) 10%, var(--peach) 90%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+  .text-grad {
+    background: linear-gradient(100deg, var(--red) 10%, var(--peach) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 52px;
-  padding: 0 26px;
-  border-radius: 999px;
-  font-size: 16px;
-  font-weight: 600;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
-}
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 52px;
+    padding: 0 26px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+  }
 
-.btn-primary {
-  background: var(--crimson);
-  color: #fff;
-}
+  .btn-primary {
+    background: var(--crimson);
+    color: #fff;
+  }
 
-.btn-primary:hover {
-  background: #d22640;
-}
+  .btn-primary:hover {
+    background: #d22640;
+  }
 
-.btn-ghost {
-  border: 1px solid var(--line-strong);
-  color: var(--ink);
-  font-weight: 500;
-  padding: 0 24px;
-}
+  .btn-ghost {
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+    font-weight: 500;
+    padding: 0 24px;
+  }
 
-.btn-ghost:hover {
-  border-color: var(--red);
-}
+  .btn-ghost:hover {
+    border-color: var(--red);
+  }
 
-.btn-sm {
-  min-height: 44px;
-  padding: 0 18px;
-  font-size: 15px;
-}
+  .btn-sm {
+    min-height: 44px;
+    padding: 0 18px;
+    font-size: 15px;
+  }
 
-.link-arrow {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  color: var(--red);
-  font-size: 15px;
-  font-weight: 500;
-  text-decoration: none;
-}
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--red);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+  }
 
-.link-arrow:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
+  .link-arrow:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
 
-.chip {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  padding: 6px 10px;
-  border-radius: 6px;
-  background: #1d2030;
-  color: var(--ink-2);
-}
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: #1d2030;
+    color: var(--ink-2);
+  }
 
-.chip-hot {
-  background: var(--wine);
-  color: var(--red);
-}
+  .chip-hot {
+    background: var(--wine);
+    color: var(--red);
+  }
 
-.grid-paper {
-  background-image:
-    linear-gradient(#11131e 1px, transparent 1px),
-    linear-gradient(90deg, #11131e 1px, transparent 1px);
-  background-size: 72px 72px;
-  background-position: center -1px;
+  .grid-paper {
+    background-image:
+      linear-gradient(#11131e 1px, transparent 1px),
+      linear-gradient(90deg, #11131e 1px, transparent 1px);
+    background-size: 72px 72px;
+    background-position: center -1px;
+  }
 }
