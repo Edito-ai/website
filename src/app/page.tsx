@@ -136,10 +136,6 @@ export default function Home() {
             <h1 className="m-0 max-w-[1100px] text-[clamp(46px,7.4vw,112px)] leading-[0.96] font-semibold tracking-[-0.055em] text-balance">
               The AI editor that finishes videos <span className="text-grad">before you do.</span>
             </h1>
-            <p className="m-0 max-w-[620px] text-[clamp(17px,1.5vw,20px)] leading-[1.55] text-soft">
-              Upload raw footage or paste a YouTube link, then say what you want. Broll finds the moments, cuts the
-              story and matches the style of any video you point it to.
-            </p>
             <HeroPrompt />
             <p className="m-0 inline-flex flex-wrap items-center justify-center gap-x-3.5 gap-y-2 text-sm text-muted">
               <span className="inline-flex items-center gap-1.5 text-ink-2">
