@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -35,6 +35,31 @@ function ChatIcon() {
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const barRef = useRef<HTMLDivElement>(null);
+
+  // Reading progress + condensed state. One rAF per frame at most.
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      barRef.current?.style.setProperty("--p", String(p));
+      setScrolled(window.scrollY > 12);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -44,10 +69,21 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-line-2 bg-bg/90 backdrop-blur-md">
+    <header
+      className={cn(
+        "sticky top-0 z-50 w-full border-b transition-[background-color,border-color,box-shadow] duration-500",
+        scrolled
+          ? "border-line-2 bg-bg/75 shadow-[0_12px_40px_-20px_rgba(0,0,0,0.9)] backdrop-blur-xl backdrop-saturate-150"
+          : "border-transparent bg-bg/40 backdrop-blur-md",
+      )}
+    >
+      <div ref={barRef} aria-hidden className="scroll-progress pointer-events-none absolute inset-x-0 -bottom-px h-[2px]" />
       <nav
         aria-label="Main"
-        className="mx-auto box-border flex max-w-[1440px] flex-wrap items-center gap-x-7 gap-y-2 px-6 py-3 md:grid md:grid-cols-[1fr_auto_1fr] lg:px-10"
+        className={cn(
+          "mx-auto box-border flex max-w-[1440px] flex-wrap items-center gap-x-7 gap-y-2 px-6 transition-[padding] duration-500 md:grid md:grid-cols-[1fr_auto_1fr] lg:px-10",
+          scrolled ? "py-2" : "py-3",
+        )}
       >
         <Link href="/" aria-label="Broll home" className="flex min-h-11 items-center justify-self-start">
           <BrandLockup />

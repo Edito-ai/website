@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/providers/SmoothScroll";
+import ScrollFx from "@/components/providers/ScrollFx";
 import FirebaseAnalytics from "@/components/analytics/FirebaseAnalytics";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -102,6 +103,7 @@ export default function RootLayout({
           <FirebaseAnalytics />
         </Suspense>
         <SmoothScroll>{children}</SmoothScroll>
+        <ScrollFx />
       </body>
     </html>
   );

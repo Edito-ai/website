@@ -60,9 +60,11 @@ function waveformPath(seed: number, n = 120) {
     const env = 0.35 + 0.65 * Math.abs(Math.sin(i / 9 + seed)) * (0.6 + 0.4 * Math.sin(i / 23));
     pts.push(Math.max(0.08, (x / 233280) * env));
   }
-  const top = pts.map((v, i) => `${(i / (n - 1)) * 100},${50 - v * 46}`).join(" L");
+  // Rounded so server and browser render identical paths (hydration).
+  const r = (x: number) => Math.round(x * 100) / 100;
+  const top = pts.map((v, i) => `${r((i / (n - 1)) * 100)},${r(50 - v * 46)}`).join(" L");
   const bot = pts
-    .map((v, i) => `${((n - 1 - i) / (n - 1)) * 100},${50 + pts[n - 1 - i] * 46}`)
+    .map((_, i) => `${r(((n - 1 - i) / (n - 1)) * 100)},${r(50 + pts[n - 1 - i] * 46)}`)
     .join(" L");
   return `M${top} L${bot} Z`;
 }
@@ -102,8 +104,8 @@ const Lock = () => (
 
 export default function EditorMock() {
   return (
-    <div className="mt-12 w-full [perspective:2400px]">
-      <div className="w-full origin-top overflow-hidden rounded-[20px] border border-line-strong bg-surface-2 text-left shadow-[0_50px_140px_-30px_rgba(190,30,52,0.45),0_0_0_1px_rgba(255,92,112,0.08)] md:[transform:rotateX(9deg)]">
+    <div className="w-full">
+      <div className="w-full overflow-hidden rounded-[20px] border border-line-strong bg-surface-2 text-left shadow-[0_50px_140px_-30px_rgba(190,30,52,0.45),0_0_0_1px_rgba(255,92,112,0.08)]">
         {/* Title bar */}
         <div className="flex items-center gap-2 border-b border-line-2 px-4 py-3">
           <span className="size-2.5 rounded-full bg-line-strong" />

@@ -14,6 +14,7 @@ export default function ProductTabs() {
     <>
       <div
         role="tablist"
+        data-reveal
         aria-label="Broll products"
         className="flex max-w-full flex-nowrap justify-start gap-1.5 overflow-x-auto rounded-[20px] border border-line bg-surface p-1.5 [scrollbar-width:none] sm:flex-wrap sm:justify-center"
       >
@@ -53,6 +54,7 @@ export default function ProductTabs() {
       </div>
       <div
         role="tabpanel"
+        data-reveal
         id="product-panel"
         aria-labelledby={`tab-${active.kind}`}
         className="box-border flex w-full flex-wrap items-center gap-10 rounded-[28px] border border-line bg-surface-2"

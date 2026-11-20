@@ -5,10 +5,9 @@ import Footer from "@/components/site/Footer";
 import NewFeatures from "@/components/v2/NewFeatures";
 import Faq from "@/components/v2/Faq";
 import CtaBand from "@/components/v2/CtaBand";
-import HeroPrompt from "@/components/v2/home/HeroPrompt";
+import HeroModes from "@/components/v2/home/HeroModes";
 import ProductTabs from "@/components/v2/home/ProductTabs";
 import Film from "@/components/v2/home/Film";
-import EditorMock from "@/components/v2/home/EditorMock";
 import Ruler from "@/components/v2/Ruler";
 import Shot, { CLIPS } from "@/components/v2/Shot";
 import { Band, CHAT_URL, SectionHead, Wrap } from "@/components/v2/ui";
@@ -118,6 +117,7 @@ export default function Home() {
         <div className="grid-paper relative overflow-hidden bg-bg">
           <div
             aria-hidden
+            data-fx="drift"
             className="absolute top-[560px] left-1/2 h-[760px] w-[1200px] max-w-[160%] -translate-x-1/2"
             style={{ background: "radial-gradient(closest-side, rgba(190,30,52,0.26), rgba(190,30,52,0) 72%)" }}
           />
@@ -125,28 +125,32 @@ export default function Home() {
           <section className="relative mx-auto box-border flex max-w-[1440px] flex-col items-center gap-5 px-5 pt-10 pb-12 text-center sm:gap-7 sm:px-6 sm:pt-16 sm:pb-[72px] md:pt-[104px] lg:px-10">
             <a
               href="#new"
+              data-reveal
               className="inline-flex max-w-full items-center gap-2 rounded-full border border-line-strong bg-surface py-1 pr-3 pl-1 text-[13px] whitespace-nowrap text-ink-2 transition-colors hover:border-red sm:gap-2.5 sm:py-1.5 sm:pr-3.5 sm:pl-1.5 sm:text-sm"
             >
               <span className="rounded-full bg-crimson px-2 py-0.5 text-[11px] font-semibold text-white sm:px-[9px] sm:py-1 sm:text-xs">New</span>
               <span className="truncate">
-                Reference-style editing<span className="hidden sm:inline"> and YouTube clipping</span>
+                AI clipping for YouTube &amp; streams<span className="hidden sm:inline"> + reference-style editing</span>
               </span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
                 <path d="M9 6l6 6-6 6" />
               </svg>
             </a>
             <h1 className="m-0 max-w-[1100px] text-[clamp(40px,7.4vw,112px)] leading-[0.96] font-semibold tracking-[-0.055em] text-balance">
-              The AI editor that finishes videos <span className="text-grad">before you do.</span>
+              The AI that clips and edits your videos <span className="text-grad">before you do.</span>
             </h1>
-            <HeroPrompt />
-            <p className="m-0 inline-flex flex-wrap items-center justify-center gap-x-3.5 gap-y-1 text-[13px] text-muted sm:text-sm">
+            <HeroModes>
+            <p data-reveal className="m-0 inline-flex flex-wrap items-center justify-center gap-x-3.5 gap-y-1 text-[13px] text-muted sm:text-sm">
               <span className="inline-flex items-center gap-1.5 text-ink-2">
-                <span className="size-[7px] rounded-full bg-red" />
+                <span className="relative flex size-[7px]">
+                  <span className="absolute inset-0 animate-ping rounded-full bg-red opacity-60 motion-reduce:hidden" />
+                  <span className="relative size-[7px] rounded-full bg-red" />
+                </span>
                 Chat is live
               </span>
               <span>Windows, Mac and DaVinci Resolve apps coming soon</span>
             </p>
-            <EditorMock />
+            </HeroModes>
           </section>
         </div>
 
@@ -154,9 +158,9 @@ export default function Home() {
         <section aria-label="Works with" className="px-6 pt-2 pb-14 lg:px-10">
           <div className="mx-auto flex max-w-[1440px] flex-col items-center gap-[22px]">
             <span className="font-mono text-xs tracking-[0.08em] text-muted">EXPORTS TO AND WORKS WITH</span>
-            <ul className="m-0 flex list-none flex-wrap justify-center gap-x-11 gap-y-3 p-0">
+            <ul data-stagger className="m-0 flex list-none flex-wrap justify-center gap-x-11 gap-y-3 p-0">
               {WORKS_WITH.map((w) => (
-                <li key={w} className="text-[clamp(18px,2vw,24px)] font-semibold tracking-[-0.02em] text-dim">
+                <li key={w} className="text-[clamp(18px,2vw,24px)] font-semibold tracking-[-0.02em] text-dim hover:text-ink-2">
                   {w}
                 </li>
               ))}
@@ -196,7 +200,7 @@ export default function Home() {
               drops with it.
             </p>
           </div>
-          <div className="flex min-w-0 flex-[1_1_440px] flex-col gap-[22px] rounded-[20px] border border-line bg-surface p-8">
+          <div data-reveal className="flex min-w-0 flex-[1_1_440px] flex-col gap-[22px] rounded-[20px] border border-line bg-surface p-8">
             <span className="mono-label">ESTIMATED COST PER EDIT · RELATIVE</span>
             {COST.map((c, i) => (
               <div key={c.name} className="flex flex-col gap-2">
@@ -206,8 +210,13 @@ export default function Home() {
                 </div>
                 <div className="h-3.5 rounded bg-[#1D2030]">
                   <div
+                    data-bar
                     className="h-full min-w-2.5 rounded"
-                    style={{ width: `${(c.mult / maxCost) * 100}%`, background: i === 0 ? "#BE1E34" : "#565B74" }}
+                    style={{
+                      width: `${(c.mult / maxCost) * 100}%`,
+                      background: i === 0 ? "#BE1E34" : "#565B74",
+                      ["--bd" as string]: `${0.2 + i * 0.12}s`,
+                    }}
                   />
                 </div>
               </div>
@@ -277,6 +286,48 @@ export default function Home() {
             </Link>
           </div>
           <div className="m-rail flex flex-wrap gap-5">
+            <div className="box-border flex min-h-80 min-w-0 flex-[2_1_480px] flex-col gap-3.5 rounded-3xl border border-crimson/70 bg-[#1A0F17] p-8 shadow-[0_30px_80px_-40px_rgba(190,30,52,0.7)]">
+              <div className="flex items-center justify-between">
+                <svg {...featIcon}>
+                  <rect x="2" y="5" width="20" height="14" rx="4" />
+                  <path d="M10 9.5v5l4.5-2.5z" />
+                </svg>
+                <NewPill />
+              </div>
+              <h3 className="m-0 text-[22px] font-semibold tracking-[-0.02em]">YouTube &amp; stream clipping</h3>
+              <p className="m-0 text-[15px] leading-relaxed text-soft">
+                Paste a YouTube link or drop in a long stream. Broll finds the moments worth posting and returns them as
+                captioned 9:16 clips.
+              </p>
+              <div aria-hidden className="mt-1.5 flex items-end gap-2.5">
+                {[
+                  { src: CLIPS.streamer, cap: "no way" },
+                  { src: CLIPS.podcast, cap: "he did it" },
+                  { src: CLIPS.creator, cap: "listen" },
+                ].map((c, i) => (
+                  <div
+                    key={c.cap}
+                    className={
+                      "relative aspect-[9/16] w-[58px] shrink-0 overflow-hidden rounded-lg bg-[#1E2132] " +
+                      (i === 0 ? "border-[1.5px] border-crimson" : "border border-line-strong")
+                    }
+                  >
+                    <Shot src={c.src} position="center" sizes="58px" />
+                    <span className="absolute top-[62%] left-1/2 -translate-x-1/2 rounded-[3px] bg-bg px-1 py-px text-[8px] font-bold whitespace-nowrap">
+                      {c.cap}
+                    </span>
+                  </div>
+                ))}
+                <div className="flex flex-col gap-1.5 font-mono text-[11px] text-ink-2">
+                  <span>✓ best moments</span>
+                  <span>✓ captions</span>
+                  <span>✓ 9:16 reframe</span>
+                </div>
+              </div>
+              <a href="#new" className="link-arrow mt-auto text-sm">
+                See how it works →
+              </a>
+            </div>
             <div className="box-border flex min-h-80 min-w-0 flex-[2_1_480px] flex-col gap-3.5 rounded-3xl border border-wine-line bg-[#1A0F17] p-8">
               <div className="flex items-center justify-between">
                 <svg {...featIcon}>
@@ -313,22 +364,6 @@ export default function Home() {
                   <span key={i} className="flex-1 rounded-[2px]" style={{ height: `${h}%`, background: MINI_HOT.has(i) ? "#BE1E34" : "#33384E" }} />
                 ))}
               </div>
-              <a href="#new" className="link-arrow mt-auto text-sm">
-                See how it works →
-              </a>
-            </div>
-            <div className="box-border flex min-h-80 min-w-0 flex-[2_1_480px] flex-col gap-3.5 rounded-3xl border border-wine-line bg-[#1A0F17] p-8">
-              <div className="flex items-center justify-between">
-                <svg {...featIcon}>
-                  <rect x="2" y="5" width="20" height="14" rx="4" />
-                  <path d="M10 9.5v5l4.5-2.5z" />
-                </svg>
-                <NewPill />
-              </div>
-              <h3 className="m-0 text-[22px] font-semibold tracking-[-0.02em]">YouTube &amp; stream clipping</h3>
-              <p className="m-0 text-[15px] leading-relaxed text-soft">
-                Paste a YouTube link and get the best moments back as captioned short clips.
-              </p>
               <a href="#new" className="link-arrow mt-auto text-sm">
                 See how it works →
               </a>
@@ -418,7 +453,7 @@ export default function Home() {
         {/* WHY TEAMS SWITCH */}
         <section className="mx-auto box-border flex max-w-[1440px] flex-col gap-10 px-6 lg:px-10 pt-4 pb-16 sm:pt-10 sm:pb-24 md:pb-[120px]">
           <SectionHead eyebrow="TC 00:07 — WHY TEAMS SWITCH" title="Manual editing vs. Broll." />
-          <ul className="m-0 flex list-none flex-col gap-2 p-0 sm:hidden">
+          <ul data-stagger className="m-0 flex list-none flex-col gap-2 p-0 sm:hidden">
             {COMPARE.map((r) => (
               <li key={r.step} className="flex flex-col gap-1 rounded-2xl border border-line bg-surface px-4 py-3.5">
                 <span className="text-[15px] font-semibold">{r.step}</span>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, CHAT_URL } from "@/components/v2/ui";
 
-const EXAMPLES = [
+const DEFAULT_EXAMPLES = [
   "Cut a 60s reel in the style of my last video",
   "Find the 5 best moments in this stream and make captioned clips",
   "Turn this 3-hour podcast into a 90s trailer with captions",
@@ -15,7 +15,7 @@ const EXAMPLES = [
  * every 3s inside the field; once they focus it, rotation stops and the
  * field is theirs to edit.
  */
-export default function HeroPrompt() {
+export default function HeroPrompt({ examples: EXAMPLES = DEFAULT_EXAMPLES }: { examples?: string[] }) {
   const [i, setI] = useState(0);
   const [touched, setTouched] = useState(false);
   const [value, setValue] = useState("");
@@ -24,10 +24,10 @@ export default function HeroPrompt() {
     if (touched || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = window.setInterval(() => setI((n) => (n + 1) % EXAMPLES.length), 3000);
     return () => window.clearInterval(id);
-  }, [touched]);
+  }, [touched, EXAMPLES.length]);
 
   return (
-    <div className="mt-1 flex w-full max-w-[760px] flex-col gap-3 sm:mt-2">
+    <div className="flex w-full max-w-[760px] flex-col gap-3">
       <form
         action={CHAT_URL}
         method="get"

@@ -31,9 +31,9 @@ export default function Film() {
           <span className="eyebrow">TC 00:03 — THE TEASER</span>
           <h2 className="h-section">See it in 80 seconds.</h2>
         </div>
-        <p className="m-0 text-lg text-soft">From shoot to first cut.</p>
+        <p data-reveal className="m-0 text-lg text-soft">From shoot to first cut.</p>
       </div>
-      <div className="relative aspect-video overflow-hidden rounded-[20px] border border-line bg-[#13151F]">
+      <div data-fx="zoom" className="relative aspect-video overflow-hidden rounded-[20px] border border-line bg-[#13151F] will-change-transform">
         <video
           ref={ref}
           src={SRC}

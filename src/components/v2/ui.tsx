@@ -176,7 +176,7 @@ export function PageIntro({
       </h1>
       {lede && <p className="m-0 max-w-[680px] text-lg leading-[1.55] text-soft md:text-[19px]">{lede}</p>}
       {(primary || secondary) && (
-        <div className={cn("flex flex-wrap gap-3", center && "justify-center")}>
+        <div data-reveal className={cn("flex flex-wrap gap-3", center && "justify-center")}>
           {primary && <Btn href={primary.href}>{primary.label}</Btn>}
           {secondary && (
             <Btn href={secondary.href} variant="ghost">
