@@ -4,6 +4,7 @@ import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import CtaBand from "@/components/v2/CtaBand";
 import HeroModes from "@/components/v2/home/HeroModes";
+import HeroBackdrop from "@/components/v2/home/HeroBackdrop";
 import LayerStack from "@/components/v2/home/LayerStack";
 import ClipStory from "@/components/v2/home/ClipStory";
 import EditStory from "@/components/v2/home/EditStory";
@@ -120,11 +121,12 @@ export default function Home() {
             style={{ background: "radial-gradient(closest-side, rgba(190,30,52,0.26), rgba(190,30,52,0) 72%)" }}
           />
           <div aria-hidden className="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-b from-transparent to-bg" />
-          <section className="relative mx-auto box-border flex max-w-[1440px] flex-col items-center gap-6 px-5 pt-8 pb-10 text-center max-sm:min-h-[calc(100svh-64px)] max-sm:justify-center sm:gap-7 sm:px-6 sm:pt-16 sm:pb-[72px] md:pt-[104px] lg:px-10">
+          <section className="relative isolate mx-auto box-border flex max-w-[1440px] flex-col items-center gap-6 px-5 pt-8 pb-10 text-center max-sm:min-h-[calc(100svh-64px)] max-sm:justify-center sm:gap-7 sm:px-6 sm:pt-16 sm:pb-[72px] md:pt-[104px] lg:px-10">
+            <HeroBackdrop />
             <a
               href="#new"
               data-reveal
-              className="inline-flex max-w-full items-center gap-2 rounded-full border border-line-strong bg-surface py-1 pr-3 pl-1 text-[13px] whitespace-nowrap text-ink-2 transition-colors hover:border-red sm:gap-2.5 sm:py-1.5 sm:pr-3.5 sm:pl-1.5 sm:text-sm"
+              className="relative z-10 inline-flex max-w-full items-center gap-2 rounded-full border border-line-strong bg-surface py-1 pr-3 pl-1 text-[13px] whitespace-nowrap text-ink-2 transition-colors hover:border-red sm:gap-2.5 sm:py-1.5 sm:pr-3.5 sm:pl-1.5 sm:text-sm"
             >
               <span className="rounded-full bg-crimson px-2 py-0.5 text-[11px] font-semibold text-white sm:px-[9px] sm:py-1 sm:text-xs">New</span>
               <span className="truncate">
@@ -134,7 +136,7 @@ export default function Home() {
                 <path d="M9 6l6 6-6 6" />
               </svg>
             </a>
-            <h1 className="m-0 max-w-[1100px] text-[clamp(46px,7.4vw,112px)] leading-[0.96] font-semibold tracking-[-0.055em] text-balance">
+            <h1 className="relative z-10 m-0 max-w-[1100px] text-[clamp(46px,7.4vw,112px)] leading-[0.96] font-semibold tracking-[-0.055em] text-balance">
               Videos clipped &amp; edited <span className="text-grad">before you do.</span>
             </h1>
             <HeroModes />

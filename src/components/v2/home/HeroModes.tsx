@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 import HeroPrompt from "@/components/v2/home/HeroPrompt";
-import EditorMock from "@/components/v2/home/EditorMock";
-import ClipperMock from "@/components/v2/home/ClipperMock";
 import HeroFan from "@/components/v2/home/HeroFan";
 import { cn } from "@/lib/utils";
 
@@ -98,8 +96,7 @@ export default function HeroModes({ children }: { children?: React.ReactNode }) 
               role="tab"
               id={`mode-${m.id}`}
               aria-selected={on}
-              aria-controls="hero-mode-panel"
-              onClick={() => {
+                            onClick={() => {
                 setAuto(false);
                 setMode(m.id);
               }}
@@ -152,28 +149,6 @@ export default function HeroModes({ children }: { children?: React.ReactNode }) 
 
       {children}
 
-      <div data-reveal className="mt-12 w-full [perspective:2400px] max-sm:hidden">
-        <div
-          id="hero-mode-panel"
-          role="tabpanel"
-          aria-labelledby={`mode-${mode}`}
-          data-fx="tilt"
-          className="grid w-full origin-top grid-cols-[minmax(0,1fr)] will-change-transform"
-        >
-          {(["clip", "edit"] as const).map((id) => (
-            <div
-              key={id}
-              aria-hidden={id !== mode}
-              className={cn(
-                "min-w-0 [grid-area:1/1] transition-[opacity,transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
-                id === mode ? "opacity-100" : "pointer-events-none scale-[0.97] opacity-0 blur-sm",
-              )}
-            >
-              {id === "clip" ? <ClipperMock /> : <EditorMock />}
-            </div>
-          ))}
-        </div>
-      </div>
     </>
   );
 }
