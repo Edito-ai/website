@@ -75,7 +75,7 @@ export default function HeroPrompt({ examples: EXAMPLES = DEFAULT_EXAMPLES }: { 
         </a>
       </form>
       {!touched && (
-        <div aria-hidden className="flex justify-center gap-1.5">
+        <div aria-hidden className="flex justify-center gap-1.5 max-sm:hidden">
           {EXAMPLES.map((_, n) => (
             <span
               key={n}

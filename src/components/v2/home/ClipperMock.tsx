@@ -66,7 +66,13 @@ export default function ClipperMock() {
           </div>
           <div className="flex flex-col gap-2.5">
             {STEPS.map((s, i) => (
-              <div key={s.label} className="flex items-center gap-2.5 text-sm text-ink-2">
+              <div
+                key={s.label}
+                className={
+                  "flex items-center gap-2.5 text-sm text-ink-2 " +
+                  (i > 0 && i < STEPS.length - 1 ? "max-sm:hidden" : "")
+                }
+              >
                 <span
                   className={
                     "inline-flex size-5 shrink-0 items-center justify-center rounded-md " +
@@ -82,7 +88,7 @@ export default function ClipperMock() {
               </div>
             ))}
           </div>
-          <div className="mt-auto flex items-center gap-2.5 rounded-xl border border-line px-3 py-2.5 text-sm text-muted">
+          <div className="mt-auto hidden items-center gap-2.5 rounded-xl border border-line px-3 py-2.5 text-sm text-muted sm:flex">
             <span className="flex-1">Ask for more clips, or a different style…</span>
             <span className="inline-flex size-[30px] items-center justify-center rounded-lg bg-crimson">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

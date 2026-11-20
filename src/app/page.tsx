@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
-import NewFeatures from "@/components/v2/NewFeatures";
-import Faq from "@/components/v2/Faq";
 import CtaBand from "@/components/v2/CtaBand";
 import HeroModes from "@/components/v2/home/HeroModes";
+import LayerStack from "@/components/v2/home/LayerStack";
+import ClipStory from "@/components/v2/home/ClipStory";
+import EditStory from "@/components/v2/home/EditStory";
 import ProductTabs from "@/components/v2/home/ProductTabs";
 import Film from "@/components/v2/home/Film";
 import Ruler from "@/components/v2/Ruler";
 import Shot, { CLIPS } from "@/components/v2/Shot";
 import { Band, CHAT_URL, SectionHead, Wrap } from "@/components/v2/ui";
-import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL, faqPageJsonLd } from "@/lib/site";
-import { FAQS } from "@/lib/faqs";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   alternates: {
@@ -63,7 +63,6 @@ const structuredData = {
       uploadDate: "2026-10-08",
       duration: "PT1M20S",
     },
-    faqPageJsonLd(FAQS, "/"),
   ],
 };
 
@@ -99,7 +98,6 @@ const USE_CASES = [
   { title: "Brands & agencies", desc: "Each client’s house style, every format." },
 ];
 
-const card = "rounded-[20px] border border-line bg-surface p-7 flex flex-col gap-3.5";
 const featIcon = { width: 28, height: 28, viewBox: "0 0 24 24", fill: "none", stroke: "#FF5C70", strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true } as const;
 const NewPill = () => <span className="rounded-full bg-crimson px-2 py-[3px] text-[11px] font-semibold text-white">New</span>;
 
@@ -122,7 +120,7 @@ export default function Home() {
             style={{ background: "radial-gradient(closest-side, rgba(190,30,52,0.26), rgba(190,30,52,0) 72%)" }}
           />
           <div aria-hidden className="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-b from-transparent to-bg" />
-          <section className="relative mx-auto box-border flex max-w-[1440px] flex-col items-center gap-5 px-5 pt-10 pb-12 text-center sm:gap-7 sm:px-6 sm:pt-16 sm:pb-[72px] md:pt-[104px] lg:px-10">
+          <section className="relative mx-auto box-border flex max-w-[1440px] flex-col items-center gap-6 px-5 pt-8 pb-10 text-center max-sm:min-h-[calc(100svh-64px)] max-sm:justify-center sm:gap-7 sm:px-6 sm:pt-16 sm:pb-[72px] md:pt-[104px] lg:px-10">
             <a
               href="#new"
               data-reveal
@@ -136,41 +134,40 @@ export default function Home() {
                 <path d="M9 6l6 6-6 6" />
               </svg>
             </a>
-            <h1 className="m-0 max-w-[1100px] text-[clamp(40px,7.4vw,112px)] leading-[0.96] font-semibold tracking-[-0.055em] text-balance">
-              The AI that clips and edits your videos <span className="text-grad">before you do.</span>
+            <h1 className="m-0 max-w-[1100px] text-[clamp(46px,7.4vw,112px)] leading-[0.96] font-semibold tracking-[-0.055em] text-balance">
+              Videos clipped &amp; edited <span className="text-grad">before you do.</span>
             </h1>
-            <HeroModes>
-            <p data-reveal className="m-0 inline-flex flex-wrap items-center justify-center gap-x-3.5 gap-y-1 text-[13px] text-muted sm:text-sm">
-              <span className="inline-flex items-center gap-1.5 text-ink-2">
-                <span className="relative flex size-[7px]">
-                  <span className="absolute inset-0 animate-ping rounded-full bg-red opacity-60 motion-reduce:hidden" />
-                  <span className="relative size-[7px] rounded-full bg-red" />
-                </span>
-                Chat is live
-              </span>
-              <span>Windows, Mac and DaVinci Resolve apps coming soon</span>
-            </p>
-            </HeroModes>
+            <HeroModes />
           </section>
         </div>
 
         {/* WORKS WITH */}
-        <section aria-label="Works with" className="px-6 pt-2 pb-14 lg:px-10">
+        <section aria-label="Works with" className="pt-2 pb-14">
           <div className="mx-auto flex max-w-[1440px] flex-col items-center gap-[22px]">
             <span className="font-mono text-xs tracking-[0.08em] text-muted">EXPORTS TO AND WORKS WITH</span>
-            <ul data-stagger className="m-0 flex list-none flex-wrap justify-center gap-x-11 gap-y-3 p-0">
-              {WORKS_WITH.map((w) => (
-                <li key={w} className="text-[clamp(18px,2vw,24px)] font-semibold tracking-[-0.02em] text-dim hover:text-ink-2">
-                  {w}
-                </li>
-              ))}
-            </ul>
+            <div className="marquee w-full overflow-hidden">
+              <ul className="marquee-track m-0 flex w-max list-none gap-x-14 p-0">
+                {[...WORKS_WITH, ...WORKS_WITH].map((w, i) => (
+                  <li
+                    key={i}
+                    aria-hidden={i >= WORKS_WITH.length}
+                    className="text-[clamp(20px,2.2vw,28px)] font-semibold tracking-[-0.02em] whitespace-nowrap text-dim transition-colors hover:text-ink"
+                  >
+                    {w}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </section>
 
         <Ruler pos="24%" tc="00:00:42:18" />
 
-        <NewFeatures eyebrow="TC 00:01 — NEW IN BROLL" />
+        <LayerStack />
+
+        <ClipStory />
+
+        <EditStory />
 
         {/* PRODUCTS */}
         <section id="products" aria-labelledby="products-title" className="border-t border-line-2 bg-bg-2">
@@ -195,10 +192,6 @@ export default function Home() {
           <div className="flex flex-[1_1_360px] flex-col gap-[18px]">
             <span className="eyebrow">TC 00:04 — WHY BROLL</span>
             <h2 className="h-section">The same quality of edit. At a fraction of the price.</h2>
-            <p className="m-hide m-0 text-[17px] leading-relaxed text-soft">
-              One agent does the watching, logging, cutting and finishing in a single pass, so the cost of a first cut
-              drops with it.
-            </p>
           </div>
           <div data-reveal className="flex min-w-0 flex-[1_1_440px] flex-col gap-[22px] rounded-[20px] border border-line bg-surface p-8">
             <span className="mono-label">ESTIMATED COST PER EDIT · RELATIVE</span>
@@ -227,54 +220,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* HOW IT WORKS */}
-        <Band>
-          <Wrap className="flex flex-col gap-12 py-16 sm:py-24 md:py-[120px]">
-            <SectionHead eyebrow="TC 00:05 — HOW IT WORKS" title="Three steps. No timeline." />
-            <div className="m-rail grid grid-cols-1 gap-5 md:grid-cols-3">
-              <div className={card}>
-                <span className="font-mono text-[13px] text-muted">01</span>
-                <h3 className="m-0 text-[22px] font-semibold tracking-[-0.02em]">Bring your footage</h3>
-                <p className="m-0 text-[15px] leading-relaxed text-soft">
-                  Upload hours of multi-camera footage or paste a YouTube link. Broll indexes every frame, so there is
-                  nothing to log or sort.
-                </p>
-                <div aria-hidden className="mt-2 flex gap-1.5">
-                  {[CLIPS.set, CLIPS.interview, CLIPS.city].map((src) => (
-                    <div key={src} className="relative h-11 flex-1 overflow-hidden rounded-md">
-                      <Shot src={src} sizes="96px" tint={false} />
-                    </div>
-                  ))}
-                  <div className="h-11 flex-1 rounded-md border border-dashed border-line-3" />
-                </div>
-              </div>
-              <div className={card}>
-                <span className="font-mono text-[13px] text-muted">02</span>
-                <h3 className="m-0 text-[22px] font-semibold tracking-[-0.02em]">Describe it, or show it</h3>
-                <p className="m-0 text-[15px] leading-relaxed text-soft">
-                  Brief it like you would an editor, or share a reference video and Broll will follow the same template.
-                </p>
-                <div className="mt-2 rounded-[10px] border border-line-strong px-3.5 py-3 font-mono text-[13px] text-ink-2">
-                  &quot;Same style as last week&apos;s reel, 45s&quot;<span className="text-red">▍</span>
-                </div>
-              </div>
-              <div className={card}>
-                <span className="font-mono text-[13px] text-muted">03</span>
-                <h3 className="m-0 text-[22px] font-semibold tracking-[-0.02em]">Review and deliver</h3>
-                <p className="m-0 text-[15px] leading-relaxed text-soft">
-                  Watch the first cut, ask for changes in chat, then export an MP4 or a timeline XML for your editor.
-                </p>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  <span className="chip chip-hot">MP4</span>
-                  <span className="chip">Premiere XML</span>
-                  <span className="chip">Resolve XML</span>
-                  <span className="chip">FCP XML</span>
-                </div>
-              </div>
-            </div>
-          </Wrap>
-        </Band>
-
         <Ruler pos="58%" tc="00:06:12:20" />
 
         {/* FEATURES */}
@@ -295,10 +240,7 @@ export default function Home() {
                 <NewPill />
               </div>
               <h3 className="m-0 text-[22px] font-semibold tracking-[-0.02em]">YouTube &amp; stream clipping</h3>
-              <p className="m-0 text-[15px] leading-relaxed text-soft">
-                Paste a YouTube link or drop in a long stream. Broll finds the moments worth posting and returns them as
-                captioned 9:16 clips.
-              </p>
+              <p className="m-0 text-[15px] leading-relaxed text-soft">Link in. Captioned 9:16 clips out.</p>
               <div aria-hidden className="mt-1.5 flex items-end gap-2.5">
                 {[
                   { src: CLIPS.streamer, cap: "no way" },
@@ -318,7 +260,7 @@ export default function Home() {
                     </span>
                   </div>
                 ))}
-                <div className="flex flex-col gap-1.5 font-mono text-[11px] text-ink-2">
+                <div className="flex flex-col gap-1.5 font-mono text-[11px] text-ink-2 max-sm:hidden">
                   <span>✓ best moments</span>
                   <span>✓ captions</span>
                   <span>✓ 9:16 reframe</span>
@@ -337,10 +279,7 @@ export default function Home() {
                 <NewPill />
               </div>
               <h3 className="m-0 text-[22px] font-semibold tracking-[-0.03em]">Reference-style editing</h3>
-              <p className="m-0 text-[15px] leading-relaxed text-soft">
-                Share a video you like and Broll edits your new footage to the same template: pacing, captions, layout
-                and look.
-              </p>
+              <p className="m-0 text-[15px] leading-relaxed text-soft">Show a video you love. Get the same edit.</p>
               <div aria-hidden className="mt-1.5 flex items-center gap-3">
                 <div className="relative aspect-[9/14] w-16 shrink-0 overflow-hidden rounded-lg border border-line-strong bg-[#1E2132]">
                   <Shot src={CLIPS.podcast} position="center" sizes="64px" />
@@ -353,7 +292,7 @@ export default function Home() {
                   <Shot src={CLIPS.creator} position="center" sizes="64px" />
                   <span className="absolute bottom-2.5 left-1/2 h-1.5 w-3/5 -translate-x-1/2 rounded-[2px] bg-ink" />
                 </div>
-                <div className="flex flex-col gap-1.5 font-mono text-[11px] text-ink-2">
+                <div className="flex flex-col gap-1.5 font-mono text-[11px] text-ink-2 max-sm:hidden">
                   <span>✓ pacing</span>
                   <span>✓ captions</span>
                   <span>✓ look</span>
@@ -374,10 +313,7 @@ export default function Home() {
                 <path d="M20 20l-3.5-3.5" />
               </svg>
               <h3 className="m-0 text-[22px] font-semibold tracking-[-0.02em]">Semantic footage search</h3>
-              <p className="m-0 text-[15px] leading-relaxed text-soft">
-                Describe a shot and Broll finds it. &quot;Host laughs, wide angle&quot; returns the exact moment across every
-                camera.
-              </p>
+              <p className="m-0 text-[15px] leading-relaxed text-soft">Describe a shot. Get the exact moment.</p>
               <div className="mt-auto rounded-[10px] border border-line-strong px-3 py-2.5 font-mono text-[13px] text-ink-2">
                 host laughs, wide angle <span className="text-muted">· 7 matches</span>
               </div>
@@ -388,9 +324,7 @@ export default function Home() {
                 <path d="M12 3v18M12 12l6.4-6.4" />
               </svg>
               <h3 className="m-0 text-[22px] font-semibold tracking-[-0.02em]">AI color grading</h3>
-              <p className="m-0 text-[15px] leading-relaxed text-soft">
-                One consistent grade across cameras and lighting, matched to your brand look.
-              </p>
+              <p className="m-0 text-[15px] leading-relaxed text-soft">One look across every camera.</p>
               <div aria-hidden className="mt-auto flex h-9 overflow-hidden rounded-lg">
                 {["#262A3D", "#4B3F36", "#6B5340", "#8E6A4C", "#B58A62"].map((c) => (
                   <div key={c} className="flex-1" style={{ background: c }} />
@@ -403,9 +337,7 @@ export default function Home() {
                 <path d="M7 15h4M13 15h4M7 11h10" />
               </svg>
               <h3 className="m-0 text-[22px] font-semibold tracking-[-0.02em]">Auto captions</h3>
-              <p className="m-0 text-[15px] leading-relaxed text-soft">
-                Styled captions that stay in sync, even when the edit changes underneath them.
-              </p>
+              <p className="m-0 text-[15px] leading-relaxed text-soft">Styled, synced, always.</p>
               <div className="mt-auto self-start rounded-md bg-bg px-2.5 py-1.5 text-base font-bold">
                 this changes <span className="text-red">everything</span>
               </div>
@@ -415,9 +347,7 @@ export default function Home() {
                 <path d="M4 12h2M8 8v8M12 5v14M16 9v6M20 11v2" />
               </svg>
               <h3 className="m-0 text-[22px] font-semibold tracking-[-0.02em]">AI lip sync</h3>
-              <p className="m-0 text-[15px] leading-relaxed text-soft">
-                Dub into other languages with lip movement matched to the new audio.
-              </p>
+              <p className="m-0 text-[15px] leading-relaxed text-soft">Dub any language, lips matched.</p>
               <div className="mt-auto flex flex-wrap gap-2">
                 <span className="chip">EN</span>
                 <span className="chip chip-hot">HI</span>
@@ -430,9 +360,7 @@ export default function Home() {
                 <path d="M12 3v12M7 10l5 5 5-5M4 19h16" />
               </svg>
               <h3 className="m-0 text-[22px] font-semibold tracking-[-0.02em]">Export to any editor</h3>
-              <p className="m-0 text-[15px] leading-relaxed text-soft">
-                A finished MP4, or timeline XML for Premiere Pro, DaVinci Resolve and Final Cut Pro.
-              </p>
+              <p className="m-0 text-[15px] leading-relaxed text-soft">MP4, or XML for Premiere, Resolve, FCP.</p>
               <div className="mt-auto font-mono text-[13px] text-muted">ep42_reel_v1.xml → Premiere Pro</div>
             </div>
             <div className="box-border flex min-h-[280px] min-w-0 flex-[2_1_480px] flex-col gap-3.5 rounded-3xl bg-crimson p-8 text-white">
@@ -505,16 +433,11 @@ export default function Home() {
                 <div key={u.title} className="flex flex-col gap-2.5 rounded-2xl border border-line bg-surface p-[22px]">
                   <span className="mono-label">0{i + 1}</span>
                   <span className="text-lg font-semibold">{u.title}</span>
-                  <span className="text-sm leading-normal text-soft">{u.desc}</span>
                 </div>
               ))}
             </div>
           </Wrap>
         </Band>
-
-        <Ruler pos="76%" tc="00:09:00:00" />
-
-        <Faq eyebrow="TC 00:09 — FAQ" heading="Questions, answered." items={FAQS} />
 
         <CtaBand heading="Your next first cut is minutes away." />
       </main>

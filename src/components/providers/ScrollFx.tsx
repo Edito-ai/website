@@ -112,6 +112,32 @@ export default function ScrollFx() {
         });
       });
 
+      // Phone: card rails pin mid-screen and slide sideways as you scroll down.
+      mm.add("(max-width: 639px)", () => {
+        const rails = gsap.utils.toArray<HTMLElement>(".m-rail").filter((r) => r.children.length > 1);
+        rails.forEach((rail) => {
+          rail.classList.add("m-rail-pin");
+          const last = rail.lastElementChild as HTMLElement;
+          const dist = () => Math.max(0, last.offsetLeft + last.offsetWidth + 24 - rail.clientWidth);
+          if (dist() < 40) return;
+          gsap.to(rail, {
+            x: () => -dist(),
+            ease: "none",
+            scrollTrigger: {
+              trigger: rail,
+              pin: true,
+              pinSpacing: true, // the rails sit in flex columns, where GSAP defaults this off
+              start: "center center",
+              end: () => `+=${dist() * 1.1}`,
+              scrub: 0.6,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+            },
+          });
+        });
+        return () => rails.forEach((r) => r.classList.remove("m-rail-pin"));
+      });
+
       // Media frames grow into place.
       gsap.utils.toArray<HTMLElement>("[data-fx='zoom']").forEach((el) => {
         gsap.fromTo(
@@ -149,8 +175,15 @@ export default function ScrollFx() {
       });
     }, main);
 
+    // Pins are created by several components; order triggers by page
+    // position so each one accounts for the pin spacing above it.
+    ScrollTrigger.sort();
+
     // Layout shifts after fonts/images settle.
-    const refresh = () => ScrollTrigger.refresh();
+    const refresh = () => {
+      ScrollTrigger.sort();
+      ScrollTrigger.refresh();
+    };
     window.addEventListener("load", refresh);
     const t = window.setTimeout(refresh, 600);
 

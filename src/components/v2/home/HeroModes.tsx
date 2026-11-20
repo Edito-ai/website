@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import HeroPrompt from "@/components/v2/home/HeroPrompt";
 import EditorMock from "@/components/v2/home/EditorMock";
 import ClipperMock from "@/components/v2/home/ClipperMock";
+import HeroFan from "@/components/v2/home/HeroFan";
 import { cn } from "@/lib/utils";
 
 type Mode = "clip" | "edit";
@@ -80,16 +81,13 @@ export default function HeroModes({ children }: { children?: React.ReactNode }) 
 
   return (
     <>
-      <p data-reveal className="m-0 max-w-[640px] text-[17px] leading-relaxed text-soft sm:text-lg">
-        One agent, two jobs: <span className="font-semibold text-ink">clip</span> long videos and streams into
-        captioned shorts, or <span className="font-semibold text-ink">edit</span> raw footage into a finished video.
-      </p>
+      <HeroFan />
 
       <div
         data-reveal
         role="tablist"
         aria-label="What Broll does"
-        className="grid w-full max-w-[560px] grid-cols-2 gap-1.5 rounded-[18px] border border-line bg-surface/80 p-1.5 backdrop-blur"
+        className="grid w-full max-sm:hidden max-w-[560px] grid-cols-2 gap-1.5 rounded-[18px] border border-line bg-surface/80 p-1.5 backdrop-blur"
       >
         {MODES.map((m) => {
           const on = m.id === mode;
@@ -123,7 +121,7 @@ export default function HeroModes({ children }: { children?: React.ReactNode }) 
                   {m.isNew && (
                     <span
                       className={cn(
-                        "rounded-full px-1.5 py-px text-[10px] font-semibold",
+                        "rounded-full px-1.5 py-px text-[10px] font-semibold max-sm:hidden",
                         on ? "bg-white text-crimson" : "bg-crimson text-white",
                       )}
                     >
@@ -148,26 +146,26 @@ export default function HeroModes({ children }: { children?: React.ReactNode }) 
         })}
       </div>
 
-      <div data-reveal className="w-full max-w-[760px]" onFocusCapture={() => setAuto(false)}>
+      <div data-reveal className="w-full max-w-[760px] max-sm:hidden" onFocusCapture={() => setAuto(false)}>
         <HeroPrompt key={mode} examples={active.examples} />
       </div>
 
       {children}
 
-      <div data-reveal className="mt-8 w-full [perspective:2400px] sm:mt-12">
+      <div data-reveal className="mt-12 w-full [perspective:2400px] max-sm:hidden">
         <div
           id="hero-mode-panel"
           role="tabpanel"
           aria-labelledby={`mode-${mode}`}
           data-fx="tilt"
-          className="grid w-full origin-top will-change-transform"
+          className="grid w-full origin-top grid-cols-[minmax(0,1fr)] will-change-transform"
         >
           {(["clip", "edit"] as const).map((id) => (
             <div
               key={id}
               aria-hidden={id !== mode}
               className={cn(
-                "[grid-area:1/1] transition-[opacity,transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                "min-w-0 [grid-area:1/1] transition-[opacity,transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
                 id === mode ? "opacity-100" : "pointer-events-none scale-[0.97] opacity-0 blur-sm",
               )}
             >
