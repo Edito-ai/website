@@ -43,6 +43,7 @@ const LINEUP: {
   desc: string;
   specs: [string, string][];
   req: string;
+  downloads?: { label: string; href: string; note: string }[];
 }[] = [
   {
     id: "chat", n: "01", platform: "WEB APP", name: "Broll Chat", live: true,
@@ -63,15 +64,27 @@ const LINEUP: {
     req: "Release date: TBA",
   },
   {
-    id: "resolve", n: "04", platform: "PLUGIN · MAC + WINDOWS", name: "Broll for DaVinci Resolve", live: false,
+    id: "resolve", n: "04", platform: "PLUGIN · MAC + WINDOWS", name: "Broll for DaVinci Resolve", live: true,
     desc: "A Broll chat panel docked inside DaVinci Resolve Studio. Ask for an edit without leaving Resolve, then keep grading and finishing where you already are.",
     specs: [["RUNS ON", "Mac + Windows"], ["LIVES IN", "Resolve Studio"], ["WORKFLOW", "Chat panel"]],
-    req: "Release date: TBA",
+    req: "Version 0.3.1 · DaVinci Resolve Studio",
+    downloads: [
+      {
+        label: "Download for Windows",
+        href: "https://github.com/Edito-ai/broll-downloads/raw/main/BrollAI-Setup-0.3.1.exe",
+        note: "Windows may show a SmartScreen notice. Click More info, then Run anyway.",
+      },
+      {
+        label: "Download for Mac",
+        href: "https://github.com/Edito-ai/broll-downloads/releases/download/v0.3.1/BrollAI-0.3.1.pkg",
+        note: "If macOS blocks it, right-click the file and choose Open.",
+      },
+    ],
   },
 ];
 
 const COMPARE = [
-  { k: "STATUS", c: "Live now", w: "Coming soon", m: "Coming soon", r: "Coming soon" },
+  { k: "STATUS", c: "Live now", w: "Coming soon", m: "Coming soon", r: "Live now" },
   { k: "RUNS ON", c: "Any browser", w: "Windows", m: "macOS", r: "Mac and Windows" },
   { k: "WHAT IT IS", c: "Web app", w: "Desktop app", m: "Desktop app", r: "Panel inside DaVinci Resolve Studio" },
   { k: "THE AGENT", c: "Full agent", w: "Full agent", m: "Full agent", r: "Full agent" },
@@ -101,7 +114,7 @@ const JUMP = [
   { href: "#chat", label: "Chat · Live", dot: true },
   { href: "#windows", label: "Windows app · Soon" },
   { href: "#mac", label: "Mac app · Soon" },
-  { href: "#resolve", label: "DaVinci Resolve plugin · Soon" },
+  { href: "#resolve", label: "DaVinci Resolve plugin · Live", dot: true },
 ];
 
 export default function ProductPage() {
@@ -115,7 +128,7 @@ export default function ProductPage() {
           </>
         }
         lede="An agentic AI video editor. It searches your footage or a YouTube link, cuts the edit, follows a reference style when you give one, and adds captions, grading and lip sync. You get a finished video or an XML timeline."
-        secondary={{ href: "#download", label: "See what's coming" }}
+        secondary={{ href: "#resolve", label: "Get the Resolve plugin" }}
       >
         <nav aria-label="Jump to product" className="mt-2 flex flex-wrap gap-2">
           {JUMP.map((j) => (
@@ -140,8 +153,8 @@ export default function ProductPage() {
           <SectionHead
             id="lineup-title"
             eyebrow="THE LINEUP"
-            title="Chat is live. Apps are on the way."
-            lede="Use the full agent in your browser today. Desktop apps for Windows and Mac, and a plugin for DaVinci Resolve, are coming soon."
+            title="Chat and the Resolve plugin are live."
+            lede="Use the full agent in your browser today. The DaVinci Resolve plugin is ready to download for Mac and Windows. Desktop apps for Windows and Mac are coming soon."
           />
           {LINEUP.map((p, i) => (
             <article
@@ -174,7 +187,16 @@ export default function ProductPage() {
                   ))}
                 </dl>
                 <div className="flex flex-wrap gap-2.5">
-                  {p.live ? (
+                  {p.downloads ? (
+                    <>
+                      {p.downloads.map((d) => (
+                        <a key={d.href} href={d.href} download className="btn btn-primary min-h-12 px-[22px] text-[15px]">
+                          {d.label}
+                          <ArrowRight />
+                        </a>
+                      ))}
+                    </>
+                  ) : p.live ? (
                     <a href={CHAT_URL} className="btn btn-primary min-h-12 px-[22px] text-[15px]">
                       Open Chat
                       <ArrowRight />
@@ -193,6 +215,13 @@ export default function ProductPage() {
                     </>
                   )}
                 </div>
+                {p.downloads && (
+                  <ul className="m-0 flex list-none flex-col gap-1 p-0 text-sm text-soft">
+                    {p.downloads.map((d) => (
+                      <li key={d.href}>{d.note}</li>
+                    ))}
+                  </ul>
+                )}
                 <span className="mono-label">{p.req}</span>
               </div>
               <div className="min-w-0 flex-[999_1_560px]">

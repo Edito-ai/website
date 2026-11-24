@@ -54,9 +54,9 @@ export const PRODUCTS: Product[] = [
     kind: "resolve",
     short: "DaVinci Resolve",
     platform: "PLUGIN · MAC + WINDOWS",
-    status: "COMING SOON",
+    status: "LIVE NOW",
     name: "Broll for DaVinci Resolve",
-    live: false,
+    live: true,
     desc: "A Broll chat panel docked inside DaVinci Resolve Studio. Ask for an edit without leaving Resolve.",
     bullets: [
       "Docks as a panel inside DaVinci Resolve Studio",

@@ -124,13 +124,13 @@ export default function Home() {
           <section className="relative isolate mx-auto box-border flex max-w-[1440px] flex-col items-center gap-6 px-5 pt-8 pb-10 text-center max-sm:min-h-[calc(100svh-64px)] max-sm:justify-center sm:gap-7 sm:px-6 sm:pt-16 sm:pb-[72px] md:pt-[104px] lg:px-10">
             <HeroBackdrop />
             <a
-              href="#new"
+              href="/product#resolve"
               data-reveal
               className="relative z-10 inline-flex max-w-full items-center gap-2 rounded-full border border-line-strong bg-surface py-1 pr-3 pl-1 text-[13px] whitespace-nowrap text-ink-2 transition-colors hover:border-red sm:gap-2.5 sm:py-1.5 sm:pr-3.5 sm:pl-1.5 sm:text-sm"
             >
               <span className="rounded-full bg-crimson px-2 py-0.5 text-[11px] font-semibold text-white sm:px-[9px] sm:py-1 sm:text-xs">New</span>
               <span className="truncate">
-                AI clipping for YouTube &amp; streams<span className="hidden sm:inline"> + reference-style editing</span>
+                Broll for DaVinci Resolve<span className="hidden sm:inline"> is live on Mac &amp; Windows</span>
               </span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
                 <path d="M9 6l6 6-6 6" />
