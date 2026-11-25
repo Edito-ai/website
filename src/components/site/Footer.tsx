@@ -9,9 +9,9 @@ const COLUMNS = [
     links: [
       { label: "Overview", href: "/product" },
       { label: "Broll Chat · Live", href: CHAT_URL },
-      { label: "Windows app · Soon", href: "/product#windows" },
-      { label: "Mac app · Soon", href: "/product#mac" },
-      { label: "Resolve plugin · Soon", href: "/product#resolve" },
+      { label: "Windows app · Live", href: "/product#windows" },
+      { label: "Mac app · Live", href: "/product#mac" },
+      { label: "Resolve plugin · Live", href: "/product#resolve" },
       { label: "AI Video Editor", href: "/ai-video-editor" },
       { label: "For Production Houses", href: "/ai-video-editor-for-production-houses" },
       { label: "Pricing", href: "/pricing" },
@@ -51,7 +51,7 @@ export default function Footer() {
               The agentic AI video editor. Raw footage in, a finished first cut out.
             </p>
             <span className="self-start rounded-full border border-line px-3 py-1.5 font-mono text-xs text-soft">
-              Chat live · Apps coming soon
+              Web · Windows · Mac · Resolve
             </span>
           </div>
           {COLUMNS.map((c) => (

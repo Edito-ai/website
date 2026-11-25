@@ -35,6 +35,8 @@ const structuredData = {
   ],
 };
 
+const APP_RELEASE = "https://github.com/Edito-ai/broll-downloads/releases/download/v1.0.0";
+
 const LINEUP: {
   id: MockKind;
   n: string;
@@ -53,16 +55,30 @@ const LINEUP: {
     req: "chat.trybroll.com",
   },
   {
-    id: "windows", n: "02", platform: "WINDOWS APP", name: "Broll for Windows", live: false,
+    id: "windows", n: "02", platform: "WINDOWS APP", name: "Broll for Windows", live: true,
     desc: "Broll as a desktop app for Windows. Point it at your footage, describe the edit, and review the first cut on your PC.",
     specs: [["RUNS ON", "Windows"], ["FOOTAGE", "Local drives"], ["OUTPUT", "MP4 or timeline XML"]],
-    req: "Release date: TBA",
+    req: "Version 1.0.0 · Windows 64-bit · 360 MB",
+    downloads: [
+      {
+        label: "Download for Windows",
+        href: `${APP_RELEASE}/Broll-1.0.0-win-x64.exe`,
+        note: "Windows may show a SmartScreen notice. Click More info, then Run anyway.",
+      },
+    ],
   },
   {
-    id: "mac", n: "03", platform: "MAC APP", name: "Broll for Mac", live: false,
+    id: "mac", n: "03", platform: "MAC APP", name: "Broll for Mac", live: true,
     desc: "The same agent, native on macOS. Built for large local libraries and fast turnarounds, including vertical and square cuts.",
-    specs: [["RUNS ON", "macOS"], ["FOOTAGE", "Local libraries"], ["OUTPUT", "MP4 or timeline XML"]],
-    req: "Release date: TBA",
+    specs: [["RUNS ON", "Apple Silicon"], ["FOOTAGE", "Local libraries"], ["OUTPUT", "MP4 or timeline XML"]],
+    req: "Version 1.0.0 · Apple Silicon (M1 or later) · 464 MB",
+    downloads: [
+      {
+        label: "Download for Mac",
+        href: `${APP_RELEASE}/Broll-1.0.0-mac-arm64.dmg`,
+        note: "If macOS blocks the app, open System Settings, go to Privacy & Security, and click Open Anyway.",
+      },
+    ],
   },
   {
     id: "resolve", n: "04", platform: "PLUGIN · MAC + WINDOWS", name: "Broll for DaVinci Resolve", live: true,
@@ -85,8 +101,8 @@ const LINEUP: {
 ];
 
 const COMPARE = [
-  { k: "STATUS", c: "Live now", w: "Coming soon", m: "Coming soon", r: "Live now" },
-  { k: "RUNS ON", c: "Any browser", w: "Windows", m: "macOS", r: "Mac and Windows" },
+  { k: "STATUS", c: "Live now", w: "Live now", m: "Live now", r: "Live now" },
+  { k: "RUNS ON", c: "Any browser", w: "Windows 64-bit", m: "Apple Silicon Macs", r: "Mac and Windows" },
   { k: "WHAT IT IS", c: "Web app", w: "Desktop app", m: "Desktop app", r: "Panel inside DaVinci Resolve Studio" },
   { k: "THE AGENT", c: "Full agent", w: "Full agent", m: "Full agent", r: "Full agent" },
   { k: "OUTPUT", c: "MP4 or timeline XML", w: "MP4 or timeline XML", m: "MP4 or timeline XML", r: "Edits in your Resolve project" },
@@ -113,8 +129,8 @@ const CAPS = [
 
 const JUMP = [
   { href: "#chat", label: "Chat · Live", dot: true },
-  { href: "#windows", label: "Windows app · Soon" },
-  { href: "#mac", label: "Mac app · Soon" },
+  { href: "#windows", label: "Windows app · Live", dot: true },
+  { href: "#mac", label: "Mac app · Live", dot: true },
   { href: "#resolve", label: "DaVinci Resolve plugin · Live", dot: true },
 ];
 
@@ -154,8 +170,8 @@ export default function ProductPage() {
           <SectionHead
             id="lineup-title"
             eyebrow="THE LINEUP"
-            title="Chat and the Resolve plugin are live."
-            lede="Use the full agent in your browser today. The DaVinci Resolve plugin is ready to download for Mac and Windows. Desktop apps for Windows and Mac are coming soon."
+            title="Web, desktop and Resolve are live."
+            lede="Use the full agent in your browser today, or download the desktop app for Windows or Mac. The DaVinci Resolve plugin is ready for both."
           />
           {LINEUP.map((p, i) => (
             <article
@@ -270,9 +286,13 @@ export default function ProductPage() {
                       Open Chat
                     </a>
                   </td>
-                  <td className="px-6 py-5 font-mono text-xs text-muted">COMING SOON</td>
-                  <td className="px-6 py-5 font-mono text-xs text-muted">COMING SOON</td>
-                  <td className="px-6 py-5 font-mono text-xs text-muted">COMING SOON</td>
+                  {(["windows", "mac", "resolve"] as const).map((id) => (
+                    <td key={id} className="px-6 py-5">
+                      <a href={`#${id}`} className="btn btn-primary min-h-11 px-4 text-sm">
+                        Download
+                      </a>
+                    </td>
+                  ))}
                 </tr>
               </tbody>
             </table>

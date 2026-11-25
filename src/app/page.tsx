@@ -179,7 +179,7 @@ export default function Home() {
               id="products-title"
               eyebrow="TC 00:02 — PRODUCTS"
               title={<>The <span className="text-grad">Broll</span> ecosystem.</>}
-              lede="Start in Chat today from any browser. Windows, Mac and DaVinci Resolve versions are coming soon, with the same agent inside."
+              lede="Start in Chat from any browser, or download Broll for Windows, Mac or DaVinci Resolve, with the same agent inside."
             />
             <ProductTabs />
           </Wrap>

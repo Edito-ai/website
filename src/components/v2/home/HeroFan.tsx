@@ -55,7 +55,7 @@ export default function HeroFan() {
         </a>
         <span className="inline-flex items-center gap-1.5 text-[13px] text-muted">
           <span className="size-[6px] rounded-full bg-red" />
-          Chat is live · apps coming soon
+          Live on web, Windows and Mac
         </span>
       </div>
 

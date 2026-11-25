@@ -127,9 +127,9 @@ export default function AboutPage() {
             </div>
             <div className="flex flex-col gap-3.5 rounded-3xl border border-line bg-surface p-9">
               <span className="font-mono text-[13px] text-muted">06 · AVAILABLE ON</span>
-              <h2 className="m-0 text-[28px] font-semibold tracking-[-0.03em]">Live on the web. Apps coming soon.</h2>
+              <h2 className="m-0 text-[28px] font-semibold tracking-[-0.03em]">On the web, desktop and Resolve.</h2>
               <p className="m-0 text-base leading-[1.65] text-soft">
-                Broll Chat is live on the web today. Windows and Mac apps and a DaVinci Resolve plugin for both are coming soon.
+                Broll Chat is live on the web. Desktop apps for Windows and Apple Silicon Macs are available to download, along with a DaVinci Resolve plugin for Mac and Windows.
               </p>
               <div className="mt-auto flex flex-wrap gap-2">
                 <span className="chip">Windows</span>
