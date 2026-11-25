@@ -8,6 +8,7 @@ const COLUMNS = [
     title: "PRODUCT",
     links: [
       { label: "Overview", href: "/product" },
+      { label: "Downloads", href: "/download" },
       { label: "Broll Chat · Live", href: CHAT_URL },
       { label: "Windows app · Live", href: "/product#windows" },
       { label: "Mac app · Live", href: "/product#mac" },

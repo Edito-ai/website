@@ -14,6 +14,24 @@ const links = [
   { href: "/about", label: "About" },
 ];
 
+function DownloadIcon() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M12 4v11M7 11l5 5 5-5M5 20h14" />
+    </svg>
+  );
+}
+
 function ChatIcon() {
   return (
     <svg
@@ -109,6 +127,19 @@ export default function Navbar() {
         </div>
 
         <div className="ml-auto flex items-center gap-2 justify-self-end md:ml-0">
+          {/* Icon only below `sm`, so the bar still fits a narrow phone. */}
+          <Link
+            href="/download"
+            aria-label="Download"
+            aria-current={pathname === "/download" ? "page" : undefined}
+            className={cn(
+              "btn btn-ghost btn-sm size-10 min-h-10 gap-2 px-0 text-sm sm:h-auto sm:w-auto sm:min-h-11 sm:px-[18px] sm:text-[15px]",
+              pathname === "/download" && "border-red bg-[#181A27]",
+            )}
+          >
+            <DownloadIcon />
+            <span className="hidden sm:inline">Download</span>
+          </Link>
           <a href={CHAT_URL} className="btn btn-primary btn-sm min-h-10 gap-2 px-4 text-sm sm:min-h-11 sm:px-[18px] sm:text-[15px]">
             <ChatIcon />
             <span className="sm:hidden">Chat</span>
@@ -149,7 +180,11 @@ export default function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <a href={CHAT_URL} className="btn btn-primary mt-4 gap-2">
+            <Link href="/download" onClick={() => setOpen(false)} className="btn btn-ghost mt-4 gap-2">
+              <DownloadIcon />
+              Download
+            </Link>
+            <a href={CHAT_URL} className="btn btn-primary mt-3 gap-2">
               <ChatIcon />
               Chat with Broll
             </a>

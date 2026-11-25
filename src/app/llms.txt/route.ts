@@ -50,6 +50,7 @@ ${SITE_NAME} is supported by the Google for Startups program.
 ## Pages
 
 - [Home](${SITE_URL}/): product overview, workflow and features
+- [Download](${SITE_URL}/download): installers for Windows, Mac and the DaVinci Resolve plugin
 - [AI Video Editor](${SITE_URL}/ai-video-editor): how the agentic AI video editor works
 - [AI Video Editor for Production Houses](${SITE_URL}/ai-video-editor-for-production-houses): fit for production teams and pipelines
 - [Broll vs. B-Roll Generators](${SITE_URL}/broll-vs-b-roll-generators): disambiguation from B-roll generator tools

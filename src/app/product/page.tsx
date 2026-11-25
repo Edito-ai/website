@@ -8,6 +8,7 @@ import CtaBand from "@/components/v2/CtaBand";
 import { ArrowLink, ArrowRight, Band, CHAT_URL, PageIntro, SectionHead, Wrap } from "@/components/v2/ui";
 import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/site";
 import { PRODUCT_FAQS } from "@/lib/faqs";
+import { APP_INSTALLERS, RESOLVE_INSTALLERS, type Installer } from "@/lib/downloads";
 import type { MockKind } from "@/components/v2/ProductMock";
 
 const TITLE = "Product — Broll, the Agentic AI Video Editor";
@@ -35,8 +36,6 @@ const structuredData = {
   ],
 };
 
-const APP_RELEASE = "https://github.com/Edito-ai/broll-downloads/releases/download/v1.0.0";
-
 const LINEUP: {
   id: MockKind;
   n: string;
@@ -46,7 +45,7 @@ const LINEUP: {
   desc: string;
   specs: [string, string][];
   req: string;
-  downloads?: { label: string; href: string; note: string }[];
+  downloads?: Installer[];
 }[] = [
   {
     id: "chat", n: "01", platform: "WEB APP", name: "Broll Chat", live: true,
@@ -59,44 +58,21 @@ const LINEUP: {
     desc: "Broll as a desktop app for Windows. Point it at your footage, describe the edit, and review the first cut on your PC.",
     specs: [["RUNS ON", "Windows"], ["FOOTAGE", "Local drives"], ["OUTPUT", "MP4 or timeline XML"]],
     req: "Version 1.0.0 · Windows 64-bit · 360 MB",
-    downloads: [
-      {
-        label: "Download for Windows",
-        href: `${APP_RELEASE}/Broll-1.0.0-win-x64.exe`,
-        note: "Windows may show a SmartScreen notice. Click More info, then Run anyway.",
-      },
-    ],
+    downloads: [APP_INSTALLERS[0]],
   },
   {
     id: "mac", n: "03", platform: "MAC APP", name: "Broll for Mac", live: true,
     desc: "The same agent, native on macOS. Built for large local libraries and fast turnarounds, including vertical and square cuts.",
     specs: [["RUNS ON", "Apple Silicon"], ["FOOTAGE", "Local libraries"], ["OUTPUT", "MP4 or timeline XML"]],
     req: "Version 1.0.0 · Apple Silicon (M1 or later) · 464 MB",
-    downloads: [
-      {
-        label: "Download for Mac",
-        href: `${APP_RELEASE}/Broll-1.0.0-mac-arm64.dmg`,
-        note: "If macOS blocks the app, open System Settings, go to Privacy & Security, and click Open Anyway.",
-      },
-    ],
+    downloads: [APP_INSTALLERS[1]],
   },
   {
     id: "resolve", n: "04", platform: "PLUGIN · MAC + WINDOWS", name: "Broll for DaVinci Resolve", live: true,
     desc: "A Broll chat panel docked inside DaVinci Resolve Studio. Ask for an edit without leaving Resolve, then keep grading and finishing where you already are.",
     specs: [["RUNS ON", "Mac + Windows"], ["LIVES IN", "Resolve Studio"], ["WORKFLOW", "Chat panel"]],
     req: "Version 0.3.1 · DaVinci Resolve Studio",
-    downloads: [
-      {
-        label: "Download for Windows",
-        href: "https://github.com/Edito-ai/broll-downloads/raw/main/BrollAI-Setup-0.3.1.exe",
-        note: "Windows may show a SmartScreen notice. Click More info, then Run anyway.",
-      },
-      {
-        label: "Download for Mac",
-        href: "https://github.com/Edito-ai/broll-downloads/releases/download/v0.3.1/BrollAI-0.3.1.pkg",
-        note: "If macOS blocks it, right-click the file and choose Open.",
-      },
-    ],
+    downloads: RESOLVE_INSTALLERS,
   },
 ];
 
