@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     url: "/pricing",
+    images: ["/opengraph-image.png"],
   },
 };
 
