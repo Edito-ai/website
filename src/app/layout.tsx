@@ -24,6 +24,11 @@ const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
 });
 
+// Link-preview copy (WhatsApp, X, LinkedIn). Search results use `title` and `description` below.
+const SHARE_TITLE = "Broll — Videos clipped & edited before you do";
+const SHARE_DESCRIPTION =
+  "Drop in raw footage or a link. Broll's AI agent cuts, captions and colour grades it into videos that are ready to post.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -55,13 +60,13 @@ export const metadata: Metadata = {
     url: "/",
     siteName: SITE_NAME,
     locale: "en_US",
-    title: "Broll AI | Agentic AI Video Editor (Official Site)",
-    description: SITE_DESCRIPTION,
+    title: SHARE_TITLE,
+    description: SHARE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Broll AI | Agentic AI Video Editor (Official Site)",
-    description: SITE_DESCRIPTION,
+    title: SHARE_TITLE,
+    description: SHARE_DESCRIPTION,
   },
   // Search Console / Bing Webmaster ownership. Set the env vars in Vercel —
   // undefined values are simply omitted from the head.

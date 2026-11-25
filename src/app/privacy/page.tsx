@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     title: "Privacy Policy — Broll",
     description: "How Broll collects, uses, and protects your information.",
     url: "/privacy",
+    images: ["/opengraph-image.png"],
   },
 };
 

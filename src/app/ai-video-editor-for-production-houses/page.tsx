@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     url: "/ai-video-editor-for-production-houses",
+    images: ["/opengraph-image.png"],
   },
 };
 

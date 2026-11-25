@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: "/blog" },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: "/blog" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: "/blog", images: ["/opengraph-image.png"] },
 };
 
 const structuredData = {

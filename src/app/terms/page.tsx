@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description:
       "The terms that govern your use of the Broll website and service.",
     url: "/terms",
+    images: ["/opengraph-image.png"],
   },
 };
 

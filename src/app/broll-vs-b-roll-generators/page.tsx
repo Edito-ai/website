@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     url: "/broll-vs-b-roll-generators",
+    images: ["/opengraph-image.png"],
   },
 };
 

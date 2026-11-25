@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     url: "/ai-video-editor",
+    images: ["/opengraph-image.png"],
   },
 };
 

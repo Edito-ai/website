@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     url: "/ai-editing-vs-manual-editing",
+    images: ["/opengraph-image.png"],
   },
 };
 
