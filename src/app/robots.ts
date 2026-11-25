@@ -33,8 +33,9 @@ const AI_CRAWLERS = [
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: "*", allow: "/" },
-      { userAgent: AI_CRAWLERS, allow: "/" },
+      // /dl/ only redirects to installer files and counts downloads; crawlers have no business there.
+      { userAgent: "*", allow: "/", disallow: "/dl/" },
+      { userAgent: AI_CRAWLERS, allow: "/", disallow: "/dl/" },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
     host: SITE_URL,

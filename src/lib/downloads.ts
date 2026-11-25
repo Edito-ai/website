@@ -10,7 +10,10 @@ export interface Installer {
   name: string;
   /** Button text. */
   label: string;
+  /** Where the button points: the counting redirect. */
   href: string;
+  /** The installer file itself. */
+  file: string;
   version: string;
   requires: string;
   size: string;
@@ -18,12 +21,15 @@ export interface Installer {
   note: string;
 }
 
-export const APP_INSTALLERS: Installer[] = [
+/** A button points at /dl/<id> (src/app/dl/[id]/route.ts), which counts the download and redirects to `file`. */
+const tracked = (items: Omit<Installer, "href">[]): Installer[] => items.map((i) => ({ ...i, href: `/dl/${i.id}` }));
+
+export const APP_INSTALLERS: Installer[] = tracked([
   {
     id: "windows",
     name: "Broll for Windows",
     label: "Download for Windows",
-    href: `${APP_RELEASE}/Broll-1.0.0-win-x64.exe`,
+    file: `${APP_RELEASE}/Broll-1.0.0-win-x64.exe`,
     version: "1.0.0",
     requires: "Windows 64-bit",
     size: "360 MB",
@@ -33,20 +39,20 @@ export const APP_INSTALLERS: Installer[] = [
     id: "mac",
     name: "Broll for Mac",
     label: "Download for Mac",
-    href: `${APP_RELEASE}/Broll-1.0.0-mac-arm64.dmg`,
+    file: `${APP_RELEASE}/Broll-1.0.0-mac-arm64.dmg`,
     version: "1.0.0",
     requires: "Apple Silicon (M1 or later)",
     size: "464 MB",
     note: "If macOS blocks the app, open System Settings, go to Privacy & Security, and click Open Anyway.",
   },
-];
+]);
 
-export const RESOLVE_INSTALLERS: Installer[] = [
+export const RESOLVE_INSTALLERS: Installer[] = tracked([
   {
     id: "resolve-windows",
     name: "Resolve plugin for Windows",
     label: "Download for Windows",
-    href: `${RELEASES}/raw/main/BrollAI-Setup-0.3.1.exe`,
+    file: `${RELEASES}/raw/main/BrollAI-Setup-0.3.1.exe`,
     version: "0.3.1",
     requires: "DaVinci Resolve Studio",
     size: "44 MB",
@@ -56,10 +62,10 @@ export const RESOLVE_INSTALLERS: Installer[] = [
     id: "resolve-mac",
     name: "Resolve plugin for Mac",
     label: "Download for Mac",
-    href: `${RELEASES}/releases/download/v0.3.1/BrollAI-0.3.1.pkg`,
+    file: `${RELEASES}/releases/download/v0.3.1/BrollAI-0.3.1.pkg`,
     version: "0.3.1",
     requires: "DaVinci Resolve Studio",
     size: "475 MB",
     note: "If macOS blocks it, right-click the file and choose Open.",
   },
-];
+]);

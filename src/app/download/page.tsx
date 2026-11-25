@@ -45,7 +45,7 @@ function InstallerCard({ item }: { item: Installer }) {
           v{item.version} · {item.requires} · {item.size}
         </span>
       </div>
-      <a href={item.href} download className="btn btn-primary min-h-12 self-stretch px-[22px] text-[15px] sm:self-start">
+      <a href={item.href} rel="nofollow" className="btn btn-primary min-h-12 self-stretch px-[22px] text-[15px] sm:self-start">
         {item.label}
         <ArrowRight />
       </a>

@@ -183,7 +183,7 @@ export default function ProductPage() {
                   {p.downloads ? (
                     <>
                       {p.downloads.map((d) => (
-                        <a key={d.href} href={d.href} download className="btn btn-primary min-h-12 px-[22px] text-[15px]">
+                        <a key={d.href} href={d.href} rel="nofollow" className="btn btn-primary min-h-12 px-[22px] text-[15px]">
                           {d.label}
                           <ArrowRight />
                         </a>

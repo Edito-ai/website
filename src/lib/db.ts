@@ -68,6 +68,30 @@ function ensureHistorySchema(): Promise<void> {
   return historyReady;
 }
 
+let downloadsReady: Promise<unknown> | null = null;
+
+/** One row per installer download started from the website. No IP address and no user agent are stored.
+ *  The admin panel reads this table. */
+export async function recordDownload(d: { installer: string; version: string; country: string | null; referrer: string | null }) {
+  const sql = getSql();
+  downloadsReady ??= sql`
+    CREATE TABLE IF NOT EXISTS download_events (
+      id SERIAL PRIMARY KEY,
+      installer TEXT NOT NULL,
+      version TEXT,
+      country TEXT,
+      referrer TEXT,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `.catch((err) => {
+    downloadsReady = null; // try again on the next download
+    throw err;
+  });
+  await downloadsReady;
+  await sql`INSERT INTO download_events (installer, version, country, referrer)
+            VALUES (${d.installer}, ${d.version}, ${d.country}, ${d.referrer})`;
+}
+
 export type LeadRow = {
   key: string;
   created_at: string;
