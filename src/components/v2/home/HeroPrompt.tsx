@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { CHAT_URL, DOWNLOAD_CTA, DownloadIcon } from "@/components/v2/ui";
+import { ArrowRight, CHAT_URL, DOWNLOAD_CTA } from "@/components/v2/ui";
 
 const DEFAULT_EXAMPLES = [
   "Cut a 60s reel in the style of my last video",
@@ -13,7 +13,7 @@ const DEFAULT_EXAMPLES = [
 
 /**
  * Hero prompt box: shows what you can ask Broll for, one example every 3s, with
- * the download button where a send button would be.
+ * the Chat button where a send button would be.
  */
 export default function HeroPrompt({ examples: EXAMPLES = DEFAULT_EXAMPLES }: { examples?: string[] }) {
   const [i, setI] = useState(0);
@@ -36,18 +36,18 @@ export default function HeroPrompt({ examples: EXAMPLES = DEFAULT_EXAMPLES }: { 
             {EXAMPLES[i % EXAMPLES.length]}
           </span>
         </p>
-        <Link
-          href={DOWNLOAD_CTA.href}
+        <a
+          href={CHAT_URL}
           className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-xl bg-crimson px-[22px] text-[15px] font-semibold text-white transition-colors hover:bg-[#d22640] max-sm:w-full max-sm:justify-center sm:min-h-[52px] sm:rounded-[14px] sm:text-base"
         >
-          <DownloadIcon />
-          {DOWNLOAD_CTA.label}
-        </Link>
+          Start in Chat
+          <ArrowRight />
+        </a>
       </div>
       <span className="font-mono text-xs text-muted">Windows 64-bit · Mac (Apple Silicon) · DaVinci Resolve plugin</span>
-      <a href={CHAT_URL} className="text-sm text-soft underline underline-offset-4 transition-colors hover:text-ink">
-        or start in Chat, right in your browser
-      </a>
+      <Link href={DOWNLOAD_CTA.href} className="text-sm text-soft underline underline-offset-4 transition-colors hover:text-ink">
+        or download Broll
+      </Link>
       <div aria-hidden className="flex justify-center gap-1.5 max-sm:hidden">
         {EXAMPLES.map((_, n) => (
           <span
