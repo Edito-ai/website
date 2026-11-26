@@ -4,6 +4,19 @@ import { cn } from "@/lib/utils";
 
 export const CHAT_URL = "https://chat.trybroll.com";
 
+/** The site's main call to action: every big button leads here. */
+export const DOWNLOAD_CTA = { href: "/download", label: "Download Broll" };
+/** Chat is the second choice: always an outline button or a text link beside Download. */
+export const CHAT_CTA = { href: CHAT_URL, label: "Chat with Broll" };
+
+export function DownloadIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 4v11M7 11l5 5 5-5M5 20h14" />
+    </svg>
+  );
+}
+
 /** Section opener: timecode eyebrow → headline → optional lede. */
 export function SectionHead({
   eyebrow,
@@ -141,7 +154,7 @@ export function PageIntro({
   eyebrow,
   title,
   lede,
-  primary = { href: CHAT_URL, label: "Try Broll in Chat" },
+  primary = DOWNLOAD_CTA,
   secondary = { href: "/#film", label: "Watch the teaser", play: true },
   center,
   size = "md",
@@ -177,7 +190,17 @@ export function PageIntro({
       {lede && <p className="m-0 max-w-[680px] text-lg leading-[1.55] text-soft md:text-[19px]">{lede}</p>}
       {(primary || secondary) && (
         <div data-reveal className={cn("flex flex-wrap gap-3", center && "justify-center")}>
-          {primary && <Btn href={primary.href}>{primary.label}</Btn>}
+          {primary && (
+            <Btn href={primary.href}>
+              {primary.href === DOWNLOAD_CTA.href && <DownloadIcon />}
+              {primary.label}
+            </Btn>
+          )}
+          {primary?.href === DOWNLOAD_CTA.href && (
+            <Btn href={CHAT_CTA.href} variant="ghost">
+              {CHAT_CTA.label}
+            </Btn>
+          )}
           {secondary && (
             <Btn href={secondary.href} variant="ghost">
               {secondary.play && <PlayIcon />}

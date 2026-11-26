@@ -1,4 +1,4 @@
-import { Btn, CHAT_URL } from "@/components/v2/ui";
+import { Btn, CHAT_CTA, DOWNLOAD_CTA, DownloadIcon } from "@/components/v2/ui";
 
 export default function CtaBand({
   heading = "Your next first cut is minutes away.",
@@ -39,11 +39,15 @@ export default function CtaBand({
           {heading}
         </h2>
         <p data-reveal className="relative m-0 max-w-[540px] text-lg leading-relaxed text-soft">
-          Upload your footage, describe the edit in Chat, and get a first cut back.
+          Download Broll, add your footage, describe the edit, and get a first cut back.
         </p>
         <div data-reveal className="relative mb-6 flex flex-wrap justify-center gap-3">
-          <Btn href={CHAT_URL} className="min-h-14 px-[30px] shadow-[0_12px_40px_-8px_rgba(190,30,52,0.6)]">
-            Chat with Broll
+          <Btn href={DOWNLOAD_CTA.href} className="min-h-14 px-[30px] shadow-[0_12px_40px_-8px_rgba(190,30,52,0.6)]">
+            <DownloadIcon />
+            {DOWNLOAD_CTA.label}
+          </Btn>
+          <Btn href={CHAT_CTA.href} variant="ghost">
+            {CHAT_CTA.label}
           </Btn>
           <Btn href={secondaryHref} variant="ghost">
             {secondaryLabel}

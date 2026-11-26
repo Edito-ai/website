@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { CHAT_URL } from "@/components/v2/ui";
+import { CHAT_URL, DownloadIcon } from "@/components/v2/ui";
 import BrandLockup from "@/components/v2/BrandLockup";
 
 const links = [
@@ -13,42 +13,6 @@ const links = [
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
 ];
-
-function DownloadIcon() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M12 4v11M7 11l5 5 5-5M5 20h14" />
-    </svg>
-  );
-}
-
-function ChatIcon() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" />
-    </svg>
-  );
-}
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -99,7 +63,7 @@ export default function Navbar() {
       <nav
         aria-label="Main"
         className={cn(
-          "mx-auto box-border flex max-w-[1440px] flex-wrap items-center gap-x-7 gap-y-2 px-6 transition-[padding] duration-500 md:grid md:grid-cols-[1fr_auto_1fr] lg:px-10",
+          "mx-auto box-border flex max-w-[1440px] flex-wrap items-center gap-x-2 gap-y-2 px-4 transition-[padding] duration-500 sm:gap-x-7 sm:px-6 md:grid md:grid-cols-[1fr_auto_1fr] lg:px-10",
           scrolled ? "py-2" : "py-3",
         )}
       >
@@ -124,27 +88,23 @@ export default function Navbar() {
               </Link>
             );
           })}
+          <a
+            href={CHAT_URL}
+            className="inline-flex min-h-11 items-center rounded-full px-3.5 text-[15px] font-medium text-soft transition-colors hover:text-ink"
+          >
+            Chat
+          </a>
         </div>
 
-        <div className="ml-auto flex items-center gap-2 justify-self-end md:ml-0">
-          {/* Icon only below `sm`, so the bar still fits a narrow phone. */}
+        <div className="ml-auto flex items-center gap-1.5 justify-self-end sm:gap-2 md:ml-0">
           <Link
             href="/download"
-            aria-label="Download"
             aria-current={pathname === "/download" ? "page" : undefined}
-            className={cn(
-              "btn btn-ghost btn-sm size-10 min-h-10 gap-2 px-0 text-sm sm:h-auto sm:w-auto sm:min-h-11 sm:px-[18px] sm:text-[15px]",
-              pathname === "/download" && "border-red bg-[#181A27]",
-            )}
+            className="btn btn-primary btn-sm min-h-10 gap-1.5 px-3 text-sm shadow-[0_0_0_4px_rgba(190,30,52,0.18),0_10px_30px_-8px_rgba(190,30,52,0.85)] sm:min-h-11 sm:gap-2 sm:px-[22px] sm:text-[15px]"
           >
             <DownloadIcon />
-            <span className="hidden sm:inline">Download</span>
+            Download
           </Link>
-          <a href={CHAT_URL} className="btn btn-primary btn-sm min-h-10 gap-2 px-4 text-sm sm:min-h-11 sm:px-[18px] sm:text-[15px]">
-            <ChatIcon />
-            <span className="sm:hidden">Chat</span>
-            <span className="hidden sm:inline">Chat with Broll</span>
-          </a>
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -180,14 +140,13 @@ export default function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <Link href="/download" onClick={() => setOpen(false)} className="btn btn-ghost mt-4 gap-2">
-              <DownloadIcon />
-              Download
-            </Link>
-            <a href={CHAT_URL} className="btn btn-primary mt-3 gap-2">
-              <ChatIcon />
-              Chat with Broll
+            <a href={CHAT_URL} className="flex min-h-12 items-center border-b border-line-2 text-lg font-medium text-ink">
+              Chat
             </a>
+            <Link href="/download" onClick={() => setOpen(false)} className="btn btn-primary mt-4 gap-2">
+              <DownloadIcon />
+              Download Broll
+            </Link>
           </div>
         )}
       </nav>

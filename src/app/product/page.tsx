@@ -48,31 +48,31 @@ const LINEUP: {
   downloads?: Installer[];
 }[] = [
   {
-    id: "chat", n: "01", platform: "WEB APP", name: "Broll Chat", live: true,
-    desc: "The full Broll agent in your browser. Upload footage or paste a YouTube link, describe the edit or share a reference, and review the first cut in minutes.",
-    specs: [["RUNS IN", "Any browser"], ["FOOTAGE", "Uploads + YouTube"], ["OUTPUT", "MP4 or timeline XML"]],
-    req: "chat.trybroll.com",
-  },
-  {
-    id: "windows", n: "02", platform: "WINDOWS APP", name: "Broll for Windows", live: true,
+    id: "windows", n: "01", platform: "WINDOWS APP", name: "Broll for Windows", live: true,
     desc: "Broll as a desktop app for Windows. Point it at your footage, describe the edit, and review the first cut on your PC.",
     specs: [["RUNS ON", "Windows"], ["FOOTAGE", "Local drives"], ["OUTPUT", "MP4 or timeline XML"]],
     req: "Version 1.0.1 · Windows 64-bit · 360 MB",
     downloads: [APP_INSTALLERS[0]],
   },
   {
-    id: "mac", n: "03", platform: "MAC APP", name: "Broll for Mac", live: true,
+    id: "mac", n: "02", platform: "MAC APP", name: "Broll for Mac", live: true,
     desc: "The same agent, native on macOS. Built for large local libraries and fast turnarounds, including vertical and square cuts.",
     specs: [["RUNS ON", "Apple Silicon"], ["FOOTAGE", "Local libraries"], ["OUTPUT", "MP4 or timeline XML"]],
     req: "Version 1.0.1 · Apple Silicon (M1 or later) · 464 MB",
     downloads: [APP_INSTALLERS[1]],
   },
   {
-    id: "resolve", n: "04", platform: "PLUGIN · MAC + WINDOWS", name: "Broll for DaVinci Resolve", live: true,
+    id: "resolve", n: "03", platform: "PLUGIN · MAC + WINDOWS", name: "Broll for DaVinci Resolve", live: true,
     desc: "A Broll chat panel docked inside DaVinci Resolve Studio. Ask for an edit without leaving Resolve, then keep grading and finishing where you already are.",
     specs: [["RUNS ON", "Mac + Windows"], ["LIVES IN", "Resolve Studio"], ["WORKFLOW", "Chat panel"]],
     req: "Version 0.3.1 · DaVinci Resolve Studio",
     downloads: RESOLVE_INSTALLERS,
+  },
+  {
+    id: "chat", n: "04", platform: "WEB APP", name: "Broll Chat", live: true,
+    desc: "The full Broll agent in your browser. Upload footage or paste a YouTube link, describe the edit or share a reference, and review the first cut in minutes.",
+    specs: [["RUNS IN", "Any browser"], ["FOOTAGE", "Uploads + YouTube"], ["OUTPUT", "MP4 or timeline XML"]],
+    req: "chat.trybroll.com",
   },
 ];
 
@@ -82,7 +82,7 @@ const COMPARE = [
   { k: "WHAT IT IS", c: "Web app", w: "Desktop app", m: "Desktop app", r: "Panel inside DaVinci Resolve Studio" },
   { k: "THE AGENT", c: "Full agent", w: "Full agent", m: "Full agent", r: "Full agent" },
   { k: "OUTPUT", c: "MP4 or timeline XML", w: "MP4 or timeline XML", m: "MP4 or timeline XML", r: "Edits in your Resolve project" },
-  { k: "BEST FOR", c: "Starting today, from anywhere", w: "Teams editing on PCs", m: "Teams editing on Macs", r: "Editors who live in Resolve" },
+  { k: "BEST FOR", c: "A quick try from any computer", w: "Teams editing on PCs", m: "Teams editing on Macs", r: "Editors who live in Resolve" },
 ];
 
 const STAGES = [
@@ -104,10 +104,10 @@ const CAPS = [
 ];
 
 const JUMP = [
-  { href: "#chat", label: "Chat · Live", dot: true },
   { href: "#windows", label: "Windows app · Live", dot: true },
   { href: "#mac", label: "Mac app · Live", dot: true },
   { href: "#resolve", label: "DaVinci Resolve plugin · Live", dot: true },
+  { href: "#chat", label: "Chat · Live", dot: true },
 ];
 
 export default function ProductPage() {
@@ -146,8 +146,8 @@ export default function ProductPage() {
           <SectionHead
             id="lineup-title"
             eyebrow="THE LINEUP"
-            title="Web, desktop and Resolve are live."
-            lede="Use the full agent in your browser today, or download the desktop app for Windows or Mac. The DaVinci Resolve plugin is ready for both."
+            title="Desktop, Resolve and web are live."
+            lede="Download the desktop app for Windows or Mac, or the DaVinci Resolve plugin for both. The same agent also runs in your browser."
           />
           {LINEUP.map((p, i) => (
             <article
@@ -190,7 +190,7 @@ export default function ProductPage() {
                       ))}
                     </>
                   ) : p.live ? (
-                    <a href={CHAT_URL} className="btn btn-primary min-h-12 px-[22px] text-[15px]">
+                    <a href={CHAT_URL} className="btn btn-ghost min-h-12 px-[22px] text-[15px]">
                       Open Chat
                       <ArrowRight />
                     </a>
@@ -236,39 +236,36 @@ export default function ProductPage() {
                   <th scope="col" className="w-[18%] px-6 py-5 text-left">
                     <span className="sr-only">Feature</span>
                   </th>
-                  <th scope="col" className="px-6 py-5 text-left text-[17px] font-semibold text-red">
-                    Chat{" "}
-                    <span className="rounded-full bg-crimson px-1.5 py-0.5 align-middle font-mono text-[10px] text-white">LIVE</span>
-                  </th>
-                  <th scope="col" className="px-6 py-5 text-left text-[17px] font-semibold">Windows app</th>
+                  <th scope="col" className="px-6 py-5 text-left text-[17px] font-semibold text-red">Windows app</th>
                   <th scope="col" className="px-6 py-5 text-left text-[17px] font-semibold">Mac app</th>
                   <th scope="col" className="px-6 py-5 text-left text-[17px] font-semibold">Resolve plugin</th>
+                  <th scope="col" className="px-6 py-5 text-left text-[17px] font-semibold">Chat (web)</th>
                 </tr>
               </thead>
               <tbody>
                 {COMPARE.map((r) => (
                   <tr key={r.k} className="border-t border-line-2">
                     <th scope="row" className="px-6 py-[18px] text-left font-mono text-xs font-medium text-muted">{r.k}</th>
-                    <td className="bg-[rgba(190,30,52,0.06)] px-6 py-[18px]">{r.c}</td>
-                    <td className="px-6 py-[18px] text-ink-2">{r.w}</td>
+                    <td className="bg-[rgba(190,30,52,0.06)] px-6 py-[18px]">{r.w}</td>
                     <td className="px-6 py-[18px] text-ink-2">{r.m}</td>
                     <td className="px-6 py-[18px] text-ink-2">{r.r}</td>
+                    <td className="px-6 py-[18px] text-ink-2">{r.c}</td>
                   </tr>
                 ))}
                 <tr className="border-t border-line">
                   <th scope="row" className="px-6 py-5 text-left font-mono text-xs font-medium text-muted">GET IT</th>
-                  <td className="bg-[rgba(190,30,52,0.06)] px-6 py-5">
-                    <a href={CHAT_URL} className="btn btn-primary min-h-11 px-4 text-sm">
-                      Open Chat
-                    </a>
-                  </td>
                   {(["windows", "mac", "resolve"] as const).map((id) => (
-                    <td key={id} className="px-6 py-5">
+                    <td key={id} className={id === "windows" ? "bg-[rgba(190,30,52,0.06)] px-6 py-5" : "px-6 py-5"}>
                       <a href={`#${id}`} className="btn btn-primary min-h-11 px-4 text-sm">
                         Download
                       </a>
                     </td>
                   ))}
+                  <td className="px-6 py-5">
+                    <a href={CHAT_URL} className="btn btn-ghost min-h-11 px-4 text-sm">
+                      Open Chat
+                    </a>
+                  </td>
                 </tr>
               </tbody>
             </table>

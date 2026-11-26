@@ -1,4 +1,4 @@
-import { Btn, CHAT_URL, Check } from "@/components/v2/ui";
+import { Btn, CHAT_URL, Check, DOWNLOAD_CTA, DownloadIcon } from "@/components/v2/ui";
 import Shot, { CLIPS } from "@/components/v2/Shot";
 
 const WAVE = [30, 42, 26, 58, 36, 22, 48, 92, 88, 40, 28, 34, 52, 30, 24, 38, 60, 96, 84, 44, 30, 26, 36, 48, 32, 28, 42, 54, 90, 94, 46, 34, 30, 24, 40, 56, 36, 88, 80, 32];
@@ -185,8 +185,14 @@ export default function NewFeatures({ eyebrow = "NEW IN BROLL" }: { eyebrow?: st
         </article>
 
         <div data-reveal className="flex flex-wrap justify-center gap-3">
-          <Btn href={CHAT_URL}>Try it in Chat</Btn>
-          <Btn href="/product#chat" variant="ghost">
+          <Btn href={DOWNLOAD_CTA.href}>
+            <DownloadIcon />
+            {DOWNLOAD_CTA.label}
+          </Btn>
+          <Btn href={CHAT_URL} variant="ghost">
+            Try it in Chat
+          </Btn>
+          <Btn href="/product" variant="ghost">
             See all products
           </Btn>
         </div>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageShell from "@/components/v2/PageShell";
 import Faq from "@/components/v2/Faq";
 import CtaBand from "@/components/v2/CtaBand";
-import { ArrowLink, Btn, CHAT_URL, PlayIcon } from "@/components/v2/ui";
+import { ArrowLink, Btn, CHAT_URL, DOWNLOAD_CTA, DownloadIcon, PlayIcon } from "@/components/v2/ui";
 import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/site";
 import { AI_VIDEO_EDITOR_FAQS } from "@/lib/faqs";
 
@@ -61,7 +61,13 @@ export default function AiVideoEditorPage() {
             Broll analyzes unedited footage, finds the moments that matter and assembles the edit, like a human editor would.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Btn href={CHAT_URL}>Try Broll in Chat</Btn>
+            <Btn href={DOWNLOAD_CTA.href}>
+              <DownloadIcon />
+              {DOWNLOAD_CTA.label}
+            </Btn>
+            <Btn href={CHAT_URL} variant="ghost">
+              Try Broll in Chat
+            </Btn>
             <Btn href="/#film" variant="ghost">
               <PlayIcon />
               Watch the teaser

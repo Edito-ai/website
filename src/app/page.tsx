@@ -12,7 +12,7 @@ import ProductTabs from "@/components/v2/home/ProductTabs";
 import Film from "@/components/v2/home/Film";
 import Ruler from "@/components/v2/Ruler";
 import Shot, { CLIPS } from "@/components/v2/Shot";
-import { Band, CHAT_URL, SectionHead, Wrap } from "@/components/v2/ui";
+import { Band, CHAT_CTA, DOWNLOAD_CTA, SectionHead, Wrap } from "@/components/v2/ui";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -179,7 +179,7 @@ export default function Home() {
               id="products-title"
               eyebrow="TC 00:02 — PRODUCTS"
               title={<>The <span className="text-grad">Broll</span> ecosystem.</>}
-              lede="Start in Chat from any browser, or download Broll for Windows, Mac or DaVinci Resolve, with the same agent inside."
+              lede="Download Broll for Windows, Mac or DaVinci Resolve, with the same agent inside. It also runs in your browser."
             />
             <ProductTabs />
           </Wrap>
@@ -370,12 +370,20 @@ export default function Home() {
               <h3 className="m-0 text-[28px] leading-[1.15] font-semibold tracking-[-0.03em]">
                 Search, cut, caption, grade and match a style in one agent run.
               </h3>
-              <a
-                href={CHAT_URL}
-                className="mt-auto inline-flex min-h-11 items-center self-start rounded-full bg-bg px-[18px] text-[15px] font-semibold text-ink"
-              >
-                Chat with Broll
-              </a>
+              <div className="mt-auto flex flex-wrap gap-2.5">
+                <Link
+                  href={DOWNLOAD_CTA.href}
+                  className="inline-flex min-h-11 items-center rounded-full bg-bg px-[18px] text-[15px] font-semibold text-ink"
+                >
+                  {DOWNLOAD_CTA.label}
+                </Link>
+                <a
+                  href={CHAT_CTA.href}
+                  className="inline-flex min-h-11 items-center rounded-full border border-white/50 px-[18px] text-[15px] font-medium text-white hover:border-white"
+                >
+                  {CHAT_CTA.label}
+                </a>
+              </div>
             </div>
           </div>
         </section>

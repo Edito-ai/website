@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { CLIPS } from "@/components/v2/Shot";
-import { ArrowRight, CHAT_URL } from "@/components/v2/ui";
+import Link from "next/link";
+import { CHAT_URL, DOWNLOAD_CTA, DownloadIcon } from "@/components/v2/ui";
 
 /**
  * Phone hero: a fanned hand of three captioned 9:16 clips floating under the
@@ -49,13 +50,16 @@ export default function HeroFan() {
       </div>
 
       <div data-reveal className="flex w-full flex-col items-center gap-3">
-        <a href={CHAT_URL} className="btn btn-primary w-full gap-2 shadow-[0_12px_40px_-8px_rgba(190,30,52,0.6)]">
-          Start in Chat
-          <ArrowRight />
+        <Link href={DOWNLOAD_CTA.href} className="btn btn-primary w-full gap-2 shadow-[0_12px_40px_-8px_rgba(190,30,52,0.6)]">
+          <DownloadIcon />
+          {DOWNLOAD_CTA.label}
+        </Link>
+        <a href={CHAT_URL} className="inline-flex min-h-9 items-center text-sm text-soft underline underline-offset-4">
+          or start in Chat
         </a>
         <span className="inline-flex items-center gap-1.5 text-[13px] text-muted">
           <span className="size-[6px] rounded-full bg-red" />
-          Live on web, Windows and Mac
+          Available for Windows and Mac
         </span>
       </div>
 

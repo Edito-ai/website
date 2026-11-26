@@ -13,20 +13,6 @@ export interface Product {
 
 export const PRODUCTS: Product[] = [
   {
-    kind: "chat",
-    short: "Chat",
-    platform: "WEB",
-    status: "LIVE NOW",
-    name: "Broll Chat",
-    live: true,
-    desc: "The full Broll agent in your browser at chat.trybroll.com. Upload footage or paste a YouTube link, describe the edit, and review the cut.",
-    bullets: [
-      "Nothing to install, works in any modern browser",
-      "Reference-style editing and YouTube clipping included",
-      "Export an MP4, or XML for Premiere Pro, Resolve or Final Cut Pro",
-    ],
-  },
-  {
     kind: "windows",
     short: "Windows",
     platform: "WINDOWS APP",
@@ -62,6 +48,20 @@ export const PRODUCTS: Product[] = [
       "Docks as a panel inside DaVinci Resolve Studio",
       "Runs on both Mac and Windows",
       "Keep grading and finishing in Resolve",
+    ],
+  },
+  {
+    kind: "chat",
+    short: "Chat",
+    platform: "WEB",
+    status: "LIVE NOW",
+    name: "Broll Chat",
+    live: true,
+    desc: "The full Broll agent in your browser at chat.trybroll.com. Upload footage or paste a YouTube link, describe the edit, and review the cut.",
+    bullets: [
+      "Nothing to install, works in any modern browser",
+      "Reference-style editing and YouTube clipping included",
+      "Export an MP4, or XML for Premiere Pro, Resolve or Final Cut Pro",
     ],
   },
 ];

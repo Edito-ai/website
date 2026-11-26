@@ -22,7 +22,7 @@ const MODES: {
     sub: "Long video → viral shorts",
     isNew: true,
     examples: [
-      "Find the 6 best moments in this stream and make captioned Shorts",
+      "Turn this stream into 6 captioned Shorts",
       "Turn this 2-hour podcast into clips for Reels and TikTok",
       "Clip every big reaction from yesterday's stream",
       "Paste a YouTube link, get 9:16 clips with bold captions",

@@ -66,7 +66,6 @@ export default function AboutPage() {
           </>
         }
         lede="trybroll.com is the official home of the software that turns raw footage into publish-ready videos for production houses and creator teams."
-        primary={{ href: CHAT_URL, label: "Chat with Broll" }}
         secondary={{ href: "/product", label: "Explore the product" }}
       />
 
@@ -119,9 +118,10 @@ export default function AboutPage() {
               <span className="font-mono text-[13px] text-muted">05 · OFFICIAL SITE</span>
               <h2 className="m-0 text-[28px] font-semibold tracking-[-0.03em]">Broll and trybroll.com</h2>
               <p className="m-0 text-base leading-[1.65] text-soft">
-                trybroll.com is the only official Broll site. Start a conversation with Broll in Chat.
+                trybroll.com is the only official Broll site. Get the Broll installers here.
               </p>
-              <div className="mt-auto">
+              <div className="mt-auto flex flex-wrap gap-5">
+                <ArrowLink href="/download">Download Broll</ArrowLink>
                 <ArrowLink href={CHAT_URL}>Chat with Broll</ArrowLink>
               </div>
             </div>
@@ -129,7 +129,7 @@ export default function AboutPage() {
               <span className="font-mono text-[13px] text-muted">06 · AVAILABLE ON</span>
               <h2 className="m-0 text-[28px] font-semibold tracking-[-0.03em]">On the web, desktop and Resolve.</h2>
               <p className="m-0 text-base leading-[1.65] text-soft">
-                Broll Chat is live on the web. Desktop apps for Windows and Apple Silicon Macs are available to download, along with a DaVinci Resolve plugin for Mac and Windows.
+                Desktop apps for Windows and Apple Silicon Macs are available to download, along with a DaVinci Resolve plugin for Mac and Windows. Broll Chat is also live on the web.
               </p>
               <div className="mt-auto flex flex-wrap gap-2">
                 <span className="chip">Windows</span>

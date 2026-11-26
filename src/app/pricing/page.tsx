@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import PageShell from "@/components/v2/PageShell";
 import Faq from "@/components/v2/Faq";
-import { Btn, CHAT_URL, CheckList, PageIntro } from "@/components/v2/ui";
+import { Btn, CHAT_URL, CheckList, DOWNLOAD_CTA, PageIntro } from "@/components/v2/ui";
 import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/site";
 import { PRICING_FAQS } from "@/lib/faqs";
 
 const TITLE = "Pricing — Broll AI Video Editor";
 const DESCRIPTION =
-  "Broll pricing will be announced soon. Broll Chat is live today, so you can start using the agentic AI video editor right away.";
+  "Broll pricing will be announced soon. The desktop app for Windows and Mac is available to download today.";
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -64,8 +64,7 @@ export default function PricingPage() {
             Pricing is <span className="text-grad">coming soon.</span>
           </>
         }
-        lede="Pricing will be announced soon. Chat is live today, so you can start using Broll right away."
-        primary={{ href: CHAT_URL, label: "Start in Chat" }}
+        lede="Pricing will be announced soon. You can download Broll today and start right away."
       />
 
       <section aria-label="Plans" className="mx-auto box-border max-w-[1440px] px-6 lg:px-10 pt-0">
@@ -93,15 +92,20 @@ export default function PricingPage() {
                 <span className="text-[13px] text-muted">Announcing soon</span>
               </div>
               <CheckList items={p.features} />
-              <Btn href={CHAT_URL} variant={p.featured ? "primary" : "ghost"} className="mt-auto font-semibold">
-                Start in Chat
-              </Btn>
+              <div className="mt-auto flex flex-col gap-3">
+                <Btn href={DOWNLOAD_CTA.href} variant={p.featured ? "primary" : "ghost"} className="font-semibold">
+                  {DOWNLOAD_CTA.label}
+                </Btn>
+                <a href={CHAT_URL} className="self-center text-sm text-soft underline underline-offset-4 hover:text-ink">
+                  or start in Chat
+                </a>
+              </div>
             </article>
           ))}
         </div>
         <div className="mt-5 flex flex-wrap justify-center gap-x-8 gap-y-3 rounded-2xl border border-line px-6 py-[18px] font-mono text-[13px] text-soft">
           <span>✓ All capabilities for every team</span>
-          <span>✓ Chat is live now</span>
+          <span>✓ Windows and Mac apps are live</span>
           <span>✓ Pricing announced soon</span>
         </div>
       </section>
@@ -123,12 +127,12 @@ export default function PricingPage() {
             </h2>
             <p className="m-0 text-[17px] leading-[1.7] text-soft">
               Plans for creator teams, production houses and agencies are being finalized and will be announced soon.
-              Broll Chat is already live, so you can try it on your own footage now.
+              The desktop app is available to download, so you can try it on your own footage now.
             </p>
           </div>
           <div className="relative flex flex-[1_1_280px] flex-col gap-2.5 font-mono text-[13px]">
             <div className={STATUS_ROW}>
-              <span>Broll Chat</span>
+              <span>Windows · Mac · Resolve</span>
               <span className="inline-flex items-center gap-1.5 text-red">
                 <span className="size-[7px] rounded-full bg-red" />
                 LIVE
@@ -139,12 +143,15 @@ export default function PricingPage() {
               <span className="text-soft">TBD</span>
             </div>
             <div className={STATUS_ROW}>
-              <span>Windows · Mac · Resolve</span>
-              <span className="text-soft">SOON</span>
+              <span>Broll Chat (web)</span>
+              <span className="text-soft">LIVE</span>
             </div>
-            <Btn href={CHAT_URL} className="mt-1.5 font-sans">
-              Start in Chat
+            <Btn href={DOWNLOAD_CTA.href} className="mt-1.5 font-sans">
+              {DOWNLOAD_CTA.label}
             </Btn>
+            <a href={CHAT_URL} className="self-center font-sans text-sm text-soft underline underline-offset-4 hover:text-ink">
+              or start in Chat
+            </a>
           </div>
         </div>
       </section>

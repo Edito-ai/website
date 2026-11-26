@@ -4,7 +4,7 @@ import PageShell from "@/components/v2/PageShell";
 import Faq from "@/components/v2/Faq";
 import CtaBand from "@/components/v2/CtaBand";
 import Shot, { CLIPS } from "@/components/v2/Shot";
-import { ArrowLink, Band, CHAT_URL, PageIntro, Wrap } from "@/components/v2/ui";
+import { ArrowLink, Band, PageIntro, Wrap } from "@/components/v2/ui";
 import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/site";
 import { PRODUCTION_HOUSES_FAQS } from "@/lib/faqs";
 
@@ -55,7 +55,6 @@ export default function ProductionHousesPage() {
           </>
         }
         lede="Multiple cameras, long shoots, parallel projects. Broll handles the volume and hands your editors a structured story to finish."
-        primary={{ href: CHAT_URL, label: "Chat with Broll" }}
       >
         <div aria-hidden className="mt-8 grid grid-cols-1 gap-3 rounded-3xl border border-line bg-surface-2 p-5 sm:grid-cols-2 lg:grid-cols-4">
           {CAMS.map((c) => (

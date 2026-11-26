@@ -72,7 +72,7 @@ export default function ProductTabs() {
           <div className="mt-1 flex flex-wrap gap-2.5">
             {active.live ? (
               active.kind === "chat" ? (
-                <a href={CHAT_URL} className="btn btn-primary min-h-12 px-[22px] text-[15px]">
+                <a href={CHAT_URL} className="btn btn-ghost min-h-12 px-[22px] text-[15px]">
                   Open Chat
                   <ArrowRight />
                 </a>

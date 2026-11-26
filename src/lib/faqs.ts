@@ -13,8 +13,8 @@ export const FAQS: Faq[] = [
   { q: "Which editors can I export to?", a: "A finished MP4, or a timeline XML that opens in Premiere Pro, DaVinci Resolve and Final Cut Pro." },
   { q: "Does it do captions and lip sync?", a: "Yes. Styled auto-captions that stay synced as the edit changes, and AI lip sync for dubbing into other languages." },
   { q: "Who is Broll for?", a: "Production houses, creator teams, podcasts, real estate, and brands and agencies shipping video every week." },
-  { q: "How do I get started?", a: "Open Chat at chat.trybroll.com. It is live now and runs the full agent in your browser." },
-  { q: "Which platforms does Broll run on?", a: "Broll Chat is live on the web. There are desktop apps for Windows (64-bit) and Apple Silicon Macs, and a DaVinci Resolve plugin for Mac and Windows." },
+  { q: "How do I get started?", a: "Download Broll for Windows or Mac from trybroll.com/download, then sign in with your email. You can also use Chat at chat.trybroll.com in your browser." },
+  { q: "Which platforms does Broll run on?", a: "There are desktop apps for Windows (64-bit) and Apple Silicon Macs, and a DaVinci Resolve plugin for Mac and Windows. Broll Chat is also live on the web." },
   { q: "How is Broll different from B-roll generators?", a: "B-roll generators add supplementary clips to an edit you already made. Broll is the editor itself, starting from raw footage." },
   { q: "How much does Broll cost?", a: "Pricing will be announced soon." },
 ];
@@ -28,12 +28,12 @@ export const PRODUCT_FAQS: Faq[] = [
   { q: "Can AI edit raw, unorganized footage?", a: "Yes. Broll needs no manual logging or pre-selection of clips." },
   { q: "How is this different from auto-captioners or template editors?", a: "Those handle one step. Broll also finds the moments and builds the story." },
   { q: "Does it export to Premiere Pro, DaVinci Resolve or Final Cut?", a: "Yes, via standard timeline XML." },
-  { q: "Which platforms does Broll run on?", a: "Broll Chat is live on the web. There are desktop apps for Windows (64-bit) and Apple Silicon Macs, and a DaVinci Resolve plugin for Mac and Windows." },
+  { q: "Which platforms does Broll run on?", a: "There are desktop apps for Windows (64-bit) and Apple Silicon Macs, and a DaVinci Resolve plugin for Mac and Windows. Broll Chat is also live on the web." },
 ];
 
 export const PRICING_FAQS: Faq[] = [
   { q: "How much will Broll cost?", a: "Pricing is still being finalized and will be announced soon." },
-  { q: "Can I use Broll before pricing is announced?", a: "Yes. Broll Chat is live at chat.trybroll.com, so you can start right away." },
+  { q: "Can I use Broll before pricing is announced?", a: "Yes. Download Broll for Windows or Mac, or use Chat at chat.trybroll.com, and start right away." },
   { q: "Will there be plans for different kinds of teams?", a: "We are planning options for creator teams, production houses and agencies. Details are TBD." },
   { q: "Will it be a subscription or usage-based?", a: "TBD. We will share the details when pricing is announced." },
   { q: "Are the Windows, Mac and Resolve apps available?", a: "Yes. You can download all three from the product page. The Mac app needs an Apple Silicon Mac." },
