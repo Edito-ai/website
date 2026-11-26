@@ -2,7 +2,7 @@
 // changed in one place.
 
 const RELEASES = "https://github.com/Edito-ai/broll-downloads";
-const APP_RELEASE = `${RELEASES}/releases/download/v1.0.0`;
+const APP_RELEASE = `${RELEASES}/releases/download/v1.0.1`;
 
 export interface Installer {
   id: "windows" | "mac" | "resolve-windows" | "resolve-mac";
@@ -29,8 +29,8 @@ export const APP_INSTALLERS: Installer[] = tracked([
     id: "windows",
     name: "Broll for Windows",
     label: "Download for Windows",
-    file: `${APP_RELEASE}/Broll-1.0.0-win-x64.exe`,
-    version: "1.0.0",
+    file: `${APP_RELEASE}/Broll-1.0.1-win-x64.exe`,
+    version: "1.0.1",
     requires: "Windows 64-bit",
     size: "360 MB",
     note: "Windows may show a SmartScreen notice. Click More info, then Run anyway.",
@@ -39,8 +39,8 @@ export const APP_INSTALLERS: Installer[] = tracked([
     id: "mac",
     name: "Broll for Mac",
     label: "Download for Mac",
-    file: `${APP_RELEASE}/Broll-1.0.0-mac-arm64.dmg`,
-    version: "1.0.0",
+    file: `${APP_RELEASE}/Broll-1.0.1-mac-arm64.dmg`,
+    version: "1.0.1",
     requires: "Apple Silicon (M1 or later)",
     size: "464 MB",
     note: "If macOS blocks the app, open System Settings, go to Privacy & Security, and click Open Anyway.",
