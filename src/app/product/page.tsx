@@ -51,14 +51,14 @@ const LINEUP: {
     id: "windows", n: "01", platform: "WINDOWS APP", name: "Broll for Windows", live: true,
     desc: "Broll as a desktop app for Windows. Point it at your footage, describe the edit, and review the first cut on your PC.",
     specs: [["RUNS ON", "Windows"], ["FOOTAGE", "Local drives"], ["OUTPUT", "MP4 or timeline XML"]],
-    req: "Version 1.0.1 · Windows 64-bit · 360 MB",
+    req: "Version 1.0.2 · Windows 64-bit · 360 MB",
     downloads: [APP_INSTALLERS[0]],
   },
   {
     id: "mac", n: "02", platform: "MAC APP", name: "Broll for Mac", live: true,
     desc: "The same agent, native on macOS. Built for large local libraries and fast turnarounds, including vertical and square cuts.",
     specs: [["RUNS ON", "Apple Silicon"], ["FOOTAGE", "Local libraries"], ["OUTPUT", "MP4 or timeline XML"]],
-    req: "Version 1.0.1 · Apple Silicon (M1 or later) · 464 MB",
+    req: "Version 1.0.2 · Apple Silicon (M1 or later) · 463 MB",
     downloads: [APP_INSTALLERS[1]],
   },
   {
